@@ -2,9 +2,31 @@
 
 namespace App\Enums;
 
-enum PaymentWebhookStatus: string
+use Filament\Support\Contracts\HasColor;
+use Filament\Support\Contracts\HasLabel;
+use Illuminate\Contracts\Support\Htmlable;
+
+enum PaymentWebhookStatus: string implements HasColor, HasLabel
 {
     case PENDING = 'pending';
     case PROCESSING = 'processing';
     case FAILED = 'failed';
+
+    public function getLabel(): string|Htmlable|null
+    {
+        return match ($this) {
+            self::PENDING => __('В очікуванні'),
+            self::PROCESSING => __('В процесі'),
+            self::FAILED => __('Помилка'),
+        };
+    }
+
+    public function getColor(): string|array|null
+    {
+        return match ($this) {
+            self::PENDING => 'gray',
+            self::PROCESSING => 'info',
+            self::FAILED => 'danger',
+        };
+    }
 }

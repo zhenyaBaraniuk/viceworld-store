@@ -5,11 +5,13 @@ namespace App\Models;
 use App\Enums\PaymentProvider;
 use App\Enums\PaymentWebhookStatus;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class PaymentWebhook extends Model
 {
+    use HasFactory;
     use HasUlids;
 
     protected $fillable = [
@@ -26,7 +28,7 @@ class PaymentWebhook extends Model
 
     protected $casts = [
         'provider' => PaymentProvider::class,
-        'status'   => PaymentWebhookStatus::class,
+        'status' => PaymentWebhookStatus::class,
     ];
 
     public function payment(): BelongsTo
