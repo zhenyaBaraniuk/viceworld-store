@@ -8,6 +8,7 @@ use Illuminate\Contracts\Support\Htmlable;
 
 enum PaymentWebhookStatus: string implements HasColor, HasLabel
 {
+    case SUCCESS = 'success';
     case PENDING = 'pending';
     case PROCESSING = 'processing';
     case FAILED = 'failed';
@@ -15,6 +16,7 @@ enum PaymentWebhookStatus: string implements HasColor, HasLabel
     public function getLabel(): string|Htmlable|null
     {
         return match ($this) {
+            self::SUCCESS => __('Успішно'),
             self::PENDING => __('В очікуванні'),
             self::PROCESSING => __('В процесі'),
             self::FAILED => __('Помилка'),
@@ -24,6 +26,7 @@ enum PaymentWebhookStatus: string implements HasColor, HasLabel
     public function getColor(): string|array|null
     {
         return match ($this) {
+            self::SUCCESS => 'green',
             self::PENDING => 'gray',
             self::PROCESSING => 'info',
             self::FAILED => 'danger',
