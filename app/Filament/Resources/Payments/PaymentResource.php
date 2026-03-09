@@ -9,14 +9,14 @@ use App\Filament\Resources\Payments\RelationManagers\TransactionsRelationManager
 use App\Filament\Resources\Payments\Schemas\PaymentForm;
 use App\Filament\Resources\Payments\Schemas\PaymentInfolist;
 use App\Filament\Resources\Payments\Tables\PaymentsTable;
-use App\Models\Payment;
-use BackedEnum;
-use Filament\Resources\Resource;
-use Filament\Schemas\Schema;
-use Filament\Support\Icons\Heroicon;
-use Filament\Tables\Table;
 use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Database\Eloquent\Model;
+use Filament\Support\Icons\Heroicon;
+use Filament\Resources\Resource;
+use Filament\Schemas\Schema;
+use Filament\Tables\Table;
+use App\Models\Payment;
+use BackedEnum;
 
 class PaymentResource extends Resource
 {
@@ -33,7 +33,7 @@ class PaymentResource extends Resource
 
     public static function getRecordTitle(?Model $record): string|Htmlable|null
     {
-        return $record ? 'Payment #'.$record->external_id : null;
+        return $record instanceof Payment ? 'Payment #'.$record->external_id : null;
     }
 
     public static function infolist(Schema $schema): Schema
