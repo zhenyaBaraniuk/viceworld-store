@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('currency');
             $table->decimal('amount', 10);
             $table->string('status');
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }
