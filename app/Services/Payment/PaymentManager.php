@@ -10,8 +10,8 @@ class PaymentManager
     public function provider(PaymentProvider $provider): PaymentProviderInterface
     {
         return match ($provider) {
-            PaymentProvider::LiqPay => new LiqPayProvider(),
-            PaymentProvider::Monobank => new MonobankProvider(),
+            PaymentProvider::LiqPay => new LiqPayProvider,
+            PaymentProvider::Monobank => new MonobankProvider,
         };
     }
 }

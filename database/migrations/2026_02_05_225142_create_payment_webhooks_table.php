@@ -16,7 +16,7 @@ return new class extends Migration
             $table->ulid('payment_id')->nullable()->index();
             $table->ulid('transaction_id')->nullable()->index();
             $table->string('provider');
-            $table->string('type');
+            $table->string('type')->nullable();
             $table->string('status');
             $table->text('headers');
             $table->text('payload');

@@ -11,7 +11,9 @@ use LiqPay;
 class LiqPayProvider implements PaymentProviderInterface
 {
     private LiqPay $client;
+
     private string $publicKey;
+
     private string $privateKey;
 
     public function __construct()
@@ -33,13 +35,13 @@ class LiqPayProvider implements PaymentProviderInterface
             'currency' => Str::upper($payment->currency->value),
             'description' => $payment->description,
             'order_id' => $payment->id,
-            'version' => '3'
+            'version' => '3',
         ]);
 
-        return $data['url'] . '?' . http_build_query([
-                'data' => $data['data'],
-                'signature' => $data['signature']
-            ]);
+        return $data['url'].'?'.http_build_query([
+            'data' => $data['data'],
+            'signature' => $data['signature'],
+        ]);
     }
 
     public function verifyPayment(Request $request): bool
@@ -48,7 +50,7 @@ class LiqPayProvider implements PaymentProviderInterface
         $signature = $request->input('signature');
 
         $expectedSignature = $this->client->str_to_sign(
-            $this->privateKey . $data . $this->privateKey
+            $this->privateKey.$data.$this->privateKey
         );
 
         return $signature === $expectedSignature;

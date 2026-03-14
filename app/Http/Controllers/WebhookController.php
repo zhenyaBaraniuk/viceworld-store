@@ -6,20 +6,17 @@ use App\Enums\PaymentProvider;
 use App\Enums\PaymentStatus;
 use App\Enums\PaymentWebhookStatus;
 use App\Enums\TransactionStatus;
-use App\Models\PaymentWebhook;
-use Illuminate\Http\Response;
-use Illuminate\Http\Request;
-use Illuminate\Support\Str;
-use App\Models\Transaction;
 use App\Models\Payment;
-
+use App\Models\PaymentWebhook;
+use App\Models\Transaction;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Str;
 use PaymentManager;
 
 class WebhookController
 {
-    public function __construct(private readonly PaymentManager $paymentManager)
-    {
-    }
+    public function __construct(private readonly PaymentManager $paymentManager) {}
 
     public function liqpay(Request $request): Response
     {
@@ -35,13 +32,21 @@ class WebhookController
             'payload' => $request->all(),
         ]);
 
-        if (!$isVerified) {
+        if (! $isVerified) {
             return response('Invalid signature', 403);
         }
 
         $data = $liqpayProvider->parseWebhook($request);
 
         $payment = Payment::find($data['order_id']);
+
+        if (! $payment) {
+            $webhook->update([
+                'status' => PaymentWebhookStatus::FAILED,
+            ]);
+
+            return response('Payment not found', 404);
+        }
 
         $transaction = Transaction::create([
             'external_id' => $data['payment_id'],
@@ -70,10 +75,7 @@ class WebhookController
         return response('OK', 200);
     }
 
-    public function monobank()
-    {
-
-    }
+    public function monobank() {}
 
     private function mapPaymentStatus(string $status): PaymentStatus
     {

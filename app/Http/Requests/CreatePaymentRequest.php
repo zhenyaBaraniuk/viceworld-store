@@ -17,10 +17,10 @@ class CreatePaymentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'amount' => [ 'required', 'numeric', 'min:1' ],
-            'currency' => [ 'required', Rule::enum(Currency::class) ],
-            'provider' => [ 'required', Rule::enum(PaymentProvider::class) ],
-            'description' => [ 'nullable', 'string', 'max:255' ],
+            'amount' => ['required', 'numeric', 'min:1'],
+            'currency' => ['required', Rule::enum(Currency::class)],
+            'provider' => ['required', Rule::enum(PaymentProvider::class)],
+            'description' => ['nullable', 'string', 'max:255'],
         ];
     }
 }

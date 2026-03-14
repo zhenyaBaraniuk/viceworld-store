@@ -18,8 +18,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property array $payload
  * @property PaymentProvider $provider
  * @property PaymentWebhookStatus $status
- * @property string $type
- * @property boolean $is_active
+ * @property string|null $type
+ * @property bool $is_active
  * @property Carbon $processed_at
  * @property Carbon $created_at
  * @property Carbon $updated_at
