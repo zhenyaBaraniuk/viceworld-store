@@ -33,7 +33,7 @@ class PaymentResource extends Resource
 
     public static function getRecordTitle(?Model $record): string|Htmlable|null
     {
-        return $record ? 'Payment #'.$record->external_id : null;
+        return $record instanceof Payment ? 'Payment #'.$record->external_id : null;
     }
 
     public static function infolist(Schema $schema): Schema
