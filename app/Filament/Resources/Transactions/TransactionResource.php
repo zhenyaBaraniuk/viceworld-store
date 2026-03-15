@@ -32,7 +32,7 @@ class TransactionResource extends Resource
 
     public static function getRecordTitle(?Model $record): string|Htmlable|null
     {
-        return $record ? 'Transaction #'.$record->external_id : null;
+        return $record instanceof Transaction ? 'Transaction #'.$record->external_id : null;
     }
 
     public static function infolist(Schema $schema): Schema
