@@ -241,7 +241,7 @@ class WebhookControllerTest extends TestCase
     {
         return [
             'success' => ['success', 'paid', 'success'],
-            'reversed' => ['reversed', 'refunded', 'processing'],
+            'reversed' => ['reversed', 'refunded', 'reversed'],
             'cancelled' => ['cancelled', 'cancelled', 'processing'],
             'prepared' => ['prepared', 'processing', 'pending'],
             'error' => ['error', 'failed', 'failed'],
