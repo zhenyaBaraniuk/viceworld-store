@@ -12,7 +12,8 @@
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.9",
         "liqpay/liqpay": "^1.4",
-        "spatie/laravel-data": "^4.20"
+        "spatie/laravel-data": "^4.20",
+        "ext-openssl": "*"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",

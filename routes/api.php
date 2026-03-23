@@ -8,4 +8,5 @@ Route::post('/payments', [PaymentController::class, 'store']);
 
 Route::prefix('webhooks')->group(function () {
     Route::post('/liqpay', [WebhookController::class, 'liqpay']);
+    Route::post('/monobank', [WebhookController::class, 'monobank']);
 });
