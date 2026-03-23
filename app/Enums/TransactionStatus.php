@@ -10,6 +10,7 @@ enum TransactionStatus: string implements HasColor, HasLabel
 {
     case PENDING = 'pending';
     case PROCESSING = 'processing';
+    case REVERSED = 'reversed';
     case SUCCESS = 'success';
     case FAILED = 'failed';
 
@@ -18,6 +19,7 @@ enum TransactionStatus: string implements HasColor, HasLabel
         return match ($this) {
             self::PENDING => __('В очікуванні'),
             self::PROCESSING => __('В процесі'),
+            self::REVERSED => __('Повернуто'),
             self::SUCCESS => __('Успіх'),
             self::FAILED => __('Помилка'),
         };
@@ -28,6 +30,7 @@ enum TransactionStatus: string implements HasColor, HasLabel
         return match ($this) {
             self::PENDING => 'gray',
             self::PROCESSING => 'info',
+            self::REVERSED => 'warning',
             self::SUCCESS => 'success',
             self::FAILED => 'danger',
         };
