@@ -8,20 +8,19 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('payments', function (Blueprint $table) {
+        Schema::create('products', function (Blueprint $table) {
             $table->ulid('id')->primary();
-            $table->string('external_id')->nullable()->index();
-            $table->string('provider');
-            $table->string('currency');
-            $table->decimal('amount', 10);
+            $table->ulid('category_id');
+            $table->decimal('price');
             $table->string('status');
-            $table->text('description')->nullable();
+            $table->string('gender_line');
+            $table->boolean('is_featured')->default(false);
             $table->timestamps();
         });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('payments');
+        Schema::dropIfExists('products');
     }
 };
