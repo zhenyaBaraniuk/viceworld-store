@@ -8,20 +8,20 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('payments', function (Blueprint $table) {
+        Schema::create('orders', function (Blueprint $table) {
             $table->ulid('id')->primary();
-            $table->string('external_id')->nullable()->index();
-            $table->string('provider');
-            $table->string('currency');
-            $table->decimal('amount', 10);
+            $table->ulid('customer_id')->nullable();
+            $table->ulid('payment_id')->nullable();
+            $table->string('order_number')->unique();
             $table->string('status');
-            $table->text('description')->nullable();
+            $table->decimal('total_amount');
+            $table->text('shipping_address');
             $table->timestamps();
         });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('payments');
+        Schema::dropIfExists('orders');
     }
 };
