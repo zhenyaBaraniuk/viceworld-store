@@ -2,7 +2,7 @@
 
 namespace App\Filament\Resources\PaymentWebhooks\Tables;
 
-use App\Enums\PaymentWebhookStatus;
+use App\Enums\PaymentWebhook\PaymentWebhookStatus;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\ViewAction;

@@ -1,7 +1,7 @@
 <?php
 
 use App\Contracts\PaymentProviderInterface;
-use App\Enums\PaymentProvider;
+use App\Enums\Payment\PaymentProvider;
 use App\Services\Payment\Providers\LiqPayProvider;
 use App\Services\Payment\Providers\MonobankProvider;
 

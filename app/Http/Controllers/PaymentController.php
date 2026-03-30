@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Enums\PaymentProvider;
-use App\Enums\PaymentStatus;
+use App\Enums\Payment\PaymentProvider;
+use App\Enums\Payment\PaymentStatus;
 use App\Http\Requests\CreatePaymentRequest;
 use App\Models\Payment;
 use Illuminate\Http\JsonResponse;

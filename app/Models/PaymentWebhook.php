@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use App\Enums\PaymentProvider;
-use App\Enums\PaymentWebhookStatus;
+use App\Enums\Payment\PaymentProvider;
+use App\Enums\PaymentWebhook\PaymentWebhookStatus;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;

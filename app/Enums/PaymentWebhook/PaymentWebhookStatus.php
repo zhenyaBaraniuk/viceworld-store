@@ -1,26 +1,24 @@
 <?php
 
-namespace App\Enums;
+namespace App\Enums\PaymentWebhook;
 
 use Filament\Support\Contracts\HasColor;
 use Filament\Support\Contracts\HasLabel;
 use Illuminate\Contracts\Support\Htmlable;
 
-enum TransactionStatus: string implements HasColor, HasLabel
+enum PaymentWebhookStatus: string implements HasColor, HasLabel
 {
+    case SUCCESS = 'success';
     case PENDING = 'pending';
     case PROCESSING = 'processing';
-    case REVERSED = 'reversed';
-    case SUCCESS = 'success';
     case FAILED = 'failed';
 
     public function getLabel(): string|Htmlable|null
     {
         return match ($this) {
+            self::SUCCESS => __('Успішно'),
             self::PENDING => __('В очікуванні'),
             self::PROCESSING => __('В процесі'),
-            self::REVERSED => __('Повернуто'),
-            self::SUCCESS => __('Успіх'),
             self::FAILED => __('Помилка'),
         };
     }
@@ -28,10 +26,9 @@ enum TransactionStatus: string implements HasColor, HasLabel
     public function getColor(): string|array|null
     {
         return match ($this) {
+            self::SUCCESS => 'green',
             self::PENDING => 'gray',
             self::PROCESSING => 'info',
-            self::REVERSED => 'warning',
-            self::SUCCESS => 'success',
             self::FAILED => 'danger',
         };
     }

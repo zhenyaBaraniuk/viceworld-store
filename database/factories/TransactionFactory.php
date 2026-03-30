@@ -3,8 +3,8 @@
 namespace Database\Factories;
 
 use App\Enums\Currency;
-use App\Enums\PaymentProvider;
-use App\Enums\TransactionStatus;
+use App\Enums\Payment\PaymentProvider;
+use App\Enums\Transaction\TransactionStatus;
 use App\Models\Payment;
 use App\Models\Transaction;
 use Illuminate\Database\Eloquent\Factories\Factory;

@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Enums\Currency;
-use App\Enums\PaymentProvider;
-use App\Enums\PaymentStatus;
-use App\Enums\PaymentWebhookStatus;
-use App\Enums\TransactionStatus;
+use App\Enums\Payment\PaymentProvider;
+use App\Enums\Payment\PaymentStatus;
+use App\Enums\PaymentWebhook\PaymentWebhookStatus;
+use App\Enums\Transaction\TransactionStatus;
 use App\Models\Payment;
 use App\Models\PaymentWebhook;
 use App\Models\Transaction;
