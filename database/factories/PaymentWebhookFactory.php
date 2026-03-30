@@ -2,8 +2,8 @@
 
 namespace Database\Factories;
 
-use App\Enums\PaymentProvider;
-use App\Enums\PaymentWebhookStatus;
+use App\Enums\Payment\PaymentProvider;
+use App\Enums\PaymentWebhook\PaymentWebhookStatus;
 use App\Models\Payment;
 use App\Models\PaymentWebhook;
 use App\Models\Transaction;

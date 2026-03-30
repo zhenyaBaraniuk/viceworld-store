@@ -3,8 +3,8 @@
 namespace App\Filament\Resources\Transactions\Tables;
 
 use App\Enums\Currency;
-use App\Enums\PaymentProvider;
-use App\Enums\TransactionStatus;
+use App\Enums\Payment\PaymentProvider;
+use App\Enums\Transaction\TransactionStatus;
 use Filament\Actions\ViewAction;
 use Filament\Forms\Components\DatePicker;
 use Filament\Tables\Columns\TextColumn;
