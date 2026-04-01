@@ -3,7 +3,7 @@
 namespace App\Filament\Resources\Payments\Tables;
 
 use App\Enums\Currency;
-use App\Enums\PaymentStatus;
+use App\Enums\Payment\PaymentStatus;
 use Filament\Actions\ViewAction;
 use Filament\Forms\Components\DatePicker;
 use Filament\Tables\Columns\TextColumn;

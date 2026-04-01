@@ -2,8 +2,8 @@
 
 namespace App\Filament\Resources\PaymentWebhooks\Schemas;
 
-use App\Enums\PaymentProvider;
-use App\Enums\PaymentWebhookStatus;
+use App\Enums\Payment\PaymentProvider;
+use App\Enums\PaymentWebhook\PaymentWebhookStatus;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
