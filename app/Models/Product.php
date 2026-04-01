@@ -4,12 +4,13 @@ namespace App\Models;
 
 use App\Enums\GenderLine;
 use App\Enums\Product\ProductStatus;
-use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 use Astrotomic\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 
 class Product extends Model implements HasMedia, TranslatableContract
 {
@@ -41,6 +42,11 @@ class Product extends Model implements HasMedia, TranslatableContract
 
     public function category(): BelongsTo
     {
-        return $this->belongsTo('category');
+        return $this->belongsTo(Category::class);
+    }
+
+    public function productVariants(): HasMany
+    {
+        return $this->hasMany(ProductVariant::class);
     }
 }

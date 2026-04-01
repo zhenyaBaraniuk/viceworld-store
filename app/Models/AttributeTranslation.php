@@ -4,11 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ProductTranslation extends Model
+class AttributeTranslation extends Model
 {
     protected $fillable = [
         'name',
-        'slug',
-        'description',
     ];
 }
