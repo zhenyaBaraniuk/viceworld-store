@@ -4,8 +4,8 @@ namespace Tests\Feature;
 
 use App\Contracts\PaymentProviderInterface;
 use App\Enums\Currency;
-use App\Enums\PaymentProvider;
-use App\Enums\PaymentStatus;
+use App\Enums\Payment\PaymentProvider;
+use App\Enums\Payment\PaymentStatus;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Mockery;
 use PaymentManager;

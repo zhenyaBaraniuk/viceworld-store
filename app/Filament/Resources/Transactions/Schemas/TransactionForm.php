@@ -3,8 +3,8 @@
 namespace App\Filament\Resources\Transactions\Schemas;
 
 use App\Enums\Currency;
-use App\Enums\PaymentProvider;
-use App\Enums\TransactionStatus;
+use App\Enums\Payment\PaymentProvider;
+use App\Enums\Transaction\TransactionStatus;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;

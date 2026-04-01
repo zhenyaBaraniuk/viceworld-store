@@ -3,7 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Enums\Currency;
-use App\Enums\PaymentProvider;
+use App\Enums\Payment\PaymentProvider;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
