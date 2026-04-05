@@ -10,11 +10,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use App\Filament\Trait\HasTranslateAttributes;
 use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 
 class Product extends Model implements HasMedia, TranslatableContract
 {
-    use InteractsWithMedia, Translatable;
+    use InteractsWithMedia, Translatable, HasTranslateAttributes;
 
     protected $fillable = [
         'category_id',
@@ -38,6 +39,14 @@ class Product extends Model implements HasMedia, TranslatableContract
             'gender_line' => GenderLine::class,
             'is_featured' => 'boolean',
         ];
+    }
+
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('main_image')
+            ->singleFile();
+
+        $this->addMediaCollection('images');
     }
 
     public function category(): BelongsTo
