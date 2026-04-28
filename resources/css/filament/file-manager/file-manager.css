@@ -1,0 +1,45 @@
+@layer components {
+    .fm-breadcrumb-nav {
+        @apply flex items-center gap-2 text-sm font-medium tracking-[0.05em] uppercase text-fm-on-surface-variant;
+    }
+
+    .fm-breadcrumb-link {
+        @apply hover:text-fm-primary transition-colors cursor-pointer;
+    }
+
+    .fm-breadcrumb-current {
+        @apply text-fm-tertiary;
+    }
+
+    .fm-search-input {
+        background-color: var(--color-fm-surface-low) !important;
+        border: none !important;
+        box-shadow: none !important;
+        outline: none !important;
+    }
+
+    .fm-search-input:focus {
+        box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-fm-primary) 40%, transparent) !important;
+    }
+
+    .fm-filter-btn {
+        @apply px-4 py-1.5 text-xs font-bold rounded-full transition-colors
+    }
+
+    .fm-filter-btn--active {
+        @apply bg-white text-fm-primary shadow-sm;
+    }
+
+    .fm-item-name {
+        @apply text-sm font-bold text-fm-on-surface truncate;
+    }
+
+    .fm-item-meta {
+        @apply text-[0.75rem] text-fm-on-surface-variant;
+    }
+
+    .fm-icon-folder {
+        font-size: 72px !important;
+        font-variation-settings: 'FILL' 1;
+    }
+}

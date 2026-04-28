@@ -27,7 +27,10 @@ class AdminPanelProvider extends PanelProvider
             ->default()
             ->id('admin')
             ->path('admin')
-            ->viteTheme('resources/css/filament/admin/theme.css')
+            ->viteTheme([
+                'resources/css/filament/admin/theme.css',
+                'resources/js/admin.js',
+            ])
             ->login()
             ->colors([
                 'primary' => Color::Amber,
@@ -41,6 +44,11 @@ class AdminPanelProvider extends PanelProvider
             ->widgets([
                 AccountWidget::class,
                 FilamentInfoWidget::class,
+            ])
+            ->navigationGroups([
+                'Shop',
+                'Payments',
+                'File Manager',
             ])
             ->middleware([
                 EncryptCookies::class,

@@ -2,8 +2,8 @@
 
 namespace App\Filament\Resources\Products\Schemas;
 
+use App\Filament\Forms\Components\MediaPicker;
 use App\Models\Category;
-use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use App\Enums\GenderLine;
 use App\Enums\Product\ProductStatus;
 use Filament\Forms\Components\RichEditor;
@@ -64,20 +64,18 @@ class ProductForm
                     ->tabs([
                         Tab::make('Головне фото')
                         ->schema([
-                            SpatieMediaLibraryFileUpload::make('main_image')
+                            MediaPicker::make('main_image')
                                 ->hiddenLabel()
                                 ->columnSpanFull()
                                 ->collection('main_image'),
                         ]),
                         Tab::make('Додаткові фото')
                         ->schema([
-                            SpatieMediaLibraryFileUpload::make('images')
+                            MediaPicker::make('images')
                                 ->hiddenLabel()
                                 ->columnSpanFull()
                                 ->collection('images')
                                 ->multiple()
-                                ->reorderable(),
-
                         ]),
                     ]),
 
