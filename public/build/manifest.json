@@ -1,6 +1,18 @@
 {
+  "node_modules/material-symbols/material-symbols-outlined.woff2": {
+    "file": "assets/material-symbols-outlined-fdWoPKgL.woff2",
+    "src": "node_modules/material-symbols/material-symbols-outlined.woff2"
+  },
+  "node_modules/material-symbols/material-symbols-rounded.woff2": {
+    "file": "assets/material-symbols-rounded-CWHnzuYx.woff2",
+    "src": "node_modules/material-symbols/material-symbols-rounded.woff2"
+  },
+  "node_modules/material-symbols/material-symbols-sharp.woff2": {
+    "file": "assets/material-symbols-sharp-BNpXFnpe.woff2",
+    "src": "node_modules/material-symbols/material-symbols-sharp.woff2"
+  },
   "resources/css/app.css": {
-    "file": "assets/app-C_ltrW3i.css",
+    "file": "assets/app-CctxzIRp.css",
     "src": "resources/css/app.css",
     "isEntry": true,
     "name": "app",
@@ -9,13 +21,19 @@
     ]
   },
   "resources/css/filament/admin/theme.css": {
-    "file": "assets/theme-Bwho8Mko.css",
+    "file": "assets/theme-C5OyYxtU.css",
     "src": "resources/css/filament/admin/theme.css",
     "isEntry": true,
     "name": "theme",
     "names": [
       "theme.css"
     ]
+  },
+  "resources/js/admin.js": {
+    "file": "assets/admin-J81tvscv.js",
+    "name": "admin",
+    "src": "resources/js/admin.js",
+    "isEntry": true
   },
   "resources/js/app.js": {
     "file": "assets/app-BjqOcoUn.js",

@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use App\Filament\Trait\HasTranslateAttributes;
 use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 
@@ -57,5 +58,10 @@ class Product extends Model implements HasMedia, TranslatableContract
     public function productVariants(): HasMany
     {
         return $this->hasMany(ProductVariant::class);
+    }
+
+    public function mediaFiles(): MorphToMany
+    {
+        return $this->morphToMany(Media::class, 'mediable')->withPivot('collection', 'order');
     }
 }
