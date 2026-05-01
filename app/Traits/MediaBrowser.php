@@ -34,10 +34,10 @@ trait MediaBrowser
             ->withCount(['children', 'media'])
             ->when(
                 $this->currentFolderId,
-                fn($q) => $q->where('parent_id', $this->currentFolderId),
-                fn($q) => $q->whereNull('parent_id'),
+                fn ($q) => $q->where('parent_id', $this->currentFolderId),
+                fn ($q) => $q->whereNull('parent_id'),
             )
-            ->when($this->search, fn($q, $search) => $q->where('name', 'like', "%{$search}%"))
+            ->when($this->search, fn ($q, $search) => $q->where('name', 'like', "%{$search}%"))
             ->get();
     }
 
@@ -46,16 +46,16 @@ trait MediaBrowser
         return Media::query()
             ->when(
                 $this->currentFolderId,
-                fn($q) => $q->where('folder_id', $this->currentFolderId),
-                fn($q) => $q->whereNull('folder_id'),
+                fn ($q) => $q->where('folder_id', $this->currentFolderId),
+                fn ($q) => $q->whereNull('folder_id'),
             )
-            ->when($this->filter === 'images', fn($q) => $q->where('mime_type', 'like', 'image/%'))
-            ->when($this->filter === 'videos', fn($q) => $q->where('mime_type', 'like', 'video/%'))
-            ->when($this->filter === 'docs', fn($q) => $q
+            ->when($this->filter === 'images', fn ($q) => $q->where('mime_type', 'like', 'image/%'))
+            ->when($this->filter === 'videos', fn ($q) => $q->where('mime_type', 'like', 'video/%'))
+            ->when($this->filter === 'docs', fn ($q) => $q
                 ->where('mime_type', 'not like', 'image/%')
                 ->where('mime_type', 'not like', 'video/%')
             )
-            ->when($this->search, fn($q, $search) => $q->where('name', 'like', "%{$search}%"),
+            ->when($this->search, fn ($q, $search) => $q->where('name', 'like', "%{$search}%"),
             )->get();
     }
 

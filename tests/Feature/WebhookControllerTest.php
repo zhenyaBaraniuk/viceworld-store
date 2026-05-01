@@ -83,8 +83,7 @@ class WebhookControllerTest extends TestCase
         string $liqpayStatus,
         string $expectedPaymentStatus,
         string $expectedTransactionStatus,
-    ): void
-    {
+    ): void {
         $this->freezeTime();
 
         $payment = Payment::factory()->create();
@@ -243,8 +242,7 @@ class WebhookControllerTest extends TestCase
         string $monobankStatus,
         string $expectedPaymentStatus,
         string $expectedTransactionStatus,
-    ): void
-    {
+    ): void {
         $this->freezeTime();
 
         $payment = Payment::factory()->create();

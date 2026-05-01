@@ -1,20 +1,19 @@
 <?php
 
-namespace App\Filament\Resources\Products\Tables;
+namespace App\Filament\Resources\Categories\Tables;
 
 use App\Enums\GenderLine;
-use App\Enums\Product\ProductStatus;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
+use Filament\Actions\EditAction;
 use Filament\Tables\Columns\IconColumn;
-use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Filters\TernaryFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 
-class ProductsTable
+class CategoriesTable
 {
     public static function configure(Table $table): Table
     {
@@ -34,31 +33,18 @@ class ProductsTable
                         return $query->whereHas('translations', fn ($q) => $q->where('slug', 'like', "%{$search}%"));
                     }),
 
-                SpatieMediaLibraryImageColumn::make('main_image')
-                    ->collection('main_image')
-                    ->imageHeight('40')
-                    ->square(),
-
-                TextColumn::make('category.name')
-                    ->label('Category')
-                    ->getStateUsing(fn ($record) => $record->category?->getTranslatedAttribute('name'))
+                TextColumn::make('parent')
+                    ->label('Category parent')
+                    ->getStateUsing(fn ($record) => $record->parent?->getTranslatedAttribute('name'))
                     ->searchable(query: function (Builder $query, string $search): Builder {
                         return $query->whereHas('translations', fn ($q) => $q->where('name', 'like', "%{$search}%"));
                     }),
-
-                TextColumn::make('price')
-                    ->money()
-                    ->sortable(),
-
-                TextColumn::make('status')
-                    ->badge()
-                    ->searchable(),
 
                 TextColumn::make('gender_line')
                     ->badge()
                     ->searchable(),
 
-                IconColumn::make('is_featured')
+                IconColumn::make('is_active')
                     ->boolean(),
 
                 TextColumn::make('created_at')
@@ -72,15 +58,14 @@ class ProductsTable
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                SelectFilter::make('status')
-                    ->options(ProductStatus::class)
-                    ->multiple(),
-
                 SelectFilter::make('gender_line')
                     ->options(GenderLine::class)
                     ->multiple(),
 
-                TernaryFilter::make('is_featured'),
+                TernaryFilter::make('is_active'),
+            ])
+            ->recordActions([
+                EditAction::make(),
             ])
             ->defaultSort('created_at', 'desc')
             ->toolbarActions([

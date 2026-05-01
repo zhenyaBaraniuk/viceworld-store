@@ -6,9 +6,9 @@ use Filament\Forms\Components\Field;
 
 class MediaPicker extends Field
 {
-    protected(set) bool $isMultiple = false;
+    public protected(set) bool $isMultiple = false;
 
-    protected(set) string $collection = '';
+    public protected(set) string $collection = '';
 
     protected string $view = 'filament.forms.components.media-picker';
 
@@ -30,6 +30,6 @@ class MediaPicker extends Field
     {
         parent::setUp();
 
-        $this->default(fn() => $this->isMultiple ? [] : null);
+        $this->default(fn () => $this->isMultiple ? [] : null);
     }
 }

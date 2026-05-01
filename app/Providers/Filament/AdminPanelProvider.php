@@ -46,7 +46,7 @@ class AdminPanelProvider extends PanelProvider
                 FilamentInfoWidget::class,
             ])
             ->navigationGroups([
-                'Shop',
+                'Catalog',
                 'Payments',
                 'File Manager',
             ])
