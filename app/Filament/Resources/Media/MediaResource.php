@@ -3,10 +3,10 @@
 namespace App\Filament\Resources\Media;
 
 use App\Filament\Resources\Media\Pages\FileManager;
-use Spatie\MediaLibrary\MediaCollections\Models\Media;
-use Filament\Support\Icons\Heroicon;
-use Filament\Resources\Resource;
 use BackedEnum;
+use Filament\Resources\Resource;
+use Filament\Support\Icons\Heroicon;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use UnitEnum;
 
 class MediaResource extends Resource

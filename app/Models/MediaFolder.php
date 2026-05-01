@@ -4,9 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Model;
 
 class MediaFolder extends Model
 {
@@ -35,7 +35,7 @@ class MediaFolder extends Model
     public function itemsCount(): Attribute
     {
         return Attribute::make(
-            get: fn() => ($this->children_count ?? 0 + $this->media_count ?? 0),
+            get: fn () => ($this->children_count ?? 0 + $this->media_count ?? 0),
         );
     }
 }

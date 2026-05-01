@@ -1,20 +1,20 @@
 <?php
 
-namespace App\Filament\Resources\Products\Pages;
+namespace App\Filament\Resources\Categories\Pages;
 
-use App\Filament\Resources\Products\ProductResource;
+use App\Filament\Resources\Categories\CategoryResource;
 use App\Filament\Trait\SyncMedia;
 use Filament\Resources\Pages\CreateRecord;
 
-class CreateProduct extends CreateRecord
+class CreateCategory extends CreateRecord
 {
     use SyncMedia;
 
-    protected static string $resource = ProductResource::class;
+    protected static string $resource = CategoryResource::class;
 
     protected function getCreatedNotificationTitle(): ?string
     {
-        return 'Product created';
+        return 'Category created';
     }
 
     protected function afterCreate(): void
@@ -24,7 +24,6 @@ class CreateProduct extends CreateRecord
         $this->record->translateOrNew(app()->getLocale())->fill([
             'name' => $this->data['name'],
             'slug' => $this->data['slug'],
-            'description' => $this->data['description'],
         ])->save();
     }
 
@@ -32,7 +31,6 @@ class CreateProduct extends CreateRecord
     {
         return [
             'main_image' => false,
-            'images' => true,
         ];
     }
 }

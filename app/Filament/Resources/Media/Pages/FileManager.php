@@ -2,24 +2,22 @@
 
 namespace App\Filament\Resources\Media\Pages;
 
+use App\Filament\Resources\Media\MediaResource;
 use App\Models\Media;
 use App\Models\MediaFolder;
 use App\Traits\MediaBrowser;
+use Filament\Actions\Action;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
+use Filament\Notifications\Notification;
 use Filament\Resources\Pages\Page;
-use Filament\Actions\Action;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
-use Filament\Notifications\Notification;
-use App\Filament\Resources\Media\MediaResource;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class FileManager extends Page
 {
     use MediaBrowser;
-
-
 
     protected static string $resource = MediaResource::class;
 
@@ -32,7 +30,7 @@ class FileManager extends Page
                 ->schema([
                     TextInput::make('name')->required(),
                 ])
-                ->action(fn(array $data) => $this->createFolder($data['name'])),
+                ->action(fn (array $data) => $this->createFolder($data['name'])),
 
             Action::make('upload')
                 ->schema([
@@ -42,9 +40,9 @@ class FileManager extends Page
                         ->disk('public')
                         ->directory('media')
                         ->storeFileNamesIn('original_names')
-                        ->moveFiles()
+                        ->moveFiles(),
                 ])
-                ->action(fn(array $data) => $this->uploadFile($data)),
+                ->action(fn (array $data) => $this->uploadFile($data)),
 
             Action::make('delete')
                 ->requiresConfirmation()
@@ -118,7 +116,7 @@ class FileManager extends Page
         $file = Media::findOrFail($id);
 
         $file->update([
-            'name' => $name
+            'name' => $name,
         ]);
 
         Notification::make()
@@ -150,11 +148,11 @@ class FileManager extends Page
             ->send();
     }
 
-    public function downloadFile(string $id): StreamedResponse|null
+    public function downloadFile(string $id): ?StreamedResponse
     {
         $file = Media::find($id);
 
-        if (!$file) {
+        if (! $file) {
             Notification::make()
                 ->title('File not found')
                 ->danger()

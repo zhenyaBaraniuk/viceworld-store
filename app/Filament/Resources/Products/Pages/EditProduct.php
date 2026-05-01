@@ -3,8 +3,8 @@
 namespace App\Filament\Resources\Products\Pages;
 
 use App\Filament\Resources\Products\ProductResource;
-use Filament\Actions\DeleteAction;
 use App\Filament\Trait\SyncMedia;
+use Filament\Actions\DeleteAction;
 use Filament\Resources\Pages\EditRecord;
 
 class EditProduct extends EditRecord
@@ -25,7 +25,7 @@ class EditProduct extends EditRecord
         ];
     }
 
-    protected function afterEdit(): void
+    protected function afterSave(): void
     {
         $this->syncMedia();
 
@@ -40,7 +40,7 @@ class EditProduct extends EditRecord
     {
         return [
             'main_image' => false,
-            'images' => true
+            'images' => true,
         ];
     }
 }

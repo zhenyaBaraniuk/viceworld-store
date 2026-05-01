@@ -3,7 +3,10 @@
     :field="$field"
 >
     <div
-        x-data="{ state: $wire.$entangle(@js($getStatePath())), previewUrl:null }"
+        x-data="{
+        state: $wire.$entangle(@js($getStatePath())),
+        previewUrl: @js($getState() ? \App\Models\Media::find($getState())?->url : null)
+        }"
         @file-selected.window="
         if ($event.detail.statePath !== @js($getStatePath())) return;
         state = $event.detail.value;

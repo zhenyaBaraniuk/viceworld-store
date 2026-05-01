@@ -4,19 +4,20 @@ namespace App\Models;
 
 use App\Enums\GenderLine;
 use App\Enums\Product\ProductStatus;
+use App\Filament\Trait\HasTranslateAttributes;
+use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 use Astrotomic\Translatable\Translatable;
+use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
-use Illuminate\Database\Eloquent\Relations\MorphToMany;
-use App\Filament\Trait\HasTranslateAttributes;
-use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 
 class Product extends Model implements HasMedia, TranslatableContract
 {
-    use InteractsWithMedia, Translatable, HasTranslateAttributes;
+    use HasTranslateAttributes, HasUlids, InteractsWithMedia, Translatable;
 
     protected $fillable = [
         'category_id',
@@ -62,6 +63,8 @@ class Product extends Model implements HasMedia, TranslatableContract
 
     public function mediaFiles(): MorphToMany
     {
-        return $this->morphToMany(Media::class, 'mediable')->withPivot('collection', 'order');
+        return $this->morphToMany(Media::class, 'mediable')
+            ->using(Mediable::class)
+            ->withPivot('collection', 'order');
     }
 }
