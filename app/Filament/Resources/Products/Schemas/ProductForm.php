@@ -55,6 +55,7 @@ class ProductForm
                         TextInput::make('price')
                             ->required()
                             ->numeric()
+                            ->step(0.01)
                             ->prefix('$'),
 
                         Select::make('status')
