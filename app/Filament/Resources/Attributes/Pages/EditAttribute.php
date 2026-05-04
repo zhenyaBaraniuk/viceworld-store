@@ -17,6 +17,15 @@ class EditAttribute extends EditRecord
         ];
     }
 
+    protected function mutateFormDataBeforeFill(array $data): array
+    {
+        $translation = $this->record->translate(app()->getLocale(), false);
+
+        $data['name'] = $translation?->name;
+
+        return $data;
+    }
+
     protected function afterSave(): void
     {
         $this->record->translateOrNew(app()->getLocale())->fill([
