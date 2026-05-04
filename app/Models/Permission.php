@@ -9,5 +9,5 @@ class Permission extends SpatiePermission
 {
     use HasUlids;
 
-    protected $primaryKey = 'uuid';
+    protected $primaryKey = 'ulid';
 }
