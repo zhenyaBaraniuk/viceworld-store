@@ -16,10 +16,13 @@ use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Database\Eloquent\Model;
+use UnitEnum;
 
 class TransactionResource extends Resource
 {
     protected static ?string $model = Transaction::class;
+
+    protected static string|null|UnitEnum $navigationGroup = 'Payments';
 
     protected static ?int $navigationSort = 2;
 

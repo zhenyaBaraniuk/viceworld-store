@@ -18,9 +18,7 @@ use PaymentManager;
 
 class WebhookController
 {
-    public function __construct(private readonly PaymentManager $paymentManager)
-    {
-    }
+    public function __construct(private readonly PaymentManager $paymentManager) {}
 
     public function liqpay(Request $request): Response
     {
@@ -36,7 +34,7 @@ class WebhookController
             'payload' => $request->all(),
         ]);
 
-        if (!$isVerified) {
+        if (! $isVerified) {
             return response('Invalid signature', 403);
         }
 
@@ -44,7 +42,7 @@ class WebhookController
 
         $payment = Payment::find($data['order_id']);
 
-        if (!$payment) {
+        if (! $payment) {
             $webhook->update([
                 'status' => PaymentWebhookStatus::FAILED,
             ]);
@@ -93,7 +91,7 @@ class WebhookController
             'payload' => $request->all(),
         ]);
 
-        if (!$isVerified) {
+        if (! $isVerified) {
             return response('Invalid signature', 403);
         }
 
@@ -101,7 +99,7 @@ class WebhookController
 
         $payment = Payment::find($data['reference']);
 
-        if (!$payment) {
+        if (! $payment) {
             $webhook->update([
                 'status' => PaymentWebhookStatus::FAILED,
             ]);
