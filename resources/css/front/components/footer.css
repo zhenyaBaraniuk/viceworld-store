@@ -1,0 +1,121 @@
+.site-footer {
+    position: relative;
+    border-top-width: 4px;
+    width: 100%;
+    overflow: hidden;
+
+    & .site-footer__backdrop {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+
+        & .site-footer__backdrop-text {
+            font-family: var(--font-display), serif;
+            font-weight: 900;
+            font-size: 30vw;
+            text-transform: uppercase;
+            line-height: 1;
+            user-select: none;
+            letter-spacing: -0.05em;
+        }
+    }
+
+    & .site-footer__inner {
+        position: relative;
+        z-index: 10;
+        display: grid;
+        gap: 3rem;
+        padding: 5rem 2rem;
+        width: 100%;
+        max-width: 1440px;
+        margin-inline: auto;
+        align-items: start;
+    }
+
+    & .site-footer__logo {
+        font-size: 1.875rem;
+        font-weight: 900;
+        text-transform: uppercase;
+        font-family: var(--font-display), serif;
+        letter-spacing: -0.05em;
+    }
+
+    & .site-footer__coords {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    & .site-footer__col-title {
+        font-family: var(--font-display), serif;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: -0.05em;
+        font-size: 0.75rem;
+    }
+
+    & .site-footer__nav-link {
+        font-family: var(--font-display), serif;
+        font-weight: 400;
+        text-transform: uppercase;
+        letter-spacing: -0.05em;
+        font-size: 0.875rem;
+        transition: color 150ms linear;
+    }
+
+    & .site-footer__newsletter-form {
+        display: flex;
+        border-bottom-width: 1px;
+    }
+
+    & .site-footer__newsletter-input {
+        background: transparent;
+        border: none;
+        outline: none;
+        padding-block: 0.75rem;
+        width: 100%;
+        font-family: var(--font-display), serif;
+        font-size: 0.875rem;
+        text-transform: uppercase;
+        letter-spacing: -0.05em;
+    }
+
+    & .site-footer__socials {
+        display: flex;
+        gap: 2rem;
+        margin-top: 1rem;
+    }
+
+    & .site-footer__social-link {
+        font-family: var(--font-display), serif;
+        text-transform: uppercase;
+        letter-spacing: -0.05em;
+        font-size: 0.75rem;
+        transition: color 150ms linear;
+    }
+
+    & .site-footer__bottom {
+        position: relative;
+        z-index: 10;
+        padding: 2rem;
+        border-top-width: 1px;
+        text-align: center;
+    }
+
+    & .site-footer__copyright {
+        font-family: var(--font-display), serif;
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+    }
+}
+
+@media (width >= 768px) {
+    .site-footer__inner {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
