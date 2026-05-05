@@ -15,10 +15,13 @@ use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Database\Eloquent\Model;
+use UnitEnum;
 
 class PaymentWebhookResource extends Resource
 {
     protected static ?string $model = PaymentWebhook::class;
+
+    protected static string|null|UnitEnum $navigationGroup = 'Payments';
 
     protected static ?int $navigationSort = 3;
 

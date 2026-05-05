@@ -8,5 +8,6 @@ use Spatie\Permission\Models\Role as SpatieRole;
 class Role extends SpatieRole
 {
     use HasUlids;
-    protected $primaryKey = 'uuid';
+
+    protected $primaryKey = 'ulid';
 }
