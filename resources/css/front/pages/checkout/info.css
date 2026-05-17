@@ -1,0 +1,176 @@
+.info {
+    .info__title {
+        font-size: 2.25rem;
+        line-height: 2.5rem;
+        font-weight: 900;
+        text-transform: uppercase;
+        margin-bottom: 2.5rem;
+        letter-spacing: -0.05em;
+    }
+
+    .info__contacts {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 3rem;
+
+        @media (min-width: 768px) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .info__contacts-label {
+            display: block;
+            font-size: 10px;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            margin-bottom: 0.5rem;
+        }
+
+        .info__contacts-input {
+            width: 100%;
+            font-weight: 500;
+            border-radius: 0;
+            padding: 0.75rem 0;
+        }
+    }
+
+    .info__shipping {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 3rem;
+
+        @media (min-width: 768px) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .info__shipping-label {
+            display: block;
+            font-size: 10px;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            margin-bottom: 0.5rem;
+        }
+
+        .info__country {
+            position: relative;
+
+            .info__country-name {
+                width: 100%;
+                padding: 0.75rem 0;
+                font-weight: 500;
+                border-radius: 0;
+                appearance: none;
+            }
+        }
+
+        .info__city {
+            position: relative;
+
+            .info__city-input {
+                width: 100%;
+                padding: 0.75rem 0;
+                border-radius: 0;
+            }
+        }
+
+        .info__zip {
+            position: relative;
+
+            .info__zip-input {
+                width: 100%;
+                padding: 0.75rem 0;
+                border-radius: 0;
+            }
+        }
+
+        .info__address {
+            position: relative;
+
+            .info__address-input {
+                width: 100%;
+                padding: 0.75rem 0;
+                border-radius: 0;
+            }
+        }
+    }
+
+    .info__delivery {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 1rem;
+
+        @media (min-width: 768px) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .info__delivery-form {
+            border-width: 2px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            cursor: pointer;
+            min-height: 140px;
+        }
+
+        .info__delivery-title {
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+        }
+
+        .info__delivery-price {
+            font-weight: 700;
+            font-size: 1.25rem;
+            line-height: 1.75rem;
+        }
+    }
+
+    .info__payment {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+
+        .info__payment-form {
+            padding: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+
+        .info__payment-title {
+            font-size: 2.25rem;
+            line-height: 2.5rem;
+        }
+
+        .info__payment-name {
+            font-weight: 900;
+            text-transform: uppercase;
+            font-size: 1.125rem;
+            line-height: 1.75rem;
+        }
+
+        .info__payment-subnames {
+            font-size: 10px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+        }
+    }
+
+    .info__btn {
+        padding-top: 2.5rem;
+
+        .info__btn-title {
+            width: 100%;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            font-size: 1.5rem;
+            line-height: 2rem;
+            padding: 2.5rem;
+        }
+    }
+}
