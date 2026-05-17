@@ -1,4 +1,4 @@
-import '../../../css/front/pages/searh/filters.css';
+import '../../../css/front/pages/search/filters.css';
 
 export default function Filters() {
     return (

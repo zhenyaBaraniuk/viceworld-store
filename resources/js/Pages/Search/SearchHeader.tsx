@@ -1,4 +1,4 @@
-import '../../../css/front/pages/searh/search-header.css';
+import '../../../css/front/pages/search/search-header.css';
 
 export default function SearchHeader() {
     return (
