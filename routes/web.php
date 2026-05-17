@@ -11,3 +11,4 @@ Route::get('/product', fn() => Inertia::render('Product/index'));
 Route::get('/404', NotFoundController::class);
 Route::get('/500', fn() => Inertia::render('Error/ServerError'));
 Route::get('/', fn() => Inertia::render('Home/index'));
+Route::get('/checkout', fn() => Inertia::render('Checkout/index'));
