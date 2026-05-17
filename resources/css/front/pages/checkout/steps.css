@@ -1,0 +1,43 @@
+.steps {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 6rem;
+
+    .steps__address {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .steps__number {
+        width: 2.5rem;
+        height: 2.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 900;
+        font-size: 1.125rem;
+        line-height: 1.75rem;
+    }
+
+    .steps__delivery {
+        height: 2px;
+        flex-grow: 1;
+        margin-left: 2rem;
+        margin-right: 2rem;
+    }
+
+    .steps__payment {
+        height: 2px;
+        flex-grow: 1;
+        margin-left: 2rem;
+        margin-right: 2rem;
+    }
+
+    .steps__label {
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: -0.025em;
+    }
+}
