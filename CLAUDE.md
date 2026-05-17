@@ -142,7 +142,7 @@ php artisan make:filament-resource ModelName --generate
 Uses Vite with Laravel plugin for asset compilation:
 - Tailwind CSS 4 (via @tailwindcss/vite plugin)
 - Hot Module Replacement in development
-- Entry points: `resources/css/app.css` and `resources/js/app.js`
+- Entry points: `resources/css/app.css` and `resources/js/app.jsx`
 - Framework views in `storage/framework/views/` are ignored by Vite watcher
 
 ### Database

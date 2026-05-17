@@ -1,0 +1,77 @@
+.order__table {
+    width: 100%;
+    text-align: left;
+    border-collapse: collapse;
+
+    .order__table-tr {
+        padding: 1.5rem;
+        font-size: 0.875rem;
+        line-height: 1.25rem;
+        font-weight: 900;
+    }
+
+    .order__table-body {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        width: max-content;
+    }
+
+    .order__table-payload {
+        position: relative;
+        width: 3rem;
+        height: 4rem;
+    }
+
+    .order__table-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .order__table-badge {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        font-size: 8px;
+        font-weight: 900;
+    }
+
+    .order__table-title {
+        font-size: 9px;
+        letter-spacing: -0.05em;
+        text-transform: uppercase;
+    }
+
+    .order__table-date {
+        padding: 1.5rem;
+        text-transform: uppercase;
+        font-size: 0.875rem;
+        line-height: 1.25rem;
+        font-weight: 500;
+    }
+
+    .order__table-status {
+        font-size: 10px;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        padding: 0.25rem 0.75rem;
+    }
+
+    .order__table-total {
+        padding: 1.5rem;
+        text-align: right;
+        font-weight: 700;
+        font-size: 1.125rem;
+        line-height: 1.75rem;
+    }
+
+    .order__table-view {
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        font-size: 0.75rem;
+        line-height: 1rem;
+    }
+}

@@ -1,0 +1,212 @@
+.product {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+
+    @media (min-width: 1024px) {
+        grid-template-columns: 7fr 5fr;
+    }
+
+    .product-gallery__grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+
+        @media (min-width: 768px) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    .product-gallery__video {
+        aspect-ratio: 3/4;
+        overflow: hidden;
+        position: relative;
+        cursor: pointer;
+
+        .product-gallery__video-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    .product-gallery__badge {
+        position: absolute;
+        top: 1rem;
+        left: 1rem;
+        z-index: 20;
+        padding: 0.25rem 0.5rem;
+        font-size: 0.5rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+    }
+
+    .product-gallery__overlay {
+        position: absolute;
+        inset: 0;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background-color 300ms linear;
+
+        .product-gallery__play-btn {
+            width: 4rem;
+            height: 4rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 300ms linear;
+        }
+    }
+
+    .product-gallery__controls {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 1rem;
+        z-index: 20;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        opacity: 0;
+        transition: opacity 300ms linear;
+    }
+
+    .product-gallery__progress {
+        width: 8rem;
+        height: 0.25rem;
+        position: relative;
+
+        .product-gallery__progress-fill {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 33%;
+        }
+    }
+
+    .product-gallery__thumb {
+        aspect-ratio: 3/4;
+        overflow: hidden;
+
+        .product-gallery__thumb-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    .product-info {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+
+        .product-info__title {
+            font-size: 3rem;
+            font-weight: 900;
+            line-height: 0.9;
+            letter-spacing: -0.05em;
+            max-width: 24rem;
+        }
+
+        .product-info__price {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+    }
+
+    .product-info__meta {
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+    }
+
+    .product-info__sizes {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0.5rem;
+    }
+
+    .product-info__size-btn {
+        height: 4rem;
+        border: 2px solid;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 1.125rem;
+        transition: all 75ms linear;
+    }
+
+    .product-info__ai-btn {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+    }
+
+    .product-info__btn {
+        width: 100%;
+        background-color: #0066ff;
+        padding: 1.5rem;
+        font-weight: 900;
+        font-size: 1.25rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        transition: all 150ms linear;
+
+        &:active {
+            transform: scale(0.98);
+        }
+    }
+
+    .product-info__btn-card {
+        width: 100%;
+        padding: 1.5rem;
+        border: 2px solid;
+        font-weight: 900;
+        font-size: 1.25rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        transition: all 150ms linear;
+
+        &:active {
+            transform: scale(0.98);
+        }
+    }
+
+    .product-info__details {
+        padding-top: 2.5rem;
+        border-top: 1px solid;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .product-info__features {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+        padding: 1.5rem;
+    }
+
+    .product-info__accordion-summary {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+        list-style: none;
+        font-weight: 700;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+    }
+}

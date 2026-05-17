@@ -1,0 +1,105 @@
+.new-arrivals {
+    max-width: 1440px;
+    margin-inline: auto;
+    padding-inline: 1.5rem;
+    padding-block: 6rem;
+
+    & .new-arrivals__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        margin-bottom: 3rem;
+    }
+
+    & .new-arrivals__title {
+        font-family: var(--font-display), serif;
+        font-size: 3rem;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: -0.05em;
+    }
+
+    & .new-arrivals__link {
+        font-weight: 700;
+        text-transform: uppercase;
+        font-size: 0.75rem;
+        letter-spacing: 0.1em;
+        border-bottom: 2px solid currentColor;
+        padding-bottom: 0.25rem;
+    }
+
+    & .new-arrivals__grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        column-gap: 1.5rem;
+        row-gap: 3rem;
+
+        @media (min-width: 768px) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        @media (min-width: 1024px) {
+            grid-template-columns: repeat(4, 1fr);
+        }
+    }
+
+    & .new-arrivals__card {
+        cursor: pointer;
+
+        &:hover .new-arrivals__card-img {
+            transform: scale(1.05);
+        }
+    }
+
+    & .new-arrivals__card-image {
+        aspect-ratio: 3 / 4;
+        background-color: #f4f4f2;
+        margin-bottom: 1rem;
+        overflow: hidden;
+        position: relative;
+    }
+
+    & .new-arrivals__card-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 500ms;
+    }
+
+    & .new-arrivals__badge {
+        position: absolute;
+        top: 1rem;
+        left: 1rem;
+        background-color: var(--color-primary);
+        color: white;
+        font-size: 10px;
+        font-weight: 700;
+        padding-inline: 0.5rem;
+        padding-block: 0.25rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+    }
+
+    & .new-arrivals__card-info {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+
+    & .new-arrivals__card-name {
+        font-family: var(--font-display), serif;
+        font-weight: 700;
+        text-transform: uppercase;
+        font-size: 0.875rem;
+    }
+
+    & .new-arrivals__card-category {
+        font-size: 0.75rem;
+        color: var(--color-neutral-500);
+    }
+
+    & .new-arrivals__card-price {
+        font-family: var(--font-display), serif;
+        font-weight: 700;
+    }
+}
