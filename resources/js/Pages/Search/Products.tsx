@@ -1,4 +1,4 @@
-import '../../../css/front/pages/searh/products.css';
+import '../../../css/front/pages/search/products.css';
 
 export default function Products() {
     return (
