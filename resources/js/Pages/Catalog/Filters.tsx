@@ -1,6 +1,45 @@
-import '../../../css/front/pages/catalog/filters.css';
+import '@css/front/pages/catalog/filters.css';
+import type {CatalogProps} from '@/types';
+import {router} from '@inertiajs/react';
+import * as Slider from '@radix-ui/react-slider';
+import {useState} from "react";
+import clsx from 'clsx';
 
-export default function Filters() {
+type Props = Pick<CatalogProps, 'categories' | 'filters' | 'max_price' | 'colors'>;
+
+const SIZES = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
+
+export default function Filters({categories, filters, colors, max_price}: Props) {
+    const { parent_category_slug, ...queryFilters } = filters;
+    const [priceValue, setPriceValue] = useState<number>(filters.price ?? max_price);
+
+    function handlePrice(value: number) {
+        router.get(route('catalog.show', {slug: parent_category_slug}), {
+            ...queryFilters, price: value || undefined }, {
+            preserveState: true,
+            replace: true,
+            only: ['products', 'filters']
+        });
+    }
+
+    function handleFilter(key: string, value: string) {
+        const current = queryFilters[key as keyof typeof queryFilters] as string[] | undefined;
+
+        const newArray = current?.includes(value)
+            ? current.filter( v => v !== value )
+            : [...(current ?? []), value];
+
+        const newFilters = Object.fromEntries(
+          Object.entries({...queryFilters, [key]: newArray.length ? newArray : undefined})
+        );
+
+        router.get(route('catalog.show', {slug: filters.parent_category_slug}), newFilters, {
+            preserveState: true,
+            replace: true,
+            only: ['products', 'filters']
+        });
+    }
+
     return (
         <aside className="filters hidden md:block">
             <div>
@@ -9,53 +48,22 @@ export default function Filters() {
                 </h3>
 
                 <ul className="filters__list">
-                    <li>
-                        <label className="filters__label group">
-                            <input
-                                className="filters__checkbox border-outline-variant focus:ring-0 checked:bg-primary"
-                                type="checkbox"/>
+                    {categories.map((category) => (
+                        <li key={category.id}>
+                            <label className="filters__label group">
+                                <input
+                                    type="checkbox"
+                                    checked={filters.child_category_slug?.includes(category.slug) ?? false }
+                                    onChange={() => handleFilter('child_category_slug', category.slug)}
+                                    className="filters__checkbox border-outline-variant focus:ring-0 checked:bg-primary"
+                                />
 
-                            <span className="filters__label-text font-body group-hover:text-primary">
-                                Outerwear
+                                <span className="filters__label-text font-body group-hover:text-primary">
+                                {category.name}
                             </span>
-                        </label>
-                    </li>
-
-                    <li>
-                        <label className="filters__label group">
-                            <input
-                                className="filters__checkbox border-outline-variant focus:ring-0 checked:bg-primary"
-                                type="checkbox"/>
-
-                            <span className="filters__label-text font-body group-hover:text-primary">
-                                Tees &amp; Tops
-                            </span>
-                        </label>
-                    </li>
-
-                    <li>
-                        <label className="filters__label group">
-                            <input
-                                className="filters__checkbox border-outline-variant focus:ring-0 checked:bg-primary"
-                                type="checkbox"/>
-
-                            <span className="filters__label-text font-body group-hover:text-primary">
-                                Bottoms
-                            </span>
-                        </label>
-                    </li>
-
-                    <li>
-                        <label className="filters__label group">
-                            <input
-                                className="filters__checkbox border-outline-variant focus:ring-0 checked:bg-primary"
-                                type="checkbox"/>
-
-                            <span className="filters__label-text font-body group-hover:text-primary">
-                                Accessories
-                            </span>
-                        </label>
-                    </li>
+                            </label>
+                        </li>
+                    ))}
                 </ul>
             </div>
 
@@ -65,35 +73,20 @@ export default function Filters() {
                 </h3>
 
                 <div className="filters__size-grid">
-                    <button
-                        className="filters__size-btn border-outline-variant hover:border-primary font-headline">
-                        XS
-                    </button>
-
-                    <button
-                        className="filters__size-btn border-primary bg-primary text-white font-headline">
-                        S
-                    </button>
-
-                    <button
-                        className="filters__size-btn border-outline-variant hover:border-primary font-headline">
-                        M
-                    </button>
-
-                    <button
-                        className="filters__size-btn border-outline-variant hover:border-primary font-headline">
-                        L
-                    </button>
-
-                    <button
-                        className="filters__size-btn border-outline-variant hover:border-primary font-headline">
-                        XL
-                    </button>
-
-                    <button
-                        className="filters__size-btn border-outline-variant hover:border-primary font-headline">
-                        XXL
-                    </button>
+                    {
+                        SIZES.map((size) => (
+                            <button
+                                key={size}
+                                onClick={() => handleFilter('size', size)}
+                                className={clsx('filters__size-btn font-headline', {
+                                        'border-primary bg-primary text-white': filters.size?.includes(size),
+                                        'border-outline-variant hover:border-primary': !filters.size?.includes(size),
+                                })}
+                            >
+                                {size}
+                            </button>
+                        ))
+                    }
                 </div>
             </div>
 
@@ -103,12 +96,19 @@ export default function Filters() {
                 </h3>
 
                 <div className="filters__colors">
-                    <button
-                        className="filters__color-swatch bg-black border-outline-variant outline outline-offset-2 outline-primary"></button>
-                    <button className="filters__color-swatch bg-white border-outline-variant"></button>
-                    <button className="filters__color-swatch bg-primary border-outline-variant"></button>
-                    <button className="filters__color-swatch bg-neutral-400 border-outline-variant"></button>
-                    <button className="filters__color-swatch bg-red-600 border-outline-variant"></button>
+                    {
+                        colors.map((color) => (
+                        <button
+                            key={color.value}
+                            data-tooltip={color.value}
+                            onClick={() => handleFilter('color', color.value)}
+                            style={{ backgroundColor: color.hex }}
+                            className={clsx('filters__color-swatch', {
+                                'outline-[3px] outline-offset-[3px]': filters.color?.includes(color.value),
+                            })}
+                        />
+                        ))
+                    }
                 </div>
             </div>
 
@@ -117,17 +117,22 @@ export default function Filters() {
                     Price Range
                 </h3>
 
-                <div className="space-y-4">
-                    <div className="filters__price-track bg-surface-container-high">
-                        <div className="filters__price-fill bg-primary"></div>
-                        <div className="filters__price-handle left-0 bg-on-surface"></div>
-                        <div className="filters__price-handle right-1/4 bg-on-surface"></div>
-                    </div>
+                <Slider.Root className="relative flex items-center w-full h-5"
+                             min={0}
+                             max={max_price}
+                             value={[priceValue]}
+                             onValueChange={ (values: number[])=> setPriceValue(values[0])}
+                             onValueCommit={ (values: number[]) => handlePrice(values[0])}
+                >
+                    <Slider.Track className="filters__price-track bg-surface-container-high">
+                        <Slider.Range className="filters__price-fill bg-primary" />
+                    </Slider.Track>
+                    <Slider.Thumb className="filters__price-handle bg-on-surface outline-none cursor-pointer" />
+                </Slider.Root>
 
-                    <div className="filters__price-labels font-headline">
-                        <span>$0</span>
-                        <span>$250</span>
-                    </div>
+                <div className="filters__price-labels font-headline">
+                    <span>$0</span>
+                    <span>${priceValue}</span>
                 </div>
             </div>
         </aside>

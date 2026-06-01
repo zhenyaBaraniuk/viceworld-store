@@ -1,4 +1,4 @@
-import '../../../css/front/pages/catalog/catalog-hero.css';
+import '@css/front/pages/catalog/catalog-hero.css';
 
 export default function CatalogHero() {
     return (
@@ -14,10 +14,6 @@ export default function CatalogHero() {
                     <h2 className="catalog-hero__meta font-headline">
                         All Products
                     </h2>
-
-                    <p className="catalog-hero__count font-headline text-primary">
-                        124 items
-                    </p>
                 </div>
 
                 <button className="catalog-hero__filter-btn md:hidden bg-on-surface text-white font-headline">

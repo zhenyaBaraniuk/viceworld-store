@@ -5,7 +5,6 @@
     margin-right: auto;
     position: relative;
     overflow: hidden;
-
     & .catalog-hero__watermark {
         right: -2.5rem;
         position: absolute;
