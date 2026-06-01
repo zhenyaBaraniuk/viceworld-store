@@ -1,36 +1,64 @@
-import {ArrowLeft, ArrowRight} from 'lucide-react'
+import {ArrowLeft, ArrowRight} from 'lucide-react';
+import type {Pagination} from '@/types';
+import {router} from "@inertiajs/react";
 
-type PaginationProps = {
-    currentPage: number
-    totalPages: number
-    onPageChange: (page: number) => void
+type PaginationProps = Pick<Pagination<unknown>, 'current_page' | 'last_page'> & {
+    queryParams?: Record<string, unknown>;
+    url: string;
 }
 
-export default function Pagination({ currentPage, totalPages}: PaginationProps) {
-    return (
-        <div className="mt-24 flex items-center justify-between border-t-4 border-on-surface pt-8">
-            <button className="font-headline font-black uppercase text-sm flex items-center gap-2 group">
-                <ArrowLeft size={20} className="group-hover:-translate-x-1 transition-transform">
-                    PREVIOUS
-                </ArrowLeft>
-            </button>
+export default function Pagination({ current_page, last_page, queryParams = {}, url }: PaginationProps) {
+    function goTo(page: number) {
+        if (page < 1 || page > last_page) {
+            return;
+        }
 
-            {
-                Array.from({ length: totalPages }, ())
-            }
-            <div className="flex gap-8 font-headline font-black">
-                <span className="text-primary border-b-2 border-primary">01</span>
-                <span className="text-outline hover:text-on-surface cursor-pointer">02</span>
-                <span className="text-outline hover:text-on-surface cursor-pointer">03</span>
-                <span className="text-outline hover:text-on-surface cursor-pointer">...</span>
-                <span className="text-outline hover:text-on-surface cursor-pointer">12</span>
+        router.get( url,  { ...queryParams, page }, {
+            preserveState: true, replace: true
+        });
+    }
+
+    return (
+        <div className="mt-24 grid grid-cols-3 items-center border-t-4 border-on-surface pt-8">
+
+            <div>
+                { current_page > 1 && (
+                    <button
+                        onClick={() => goTo(current_page - 1)}
+                        className="font-headline font-black uppercase text-sm flex items-center gap-2 group">
+                        <ArrowLeft size={20} className="group-hover:-translate-x-1 transition-transform"/>
+                        PREVIOUS
+                    </button>
+                )}
             </div>
 
-            <button className="font-headline font-black uppercase text-sm flex items-center gap-2 group">
-                <ArrowRight size={20} className="group-hover:-translate-x-1 transition-transform">
-                    NEXT
-                </ArrowRight>
-            </button>
+
+            <div className="flex gap-8 font-headline font-black justify-center">
+                {Array.from({length: last_page}, (_, i) => i + 1).map(page => (
+                    <span
+                        key={page}
+                        onClick={ () => goTo(page) }
+                          className={page === current_page
+                              ? 'text-primary border-b-2 border-primary'
+                              : 'text-outline hover:text-on-surface cursor-pointer'}
+                    >
+                        {String(page).padStart(2, '0')}
+                    </span>
+                ))
+                }
+            </div>
+
+            <div>
+                { current_page < last_page && (
+                    <button
+                        onClick={() => goTo(current_page + 1)}
+                        className="font-headline font-black uppercase text-sm flex items-center gap-2 group justify-end"
+                    >
+                        <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform"/>
+                        NEXT
+                    </button>
+                )}
+            </div>
         </div>
     );
 }

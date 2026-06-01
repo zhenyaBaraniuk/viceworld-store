@@ -1,17 +1,21 @@
 import '../../css/front/components/header.css';
 import { useState } from 'react'
 import {Search, User, ShoppingBag, Moon, Sun} from 'lucide-react'
+import {usePage, Link, router} from "@inertiajs/react";
+import {NavCategory} from "@/types";
+import clsx from 'clsx';
 
 export default function Header() {
     const [theme, setTheme] = useState<'light' | 'dark'>('light');
-    const toggleTheme = () => { const next = theme === 'light' ? 'dark' : 'light';
-        setTheme(next);
+    const {nav_categories} = usePage().props as {nav_categories: NavCategory[]};
+    const isCategoryActive = (slug: string)  => route().current('catalog.show' , {slug});
 
-        if (next == 'dark') {
-            document.documentElement.classList.add('dark');
-        } else {
-            document.documentElement.classList.remove('dark');
-        }
+    const toggleTheme = () => {
+        const next = theme === 'light' ? 'dark' : 'light';
+        setTheme(next);
+        next === 'dark'
+            ? document.documentElement.classList.add('dark')
+            : document.documentElement.classList.remove('dark');
     }
 
     return (
@@ -23,29 +27,20 @@ export default function Header() {
                     </a>
 
                     <nav className="navbar__nav hidden md:flex">
-                        <a className="nav-link nav-link--active text-primary dark:text-primary border-primary"
-                            href="#"
-                        >
-                            Men
-                        </a>
-                        <a
-                            className="nav-link text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100"
-                            href="#"
-                        >
-                            Women
-                        </a>
-                        <a
-                            className="nav-link text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100"
-                            href="#"
-                        >
-                            Kids
-                        </a>
-                        <a
-                            className="nav-link text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100"
-                            href="#"
-                        >
-                            Sale
-                        </a>
+                        {
+                            nav_categories.map((category) => (
+                                <Link
+                                    key={category.id}
+                                    href={route('catalog.show', {slug: category.slug})}
+                                    className={clsx('nav-link', {
+                                        'nav-link--active text-primary dark:text-primary border-primary': isCategoryActive(category.slug),
+                                        'text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white': !isCategoryActive(category.slug),
+                                    })}
+                                >
+                                    {category.name}
+                                </Link>
+                            ))
+                        }
                     </nav>
                 </div>
 
