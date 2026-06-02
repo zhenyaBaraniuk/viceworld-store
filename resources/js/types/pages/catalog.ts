@@ -1,11 +1,5 @@
 import type {Pagination} from "@/types";
-import type {Category} from "@/types";
-import type {Product} from "@/types";
-
-export type CategoryListItem = Pick<Category, 'id' | 'name' | 'slug'>
-export type ProductItem = Pick<Product, 'price' | 'name' | 'slug' | 'main_image'> & {
-    category_name: string
-}
+import type { CategoryListItem, ProductItem } from "@/types/common/list-items";
 
 export interface CatalogProps {
     products: Pagination<ProductItem>

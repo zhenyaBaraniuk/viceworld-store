@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Data\Category\CategoryData;
+use App\Data\Product\ProductListData;
 use App\Services\CatalogService;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -11,7 +13,9 @@ class CatalogController extends Controller
 {
     public function __construct(
         private readonly CatalogService $catalogService,
-    ) {}
+    )
+    {
+    }
 
     public function show(Request $request, string $slug): Response
     {
@@ -28,8 +32,8 @@ class CatalogController extends Controller
         $colors = $this->catalogService->getColors();
 
         return Inertia::render('Catalog/index', [
-            'products' => $products,
-            'categories' => $categories,
+            'products' => $products->through(fn($product) => ProductListData::fromModel($product)),
+            'categories' => $categories->map(fn($category) => CategoryData::from($category)),
             'filters' => $filters,
             'max_price' => $this->catalogService->getMaxPrice(),
             'colors' => $colors,

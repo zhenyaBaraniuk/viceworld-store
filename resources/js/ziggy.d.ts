@@ -99,6 +99,12 @@ declare module 'ziggy-js' {
             "required": true
         }
     ],
+    "product.show": [
+        {
+            "name": "slug",
+            "required": true
+        }
+    ],
     "storage.local": [
         {
             "name": "path",
