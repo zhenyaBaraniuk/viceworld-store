@@ -2,7 +2,7 @@ import '@css/front/pages/catalog/products.css';
 import type {CatalogProps} from "@/types";
 import Pagination from "@/Navigation/Pagination";
 import {useEffect, useState} from "react";
-import {router} from "@inertiajs/react";
+import {Link, router} from "@inertiajs/react";
 
 type Props = Pick<CatalogProps, 'products' | 'filters'>;
 
@@ -27,8 +27,9 @@ export default function Products({products, filters}: Props) {
                     'opacity-40' : 'opacity-100'}`}
             >
                 {products.data.map((product) => (
-                    <div
+                    <Link
                         key={product.slug}
+                        href={route('product.show', {slug: product.slug})}
                         className="product-card group cursor-pointer">
                         <div className="product-card__media bg-surface-container-low">
                             <img
@@ -48,7 +49,7 @@ export default function Products({products, filters}: Props) {
 
                             <p className="product-card__price font-headline">${product.price}</p>
                         </div>
-                    </div>
+                    </Link>
                 ))}
             </div>
 

@@ -23,7 +23,7 @@ class OrderItemsRelationManager extends RelationManager
         return $schema
             ->components([
                 Select::make('product_variant_id')
-                    ->relationship('productVariant', 'id')
+                    ->relationship('product-variant.ts', 'id')
                     ->required(),
 
                 TextInput::make('product_name')
@@ -48,7 +48,7 @@ class OrderItemsRelationManager extends RelationManager
     {
         return $schema
             ->components([
-                TextEntry::make('productVariant.id')
+                TextEntry::make('product-variant.ts.id')
                     ->label('Product variant'),
 
                 TextEntry::make('product_name'),
@@ -77,7 +77,7 @@ class OrderItemsRelationManager extends RelationManager
         return $table
             ->recordTitleAttribute('product_name')
             ->columns([
-                TextColumn::make('productVariant.id')
+                TextColumn::make('product-variant.ts.id')
                     ->searchable(),
 
                 TextColumn::make('product_name')

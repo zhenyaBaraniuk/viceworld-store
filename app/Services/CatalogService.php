@@ -2,13 +2,13 @@
 
 namespace App\Services;
 
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Database\Eloquent\Builder;
 use App\Enums\Product\ProductStatus;
+use Illuminate\Support\Collection;
 use App\Models\AttributeValue;
 use App\Models\Category;
 use App\Models\Product;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Pagination\LengthAwarePaginator;
-use Illuminate\Support\Collection;
 
 class CatalogService
 {
@@ -18,37 +18,18 @@ class CatalogService
             ->with(['translations', 'media', 'category.translations'])
             ->where('status', '=', ProductStatus::ACTIVE);
 
-        $filteredProducts = $this->applyFilters($query, $filters);
-
-        return $filteredProducts
+        return $this->applyFilters($query, $filters)
             ->paginate(12)
-            ->withQueryString()
-            ->through(function ($product) {
-                return [
-                    'category_name' => $product->category->name,
-                    'name' => $product->name,
-                    'slug' => $product->slug,
-                    'price' => $product->price,
-                    'main_image' => $product->getFirstMediaUrl('main_image'),
-                ];
-            });
+            ->withQueryString();
     }
 
     public function getSubCategoriesByParent(string $slug): Collection
     {
-        $category = Category::query()
+        return Category::query()
             ->whereTranslation('slug', $slug)
             ->with('children.translations')
-            ->firstOrFail();
-
-        return $category->children
-            ->map(function ($category) {
-                return [
-                    'id' => $category->id,
-                    'name' => $category->name,
-                    'slug' => $category->slug,
-                ];
-            });
+            ->firstOrFail()
+            ->children;
     }
 
     public function getColors(): Collection

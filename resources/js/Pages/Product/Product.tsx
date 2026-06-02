@@ -1,6 +1,14 @@
 import '../../../css/front/pages/product/product.css';
+import {ProductProps} from "@/types/pages/product";
 
-export default function Product() {
+type Props = Pick<ProductProps, 'product'>;
+
+export default function Product({product}: Props) {
+    const productSize = product.product_variants
+        .flatMap(variant => variant.attribute_values)
+        .filter(attribute => attribute.name === 'Size')
+        .filter((attribute, i, arr) => arr.findIndex(x => x.value === attribute.value) === i)
+
     return (
         <div className="product">
             <div>
@@ -9,7 +17,7 @@ export default function Product() {
                         <div className="product-gallery__video bg-surface-container-low group">
                             <video
                                 className="product-gallery__video-video"
-                                poster="https://lh3.googleusercontent.com/aida-public/AB6AXuBRio0FQkbeEqbtjYHvzWv6aqEdi6p4UOcNY82p8vIqgJzasxvIyFe0n87VyhSO_qGrTE3Lpj9ItJY9Q9t_t-duTsDsGL40eL_VJoDAmurHpMrGmEOZ2__w5bciHhIXvIbo_O2tYdxnT6HLzZuiJ2zaEhtakbxp4nOpr1gZrrJSuw-CQ_x-glmw2aTD1JUJDZxVZ1J9lhZofJLF6D8VTdBeJdWvNNn82cZT1-lW-XVgUbUhZQrx3c9q1K45VeMaZTtsXT_13TJ8fA0x"
+                                poster={product.main_image || undefined}
                             >
                                 <source src="" type="video/mp4"/>
                             </video>
@@ -46,33 +54,19 @@ export default function Product() {
                             </div>
                         </div>
 
-                        <div className="product-gallery__thumb bg-surface-container-low">
-                            <img className="product-gallery__thumb-img"
-                                 data-alt="Close up of black leather biker jacket detail"
-                                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0Fwe10mwsUjikaDTs4MYRDsp6pLTJVDMw3obqw3xbJNpGLOhhHkF7TwsGTCY3NBcGGrMVY78Au4RYeDhB-sykOlv3H9ppYPAaaRdgf5YoRpwJyigcZkoNxbJ00Ci32XmDdfrE_swZ6x0RUg6nYF2jGEcnl0TS__2oAwXnmGq9oxZKISOjvqGyYrEKg0DnIpNwqeWTTgErVL8-HQPbuIxjQiQHtVkeiE8bTq6AD5wiKc9l2crWNBV83KcLpDjU7jw9RDsQYpUVtunj"
-                            />
-                        </div>
-
-                        <div className="product-gallery__thumb bg-surface-container-low">
-                            <img className="product-gallery__thumb-img"
-                                 data-alt="Model wearing black urban streetwear jacket front view"
-                                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuBRio0FQkbeEqbtjYHvzWv6aqEdi6p4UOcNY82p8vIqgJzasxvIyFe0n87VyhSO_qGrTE3Lpj9ItJY9Q9t_t-duTsDsGL40eL_VJoDAmurHpMrGmEOZ2__w5bciHhIXvIbo_O2tYdxnT6HLzZuiJ2zaEhtakbxp4nOpr1gZrrJSuw-CQ_x-glmw2aTD1JUJDZxVZ1J9lhZofJLF6D8VTdBeJdWvNNn82cZT1-lW-XVgUbUhZQrx3c9q1K45VeMaZTtsXT_13TJ8fA0x"
-                            />
-                        </div>
-
-                        <div className="product-gallery__thumb bg-surface-container-low">
-                            <img className="product-gallery__thumb-img"
-                                 data-alt="Model wearing black urban streetwear jacket back view"
-                                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhRPV_vpdKW0I6qdhKprSu5ZcGySy0tiB1X_rxyPkWpWpaZqDGV2IfX94oWvUh7lRXNgVBKKpxR-O5HtGzAme4fBQmlN4j37Okb2OE_gzLpNTvsZaMjYTp4KTY6cDx4J_km6bsqMuotUBOhDMsI91D9UxMHJJJmVNqIrJaqdbOSHiMctQugaWRv7frj8-P6HEbSC0iUeqdmPeSdpQSiLlLxSwEY3gfUCB8PalVRvJbMs2eExwQxPL4rlXpdDHi4sgkNecKE3d0jDV9"
-                            />
-                        </div>
-
-                        <div className="product-gallery__thumb bg-surface-container-low">
-                            <img className="product-gallery__thumb-img"
-                                 data-alt="Product detail of zippers and pocket architecture"
-                                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYG_ABP8aKDNrpLsHaiyb_zMdlnxV82BiCQcLuSCwfsUscCRuptCjnyoakz7hXGvAL5VMZpu8aOjwbG3toE87npmvHgy0zYU7qfVmRvlAap_5gtakRf8i6HK4zR8czZoQXWh0tfGCYytzWOfhL1psMU1Nv2OnWV5QR-KQmUHIxI7zsEp3pVNxVQdjMfw6mDB0pPnwxa2yjQ4B3NN6eKh9QzZlwTzqhXp2vsNNgbEfdIBVSdhLPCvRoKFrtOmPujnsKE-WCCwA1Fmaa"
-                            />
-                        </div>
+                        {
+                            product.images?.map((url, index) => (
+                                <div
+                                    key={index}
+                                    className="product-gallery__thumb bg-surface-container-low">
+                                    <img
+                                        className="product-gallery__thumb-img"
+                                        alt={product.name}
+                                        src={url}
+                                    />
+                                </div>
+                            ))
+                        }
                     </div>
                 </div>
             </div>
@@ -81,11 +75,11 @@ export default function Product() {
                 <header className="space-y-4">
                     <div className="product-info">
                         <h1 className="product-info__title font-headline">
-                            V!ce-01 Tactical Bomber
+                            {product.name}
                         </h1>
 
                         <span className="product-info__price font-headline">
-                                $495.00
+                                ${product.price}
                         </span>
                     </div>
 
@@ -107,19 +101,16 @@ export default function Product() {
                         </div>
 
                         <div className="product-info__sizes">
-                            <button className="product-info__size-btn hover:bg-on-surface hover:text-white">
-                                S
-                            </button>
-                            <button
-                                className="product-info__size-btn hover:border-on-surface bg-primary text-white border-primary">
-                                M
-                            </button>
-                            <button className="product-info__size-btn hover:bg-on-surface hover:text-white">
-                                L
-                            </button>
-                            <button className="product-info__size-btn hover:bg-on-surface hover:text-white">
-                                XL
-                            </button>
+                            {
+                                productSize.map((size) => (
+                                    <button
+                                        key={size.value}
+                                        className="product-info__size-btn hover:bg-on-surface hover:text-white"
+                                    >
+                                        {size.value}
+                                    </button>
+                                ))
+                            }
                         </div>
                     </div>
 
@@ -151,12 +142,7 @@ export default function Product() {
                     <div className="space-y-4">
                         <h3 className="text-sm font-black">Description</h3>
                         <p className="text-neutral-600 leading-relaxed font-body">
-                            The V!ce-01 Tactical Bomber is a masterclass in architectural
-                            brutalism applied to functional streetwear. Constructed from
-                            high-density Italian nylon with weather-resistant membrane.
-                            Featuring modular pockets, reinforced seams, and our signature
-                            Electric Blue inner lining. Designed for the urban dweller who
-                            demands both aesthetic authority and technical performance.
+                            {product.description}
                         </p>
                     </div>
 
@@ -176,7 +162,7 @@ export default function Product() {
 
                         <div className="space-y-2">
                             <span className="material-symbols-outlined text-primary"
-                                data-icon="shield">shield
+                                  data-icon="shield">shield
                             </span>
 
                             <p className="text-[10px] font-black uppercase">Urban Armor</p>
