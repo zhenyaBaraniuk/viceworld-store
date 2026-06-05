@@ -29,6 +29,25 @@ class EditProduct extends EditRecord
     {
         $translation = $this->record->translate(app()->getLocale(), false);
 
+        $media = $this->record->mediaFiles()
+            ->whereIn('collection', ['images', 'main_image', 'video'])
+            ->get()
+            ->groupBy(fn($image) => $image->pivot->collection);
+
+        $video = $media->get('video')?->first();
+        $data['video'] = $video
+            ? ['id' => $video->id, 'url' => $video->url, 'mime_type' => $video->mime_type]
+            : null;
+
+        $mainImage = $media->get('main_image')?->first();
+        $data['main_image'] = $mainImage
+            ? ['id' => $mainImage->id, 'url' => $mainImage->url, 'mime_type' => $mainImage->mime_type]
+            : null;
+
+        $data['images'] = $media->get('images', collect())
+            ->map(fn($image) => ['id' => $image->id, 'url' => $image->url, 'mime_type' => $image->mime_type])
+            ->toArray();
+
         $data['name'] = $translation?->name;
         $data['slug'] = $translation?->slug;
         $data['description'] = $translation?->description;
@@ -47,11 +66,13 @@ class EditProduct extends EditRecord
         ])->save();
     }
 
-    private function getMediaCollections(): array
+    protected function getMediaCollections(): array
     {
-        return [
-            'main_image' => false,
-            'images' => true,
-        ];
+        return ProductResource::mediaCollections();
+    }
+
+    protected function getRedirectUrl(): ?string
+    {
+        return $this->getResource()::getUrl('edit', ['record' => $this->record]);
     }
 }

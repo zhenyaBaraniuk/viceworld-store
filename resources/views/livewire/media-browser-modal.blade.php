@@ -1,41 +1,7 @@
 <div>
-    <div x-data="{
-        selectedFileId: null,
-        selectedFileIds: [],
-        selectedFileUrl: null,
-        selectedFilePreviews: {},
-        multiple: @js($multiple),
-        isSelected(id) {
-            return this.multiple ? this.selectedFileIds.includes(id) : this.selectedFileId === id;
-        },
-        toggleFile(id, url) {
-            if (this.multiple) {
-                this.selectedFileIds.includes(id)
-                    ? this.selectedFileIds = this.selectedFileIds.filter(i => i !== id)
-                    : this.selectedFileIds.push(id);
-
-                this.selectedFilePreviews[id] = url;
-            } else {
-                this.selectedFileId = id;
-                this.selectedFileUrl = url;
-            }
-        },
-        hasSelection() {
-            return this.multiple ? this.selectedFileIds.length > 0 : this.selectedFileId !== null;
-        },
-        confirm() {
-            const value = this.multiple ? this.selectedFileIds : this.selectedFileId;
-            const url = this.multiple ? null : this.selectedFileUrl
-            $dispatch('file-selected', { value, url, statePath: @js($statePath) });
-        },
-        resetSelection() {
-            this.selectedFileId =  null;
-            this.selectedFileIds = [];
-            this.selectedFileUrl = null;
-            this.selectedFilePreviews = {}
-        }
-    }"
+    <div x-data="mediaBrowser({statePath: @js($statePath), multiple: @js($multiple)})"
          @close-modal.window="if ($event.detail.id === @js('media-picker-' . $statePath)) resetSelection()">
+
         <nav class="fm-breadcrumb-nav">
             <button type="button" wire:click="navigateToFolder(null)" class="fm-breadcrumb-link">Root</button>
 
@@ -90,17 +56,22 @@
 
             @foreach($this->getFiles() as $file)
                 <div class="group cursor-pointer"
-                     @click="toggleFile('{{ $file->id }}', '{{ $file->url }}')"
+                     @click="toggleFile('{{ $file->id }}', '{{ $file->url }}', '{{ $file->mime_type }}')"
                      @dblclick="resetSelection()"
                 >
                     <div
                         :class="isSelected('{{ $file->id }}') ? 'ring-2 ring-fm-primary bg-fm-surface-high' : 'bg-fm-surface-low'"
-                        class="aspect-4/3 rounded-xl flex items-center justify-center group-hover:bg-fm-surface-high transition-colors mb-3 relative overflow-hidden">
-                        >
+                        class="aspect-4/3 rounded-xl flex items-center justify-center group-hover:bg-fm-surface-high transition-colors mb-3 relative overflow-hidden"
+                    >
                         @if(str_starts_with($file->mime_type, 'image/'))
                             <img
                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-100"
                                 src="{{ $file->url }}" alt="{{ $file->name }}"/>
+                        @elseif(str_starts_with($file->mime_type, 'video/'))
+                            <video
+                                class="w-full h-full object-cover" preload="metadata">
+                                <source src="{{ $file->url }}#t=0.1" >
+                            </video>
                         @else
                             <span class="material-symbols-outlined text-fm-on-surface-variant text-4xl">description</span>
                         @endif
@@ -111,8 +82,10 @@
                             </span>
                         </div>
 
-                        <div x-show="isSelected('{{ $file->id }}')" class="absolute inset-0 bg-fm-primary/10 flex items-center justify-center">
-                            <span class="material-symbols-outlined text-fm-primary text-3xl">check_circle</span>
+                        <div x-show="isSelected('{{ $file->id }}')"
+                             class="absolute top-2 left-2 w-5 h-5 bg-gray-900/75 rounded-full flex items-center justify-center">
+
+                            <span class="material-symbols-outlined text-white text-[12px]">check_circle</span>
                         </div>
                     </div>
                     <p class="fm-item-name">{{ $file->name }}</p>
@@ -122,19 +95,20 @@
         </div>
 
         <div class="flex items-center justify-between mt-6 pt-4 border-t border-fm-surface-container">
-            <p x-show="multiple && selectedFileIds.length > 0" x-cloak class="text-sm text-fm-on-surface-variant">
-                <span x-text="selectedFileIds.length"></span> file(s) selected
+            <p x-show="multiple && selectedFiles.length > 0" x-cloak class="text-sm text-fm-on-surface-variant">
+                <span x-text="selectedFiles.length"></span> file(s) selected
             </p>
 
             <div class="ml-auto">
-                <button
+                <x-filament::button
                     type="button"
                     x-show="hasSelection()"
                     x-cloak
                     @click="confirm()"
-                    class="px-6 py-2.5 rounded-full bg-fm-primary text-white font-bold text-sm">
+                    icon="heroicon-m-check-circle"
+                >
                     Select
-                </button>
+                </x-filament::button>
             </div>
         </div>
     </div>

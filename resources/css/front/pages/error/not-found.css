@@ -3,7 +3,11 @@ body {
 }
 
 .text-gradient-overlay {
-    background: linear-gradient(to right, rgba(10, 10, 10, 0.95) 40%, transparent);
+    background: linear-gradient(
+        to right,
+        rgba(10, 10, 10, 0.95) 40%,
+        transparent
+    );
 }
 
 .page {
@@ -41,7 +45,11 @@ body {
     inset: 0;
     pointer-events: none;
     z-index: 5;
-    background: linear-gradient(to right, rgba(10, 10, 10, 0.95) 40%, transparent);
+    background: linear-gradient(
+        to right,
+        rgba(10, 10, 10, 0.95) 40%,
+        transparent
+    );
 }
 
 .content {
@@ -57,7 +65,7 @@ body {
     position: absolute;
     bottom: calc(var(--spacing) * 12);
     left: calc(var(--spacing) * 8);
-    z-index:20;
+    z-index: 20;
 }
 
 .error-code {

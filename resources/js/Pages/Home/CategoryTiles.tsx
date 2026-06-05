@@ -1,4 +1,4 @@
-import '../../../css/front/pages/home/category-tiles.css';
+import "../../../css/front/pages/home/category-tiles.css";
 
 export default function CategoryTiles() {
     return (
@@ -68,5 +68,5 @@ export default function CategoryTiles() {
                 </div>
             </div>
         </section>
-    )
+    );
 }

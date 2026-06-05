@@ -1,4 +1,4 @@
-import '@css/front/pages/catalog/catalog-hero.css';
+import "@css/front/pages/catalog/catalog-hero.css";
 
 export default function CatalogHero() {
     return (
@@ -17,10 +17,9 @@ export default function CatalogHero() {
                 </div>
 
                 <button className="catalog-hero__filter-btn md:hidden bg-on-surface text-white font-headline">
-                     <span className="material-symbols-outlined text-sm">
-                         tune
-                     </span>
-
+                    <span className="material-symbols-outlined text-sm">
+                        tune
+                    </span>
                     Filter & Sort
                 </button>
             </div>

@@ -1,6 +1,6 @@
-import '@inertiajs/core'
-import {NavCategory} from "@/types/index";
-import { route as routeFn } from 'ziggy-js';
+import "@inertiajs/core";
+import { NavCategory } from "@/types/index";
+import { route as routeFn } from "ziggy-js";
 
 declare module "@inertiajs/core" {
     export interface InertiaConfig {
@@ -9,7 +9,6 @@ declare module "@inertiajs/core" {
         };
     }
 }
-
 
 declare global {
     var route: typeof routeFn;

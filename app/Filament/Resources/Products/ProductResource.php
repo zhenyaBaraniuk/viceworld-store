@@ -58,4 +58,13 @@ class ProductResource extends Resource
             'edit' => EditProduct::route('/{record}/edit'),
         ];
     }
+
+    public static function mediaCollections(): array
+    {
+        return [
+            'main_image' => ['multiple' => false, 'accept' => 'image/*'],
+            'video' => ['multiple' => false, 'accept' => 'video/*'],
+            'images' => ['multiple' => true, 'accept' => 'image/*'],
+        ];
+    }
 }

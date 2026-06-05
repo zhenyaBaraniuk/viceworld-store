@@ -28,11 +28,8 @@ class CreateProduct extends CreateRecord
         ])->save();
     }
 
-    private function getMediaCollections(): array
+    protected function getMediaCollections(): array
     {
-        return [
-            'main_image' => false,
-            'images' => true,
-        ];
+        return ProductResource::mediaCollections();
     }
 }

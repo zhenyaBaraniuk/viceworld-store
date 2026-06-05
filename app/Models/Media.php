@@ -26,7 +26,7 @@ class Media extends BaseMedia
     public function url(): Attribute
     {
         return Attribute::make(
-            get: fn () => Storage::url($this->file_name),
+            get: fn() => Storage::disk($this->disk)->url($this->file_name),
         );
     }
 }

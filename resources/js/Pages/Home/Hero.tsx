@@ -1,4 +1,4 @@
-import '../../../css/front/pages/home/hero.css';
+import "../../../css/front/pages/home/hero.css";
 
 export default function Hero() {
     return (
@@ -14,8 +14,7 @@ export default function Hero() {
                 <h1 className="hero__title text-white">
                     V<span className="text-primary">!</span>ceWorld
                 </h1>
-                <button
-                    className="hero__cta bg-primary text-white  hover:bg-black">
+                <button className="hero__cta bg-primary text-white  hover:bg-black">
                     Shop now
                 </button>
             </div>

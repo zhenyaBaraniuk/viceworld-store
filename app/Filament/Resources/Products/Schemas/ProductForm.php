@@ -67,8 +67,16 @@ class ProductForm
                             ->required(),
                     ]),
 
-                Tabs::make('Images')
+                Tabs::make('Media')
                     ->tabs([
+                        Tab::make('Відео')
+                            ->schema([
+                                MediaPicker::make('video')
+                                    ->hiddenLabel()
+                                    ->columnSpanFull()
+                                    ->collection('video'),
+                            ]),
+
                         Tab::make('Головне фото')
                             ->schema([
                                 MediaPicker::make('main_image')

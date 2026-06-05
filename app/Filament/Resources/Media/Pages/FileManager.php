@@ -36,7 +36,7 @@ class FileManager extends Page
                 ->schema([
                     FileUpload::make('files')
                         ->multiple()
-                        ->image()
+                        ->acceptedFileTypes(['video/*', 'image/*'])
                         ->disk('public')
                         ->directory('media')
                         ->storeFileNamesIn('original_names')
@@ -81,7 +81,7 @@ class FileManager extends Page
                 'file_name' => $filepath,
                 'mime_type' => $disk->mimeType($filepath),
                 'size' => $disk->size($filepath),
-                'disk' => config('filesystems.default'),
+                'disk' => 'public',
                 'conversions_disk' => config('filesystems.default'),
                 'model_type' => null,
                 'model_id' => null,

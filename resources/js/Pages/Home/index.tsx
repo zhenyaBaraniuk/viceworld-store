@@ -8,14 +8,14 @@ import StoreLocations from "./StoreLocations";
 export default function Home() {
     return (
         <>
-            <Header/>
+            <Header />
             <main>
-                <Hero/>
-                <NewArrivals/>
-                <CategoryTiles/>
-                <StoreLocations/>
+                <Hero />
+                <NewArrivals />
+                <CategoryTiles />
+                <StoreLocations />
             </main>
-            <Footer/>
+            <Footer />
         </>
     );
 }

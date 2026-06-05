@@ -1,13 +1,17 @@
 type ButtonProps = {
-    children: React.ReactNode
-    variant?: 'primary' | 'secondary'
-    onClick?: () => void
-}
-export default function Button({children, variant = 'primary', onClick}: ButtonProps) {
+    children: React.ReactNode;
+    variant?: "primary" | "secondary";
+    onClick?: () => void;
+};
+export default function Button({
+    children,
+    variant = "primary",
+    onClick,
+}: ButtonProps) {
     const styles = {
-        primary: 'bg-primary text-white',
-        secondary: 'bg-neutral-900 text-white',
-    }
+        primary: "bg-primary text-white",
+        secondary: "bg-neutral-900 text-white",
+    };
 
     return (
         <button

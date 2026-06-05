@@ -1,4 +1,4 @@
-import '../../../css/front/pages/search/products.css';
+import "../../../css/front/pages/search/products.css";
 
 export default function Products() {
     return (
@@ -12,8 +12,7 @@ export default function Products() {
                             src="https://lh3.googleusercontent.com/aida-public/AB6AXuCUKG8mLxIDZm6Vn2Wg4fBT_VBLhKLZ55eUP6GvICrhTvNiN1Z2mtfRri7Dg8XMJ4DLTLryickT0muIC_kmNEcQFh8hP8OsB45P6ArqXd_n-YgjaanGxZyM9zhDc8ZlX95GYGDFjssh2gBjJv78X068W3ebQ1hMJA1YdQy_inLpbTRZUUaxFH0YgTlBl3pxifUVBWTjziUli8hjR2yAcFfOGEnrTfApYduDe9N07ctP5k2f0-ZwDy-2kXbNyubNvs0AYoB-3r93W0wm"
                         />
 
-                        <div
-                            className="products__head-badge bg-primary text-white">
+                        <div className="products__head-badge bg-primary text-white">
                             Limited Release
                         </div>
                     </div>

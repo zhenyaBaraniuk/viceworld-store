@@ -1,7 +1,8 @@
 export interface Media {
-    id: number,
-    name: string,
-    url: string,
-    collection: string | null,
+    id: string;
+    name: string;
+    url: string;
+    mime_type: string;
+    collection: string | null;
     order: number;
 }
