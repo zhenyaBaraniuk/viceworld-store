@@ -1,4 +1,4 @@
-import '../../../css/front/pages/search/search-header.css';
+import "../../../css/front/pages/search/search-header.css";
 
 export default function SearchHeader() {
     return (
@@ -11,7 +11,8 @@ export default function SearchHeader() {
                 <div className="search-header__arrow text-primary">
                     <span
                         className="material-symbols-outlined text-5xl"
-                        data-icon="arrow_forward">
+                        data-icon="arrow_forward"
+                    >
                         arrow_forward
                     </span>
                 </div>
@@ -24,7 +25,10 @@ export default function SearchHeader() {
 
                 <div className="search-header__result-filters">
                     <button className="search-header__result-btn hover:text-primary transition-colors">
-                        <span className="material-symbols-outlined text-lg" data-icon="tune">
+                        <span
+                            className="material-symbols-outlined text-lg"
+                            data-icon="tune"
+                        >
                             tune
                         </span>
                         Filters
@@ -34,8 +38,10 @@ export default function SearchHeader() {
 
                     <button className="search-header__result-btn hover:text-primary transition-colors">
                         Sort: Relevant
-
-                        <span className="material-symbols-outlined text-lg" data-icon="expand_more">
+                        <span
+                            className="material-symbols-outlined text-lg"
+                            data-icon="expand_more"
+                        >
                             expand_more
                         </span>
                     </button>

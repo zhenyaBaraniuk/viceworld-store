@@ -1,4 +1,4 @@
-import '../../../css/front/pages/checkout/info.css';
+import "../../../css/front/pages/checkout/info.css";
 
 export default function Info() {
     return (
@@ -14,9 +14,11 @@ export default function Info() {
                             Email Address
                         </label>
 
-                        <input className="info__contacts-input bg-transparent border-t-0 border-l-0 border-r-0 border-b-2 border-surface-container-highest text-lg transition-colors focus:border-primary-container"
-                               placeholder="k.lagerfeld@v-world.com"
-                               type="email"/>
+                        <input
+                            className="info__contacts-input bg-transparent border-t-0 border-l-0 border-r-0 border-b-2 border-surface-container-highest text-lg transition-colors focus:border-primary-container"
+                            placeholder="k.lagerfeld@v-world.com"
+                            type="email"
+                        />
                     </div>
 
                     <div className="relative">
@@ -24,9 +26,11 @@ export default function Info() {
                             Phone number
                         </label>
 
-                        <input className="info__contacts-input bg-transparent border-t-0 border-l-0 border-r-0 border-b-2 border-surface-container-highest text-lg transition-colors focus:border-primary-container"
-                               placeholder="+380 •• ••• •• ••"
-                               type="tel"/>
+                        <input
+                            className="info__contacts-input bg-transparent border-t-0 border-l-0 border-r-0 border-b-2 border-surface-container-highest text-lg transition-colors focus:border-primary-container"
+                            placeholder="+380 •• ••• •• ••"
+                            type="tel"
+                        />
                     </div>
                 </div>
             </section>
@@ -55,7 +59,11 @@ export default function Info() {
                             City
                         </label>
 
-                        <input className="info__city-input bg-transparent border-t-0 border-l-0 border-r-0 border-b-2 border-surface-container-highest text-lg font-medium transition-colors focus:border-primary-container"  placeholder="Kyiv" type="text"/>
+                        <input
+                            className="info__city-input bg-transparent border-t-0 border-l-0 border-r-0 border-b-2 border-surface-container-highest text-lg font-medium transition-colors focus:border-primary-container"
+                            placeholder="Kyiv"
+                            type="text"
+                        />
                     </div>
 
                     <div className="info__zip">
@@ -63,7 +71,11 @@ export default function Info() {
                             Zip / Postal Code
                         </label>
 
-                        <input className="info__zip-input bg-transparent border-t-0 border-l-0 border-r-0 border-b-2 border-surface-container-highest text-lg font-medium transition-colors focus:border-primary-container" placeholder="01001" type="text"/>
+                        <input
+                            className="info__zip-input bg-transparent border-t-0 border-l-0 border-r-0 border-b-2 border-surface-container-highest text-lg font-medium transition-colors focus:border-primary-container"
+                            placeholder="01001"
+                            type="text"
+                        />
                     </div>
 
                     <div className="info__address md:col-span-2">
@@ -71,7 +83,11 @@ export default function Info() {
                             Street Address
                         </label>
 
-                        <input className="info__address-input bg-transparent border-t-0 border-l-0 border-r-0 border-b-2 border-surface-container-highest  text-lg font-medium transition-colors focus:border-primary-container" placeholder="Khreshchatyk St, 22, Apt 4" type="text"/>
+                        <input
+                            className="info__address-input bg-transparent border-t-0 border-l-0 border-r-0 border-b-2 border-surface-container-highest  text-lg font-medium transition-colors focus:border-primary-container"
+                            placeholder="Khreshchatyk St, 22, Apt 4"
+                            type="text"
+                        />
                     </div>
                 </div>
             </section>
@@ -89,7 +105,12 @@ export default function Info() {
                                     Nova Poshta
                                 </span>
 
-                                <span className="material-symbols-outlined text-primary-container" style={{ fontVariationSettings: "'FILL' 1" }}>
+                                <span
+                                    className="material-symbols-outlined text-primary-container"
+                                    style={{
+                                        fontVariationSettings: "'FILL' 1",
+                                    }}
+                                >
                                     check_circle
                                 </span>
                             </div>
@@ -100,19 +121,22 @@ export default function Info() {
                         </div>
 
                         <div className="text-right">
-                            <p className="info__delivery-price font-headline">₴85.00</p>
+                            <p className="info__delivery-price font-headline">
+                                ₴85.00
+                            </p>
                         </div>
                     </div>
-
 
                     <div className="border-2 border-transparent bg-white hover:border-surface-container-highest transition-colors">
                         <div>
                             <div className="flex justify-between items-start mb-2">
-                            <span className="font-headline font-bold uppercase tracking-tight text-lg">
-                                Pickup in Store
-                            </span>
+                                <span className="font-headline font-bold uppercase tracking-tight text-lg">
+                                    Pickup in Store
+                                </span>
 
-                                <p className="text-xs uppercase text-outline font-bold tracking-wider">Kyiv Flagship, Baseina 12</p>
+                                <p className="text-xs uppercase text-outline font-bold tracking-wider">
+                                    Kyiv Flagship, Baseina 12
+                                </p>
                             </div>
                         </div>
                     </div>

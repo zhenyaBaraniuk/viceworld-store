@@ -42,7 +42,9 @@
         padding: 0.75rem;
         opacity: 0;
         transform: translateY(0.5rem);
-        transition: opacity 300ms linear, transform 300ms linear;
+        transition:
+            opacity 300ms linear,
+            transform 300ms linear;
     }
 
     .additional-products__item-name {

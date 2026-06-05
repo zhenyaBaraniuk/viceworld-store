@@ -3,6 +3,7 @@
 namespace App\Data\Product;
 
 use App\Data\ProductVariant\ProductVariantData;
+use App\Models\Media;
 use Spatie\LaravelData\Data;
 use App\Models\Product;
 
@@ -13,7 +14,8 @@ class ProductData extends Data
         public string  $slug,
         public string  $price,
         public ?string $description,
-        public ?string $main_image,
+        public ?array $main_image,
+        public ?array $video,
         /** @var string[] */
         public array   $images,
         /** @var array<ProductVariantData> */
@@ -24,19 +26,31 @@ class ProductData extends Data
 
     public static function fromModel(Product $product): self
     {
+        $mainImage = $product->mediaFiles()->wherePivot('collection', 'main_image')->first();
+        $video = $product->mediaFiles()->wherePivot('collection', 'video')->first();
+        $images = $product->mediaFiles()->wherePivot('collection', 'images')->orderByPivot('order')->get();
+
         return new self(
             name: $product->name,
             slug: $product->slug,
             price: $product->price,
             description: $product->description,
-            main_image: $product->getFirstMediaUrl('main_image'),
-            images: $product->getMedia('images')
-                ->map(fn($media) => $media->getUrl())
-                ->toArray(),
+            main_image: $mainImage ? self::mapMedia($mainImage) : null,
+            video: $video ? self::mapMedia($video) : null,
+            images: $images->map(fn($media) => self::mapMedia($media))->toArray(),
             product_variants: $product->productVariants
                 ->map(fn($productVariant) => ProductVariantData::fromModel($productVariant))
                 ->values()
                 ->all()
         );
+    }
+
+    private static function mapMedia(Media $media): array
+    {
+        return [
+            'id' => $media->id,
+            'url' => $media->url,
+            'mime_type' => $media->mime_type,
+        ];
     }
 }

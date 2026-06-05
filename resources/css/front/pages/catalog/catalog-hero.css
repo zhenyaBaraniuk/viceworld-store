@@ -32,7 +32,7 @@
 
         @media (min-width: 768px) {
             flex-direction: row;
-            align-items: flex-end
+            align-items: flex-end;
         }
 
         & .catalog-hero__meta {

@@ -35,7 +35,7 @@ class MediaFolder extends Model
     public function itemsCount(): Attribute
     {
         return Attribute::make(
-            get: fn () => ($this->children_count ?? 0 + $this->media_count ?? 0),
+            get: fn () => ($this->children_count ?? 0) + ($this->media_count ?? 0),
         );
     }
 }

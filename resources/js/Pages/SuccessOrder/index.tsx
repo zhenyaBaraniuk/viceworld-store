@@ -5,11 +5,11 @@ import Body from "./Body";
 export default function SuccessOrder() {
     return (
         <>
-            <Header/>
+            <Header />
             <main className="min-h-screen flex flex-col items-center">
-                <Body/>
+                <Body />
             </main>
-            <Footer/>
+            <Footer />
         </>
     );
 }

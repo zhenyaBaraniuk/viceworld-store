@@ -1,5 +1,8 @@
-import type {Product} from "@/types";
-import type {CategoryListItem, ProductShortItem} from "@/types/common/list-items";
+import type { Product } from "@/types";
+import type {
+    CategoryListItem,
+    ProductShortItem,
+} from "@/types/common/list-items";
 
 export interface ProductProps {
     product: Product;
