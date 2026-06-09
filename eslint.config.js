@@ -9,7 +9,7 @@ export default defineConfig([
     {
         files: ["**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}"],
         plugins: { js, react: reactPlugin },
-        extends: ["js/recommended", "prettier"],
+        extends: ["js/recommended"],
         languageOptions: { globals: globals.browser },
         rules: {
             "react/jsx-key": "error",
