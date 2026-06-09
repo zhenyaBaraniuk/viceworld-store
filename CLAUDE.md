@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a Laravel 12 application with Filament 4 admin panel. It uses PHP 8.3, SQLite database, and Vite for frontend asset compilation with Tailwind CSS 4.
+This is a Laravel 12 application with Filament 4 admin panel. It uses PHP 8.5, SQLite database, and Vite for frontend asset compilation with Tailwind CSS 4.
 
 ## Development Commands
 
@@ -163,7 +163,7 @@ Uses Vite with Laravel plugin for asset compilation:
 
 ### Database
 
-Uses SQLite by default (`database/database.sqlite`).
+Uses mysql by default (`database/database.mysql`).
 
 - In testing environment, uses in-memory SQLite (`:memory:`)
 - Connection configured via `DB_CONNECTION` and `DB_DATABASE` env variables
