@@ -4,25 +4,23 @@ namespace App\Data\Product;
 
 use App\Data\ProductVariant\ProductVariantData;
 use App\Models\Media;
-use Spatie\LaravelData\Data;
 use App\Models\Product;
+use Spatie\LaravelData\Data;
 
 class ProductData extends Data
 {
     public function __construct(
-        public string  $name,
-        public string  $slug,
-        public string  $price,
-        public ?string $description,
+        public string $name,
+        public string $slug,
+        public string $price,
+        public ?array $description,
         public ?array $main_image,
         public ?array $video,
         /** @var string[] */
-        public array   $images,
+        public array $images,
         /** @var array<ProductVariantData> */
-        public array   $product_variants,
-    )
-    {
-    }
+        public array $product_variants,
+    ) {}
 
     public static function fromModel(Product $product): self
     {
@@ -37,9 +35,9 @@ class ProductData extends Data
             description: $product->description,
             main_image: $mainImage ? self::mapMedia($mainImage) : null,
             video: $video ? self::mapMedia($video) : null,
-            images: $images->map(fn($media) => self::mapMedia($media))->toArray(),
+            images: $images->map(fn ($media) => self::mapMedia($media))->toArray(),
             product_variants: $product->productVariants
-                ->map(fn($productVariant) => ProductVariantData::fromModel($productVariant))
+                ->map(fn ($productVariant) => ProductVariantData::fromModel($productVariant))
                 ->values()
                 ->all()
         );

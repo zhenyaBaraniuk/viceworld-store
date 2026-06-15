@@ -1,3 +1,4 @@
- # Vendor / build artifacts
-  public/
-  vendor/
+# Vendor / build artifacts
+public/
+vendor/
+.github/

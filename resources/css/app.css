@@ -1,4 +1,4 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
@@ -10,16 +10,18 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-    --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
-    --font-display: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+    --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+    --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
 
-    --color-primary: #0066FF;
+    --color-primary: #0066ff;
     --color-surface: #f9f9f7;
-    --color-on-primary: #FFFFFF;
+    --color-on-primary: #ffffff;
     --color-error: #ba1a1a;
-    --color-surface-dark: #0A0A0A;
+    --color-surface-dark: #0a0a0a;
 }
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
     border-radius: 0;
 }

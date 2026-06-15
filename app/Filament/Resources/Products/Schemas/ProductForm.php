@@ -103,6 +103,7 @@ class ProductForm
                         'subscript',
                         'superscript',
                     ])
+                    ->json()
                     ->columnSpanFull(),
 
                 Toggle::make('is_featured')
