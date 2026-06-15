@@ -31,7 +31,7 @@
     >
         <div x-show="state && !Array.isArray(state)" x-cloak class="mb-3 p-3 bg-gray-50 dark:bg-white/5 rounded-lg flex items-center gap-3 border
         border-gray-200 dark:border-white/10">
-            <template x-if="state.mime_type?.startsWith('image/')">
+            <template x-if="state?.mime_type?.startsWith('image/')">
                 <img
                     x-ref="previewImg"
                     :src="state?.url" class="h-24 w-24 rounded object-cover shrink-0 cursor-pointer"
@@ -39,7 +39,7 @@
                 />
             </template>
 
-            <template x-if="state.mime_type?.startsWith('video/')">
+            <template x-if="state?.mime_type?.startsWith('video/')">
                 <video
                     controls
                     class="h-24 w-24 rounded object-cover shrink-0"
@@ -61,7 +61,7 @@
         </div>
 
         <div x-show="Array.isArray(state) && state.length > 0" x-cloak class="mb-3 flex flex-wrap gap-2">
-            <template x-for="item in state" :key="item.id">
+            <template x-for="item in (Array.isArray(state) ? state : [])" :key="item.id">
                 <div class="relative group">
                     <img
                         :src="item.url" class="h-24 w-24 rounded object-cover cursor-pointer"

@@ -1,6 +1,7 @@
 import "../../../css/front/pages/product/product.css";
 import { ProductProps } from "@/types/pages/product";
 import ProductGallery from "@/Pages/Product/ProductGallery";
+import RichText from "@/Components/RichText";
 
 type Props = Pick<ProductProps, "product">;
 
@@ -92,9 +93,9 @@ export default function Product({ product }: Props) {
                 <div className="product-info__details border-neutral-200">
                     <div className="space-y-4">
                         <h3 className="text-sm font-black">Description</h3>
-                        <p className="text-neutral-600 leading-relaxed font-body">
-                            {product.description}
-                        </p>
+                        <div className="text-neutral-600 leading-relaxed font-body">
+                            <RichText content={product.description} />
+                        </div>
                     </div>
 
                     <div className="product-info__features bg-surface-container-low">
