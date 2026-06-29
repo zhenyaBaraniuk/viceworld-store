@@ -2,6 +2,7 @@ import "@css/front/pages/catalog/products.css";
 import type { CatalogProps } from "@/types";
 import Pagination from "@/Navigation/Pagination";
 import { useEffect, useState } from "react";
+import { route } from "@/lib/route";
 import { Link, router } from "@inertiajs/react";
 
 type Props = Pick<CatalogProps, "products" | "filters">;

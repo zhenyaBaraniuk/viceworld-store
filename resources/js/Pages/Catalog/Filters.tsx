@@ -3,6 +3,7 @@ import type { CatalogProps } from "@/types";
 import { router } from "@inertiajs/react";
 import * as Slider from "@radix-ui/react-slider";
 import { useState } from "react";
+import { route } from "@/lib/route";
 import clsx from "clsx";
 
 type Props = Pick<
