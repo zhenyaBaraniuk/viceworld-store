@@ -1,24 +1,32 @@
 import "../../css/front/components/header.css";
-import { useState } from "react";
-import { Search, User, ShoppingBag, Moon, Sun } from "lucide-react";
-import { usePage, Link, router } from "@inertiajs/react";
-import { NavCategory } from "@/types";
+import {route} from "@/lib/route";
+import {useState} from "react";
+import {Moon, Search, ShoppingBag, Sun, User} from "lucide-react";
+import {Link, usePage} from "@inertiajs/react";
+import LangSwitcher from "@/Components/LangSwitcher";
+import {NavCategory} from "@/types";
 import clsx from "clsx";
 
 export default function Header() {
-    const [theme, setTheme] = useState<"light" | "dark">("light");
     const { nav_categories } = usePage().props as {
         nav_categories: NavCategory[];
     };
+
+    const [theme, setTheme] = useState<"light" | "dark">("light");
+
     const isCategoryActive = (slug: string) =>
         route().current("catalog.show", { slug });
 
     const toggleTheme = () => {
         const next = theme === "light" ? "dark" : "light";
+
         setTheme(next);
-        next === "dark"
-            ? document.documentElement.classList.add("dark")
-            : document.documentElement.classList.remove("dark");
+
+        if (next === "dark") {
+            document.documentElement.classList.add("dark");
+        } else {
+            document.documentElement.classList.remove("dark");
+        }
     };
 
     return (
@@ -27,7 +35,7 @@ export default function Header() {
                 <div className="navbar__left">
                     <a
                         className="navbar__logo text-neutral-900 dark:text-white"
-                        href="/"
+                        href={route("home")}
                     >
                         V<span className="text-primary">!</span>ceWorld
                     </a>
@@ -65,15 +73,7 @@ export default function Header() {
                         <ShoppingBag size={20} />
                     </button>
 
-                    <div className="navbar__lang">
-                        <span className="navbar-lang-item text-neutral-400 hover:text-neutral-600">
-                            UA
-                        </span>
-
-                        <span className="text-neutral-300">·</span>
-
-                        <span className="text-primary">EN</span>
-                    </div>
+                    <LangSwitcher />
 
                     <button
                         onClick={toggleTheme}

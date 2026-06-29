@@ -3,6 +3,7 @@ import Footer from "../../Components/Footer";
 import AdditionalProducts from "./AdditionalProducts";
 import Breadcrumbs from "../../Navigation/Breadcrumbs";
 import Product from "./Product";
+import { route } from "@/lib/route";
 import type { ProductProps } from "@/types";
 
 export default function ProductPage({

@@ -1,5 +1,6 @@
 import "../../../css/front/pages/product/additional-products.css";
 import { ProductProps } from "@/types/pages/product";
+import { route } from "@/lib/route";
 import { Link } from "@inertiajs/react";
 
 type Props = Pick<ProductProps, "related_products">;
