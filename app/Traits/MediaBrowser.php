@@ -63,7 +63,7 @@ trait MediaBrowser
     {
         $breadcrumbs = [];
 
-        $folder = MediaFolder::find($this->currentFolderId);
+        $folder = MediaFolder::query()->find($this->currentFolderId);
 
         while ($folder) {
             array_unshift($breadcrumbs, $folder);

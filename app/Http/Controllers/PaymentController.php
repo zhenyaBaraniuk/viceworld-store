@@ -17,7 +17,7 @@ class PaymentController extends Controller
     {
         $data = $request->validated();
 
-        $payment = Payment::create([
+        $payment = Payment::query()->create([
             'amount' => $data['amount'],
             'currency' => $data['currency'],
             'provider' => $data['provider'],

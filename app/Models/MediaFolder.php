@@ -32,7 +32,7 @@ class MediaFolder extends Model
         return $this->hasMany(Media::class, 'folder_id');
     }
 
-    public function itemsCount(): Attribute
+    protected function itemsCount(): Attribute
     {
         return Attribute::make(
             get: fn () => ($this->children_count ?? 0) + ($this->media_count ?? 0),

@@ -7,6 +7,8 @@ use App\Enums\Product\ProductStatus;
 use App\Filament\Trait\HasTranslateAttributes;
 use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 use Astrotomic\Translatable\Translatable;
+use Illuminate\Database\Eloquent\Attributes\Scope;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -66,5 +68,11 @@ class Product extends Model implements HasMedia, TranslatableContract
         return $this->morphToMany(Media::class, 'mediable')
             ->using(Mediable::class)
             ->withPivot('collection', 'order');
+    }
+
+    #[Scope]
+    protected function active(Builder $query): Builder
+    {
+        return $query->where('status', '=', ProductStatus::ACTIVE);
     }
 }

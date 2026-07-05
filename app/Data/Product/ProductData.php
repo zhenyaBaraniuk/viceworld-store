@@ -35,7 +35,7 @@ class ProductData extends Data
             description: $product->description,
             main_image: $mainImage ? self::mapMedia($mainImage) : null,
             video: $video ? self::mapMedia($video) : null,
-            images: $images->map(fn ($media) => self::mapMedia($media))->toArray(),
+            images: $images->map(fn ($media) => self::mapMedia($media))->all(),
             product_variants: $product->productVariants
                 ->map(fn ($productVariant) => ProductVariantData::fromModel($productVariant))
                 ->values()

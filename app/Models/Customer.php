@@ -35,7 +35,7 @@ class Customer extends Model
         return $this->hasMany(Order::class);
     }
 
-    public function fullName(): Attribute
+    protected function fullName(): Attribute
     {
         return Attribute::make(
             get: fn(mixed $value, array $attributes) =>

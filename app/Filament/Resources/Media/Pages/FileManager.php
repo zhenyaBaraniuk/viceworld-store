@@ -50,7 +50,7 @@ class FileManager extends Page
                 ->modalDescription('Are you sure you want to delete this file?')
                 ->color('danger')
                 ->modalSubmitActionLabel('Delete')
-                ->action(function () {
+                ->action(function (): void {
                     if ($this->selectedFolderId) {
                         $this->deleteFolder($this->selectedFolderId);
                     } elseif ($this->selectedFileId) {
@@ -62,7 +62,7 @@ class FileManager extends Page
 
     public function createFolder(string $name): void
     {
-        MediaFolder::create([
+        MediaFolder::query()->create([
             'name' => $name,
             'parent_id' => $this->currentFolderId,
         ]);
@@ -74,7 +74,7 @@ class FileManager extends Page
             $disk = Storage::disk('public');
             $originalName = $data['original_names'][$filepath];
 
-            Media::create([
+            Media::query()->create([
                 'folder_id' => $this->currentFolderId,
                 'collection_name' => 'default',
                 'name' => pathinfo($originalName, PATHINFO_FILENAME),
@@ -113,7 +113,7 @@ class FileManager extends Page
             return;
         }
 
-        $file = Media::findOrFail($id);
+        $file = Media::query()->findOrFail($id);
 
         $file->update([
             'name' => $name,
@@ -127,7 +127,7 @@ class FileManager extends Page
 
     public function deleteFile(string $id)
     {
-        $file = Media::findOrFail($id);
+        $file = Media::query()->findOrFail($id);
 
         Storage::disk($file->disk)->delete($file->file_name);
         DB::table('media')->where('id', '=', $id)->delete();
@@ -150,7 +150,7 @@ class FileManager extends Page
 
     public function downloadFile(string $id): ?StreamedResponse
     {
-        $file = Media::find($id);
+        $file = Media::query()->find($id);
 
         if (! $file) {
             Notification::make()
