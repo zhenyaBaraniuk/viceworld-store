@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('/payments', [PaymentController::class, 'store']);
 
-Route::prefix('webhooks')->group(function () {
+Route::prefix('webhooks')->group(function (): void {
     Route::post('/liqpay', [WebhookController::class, 'liqpay']);
     Route::post('/monobank', [WebhookController::class, 'monobank']);
 });

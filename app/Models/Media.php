@@ -16,14 +16,14 @@ class Media extends BaseMedia
         return $this->belongsTo(MediaFolder::class);
     }
 
-    public function formattedSize(): Attribute
+    protected function formattedSize(): Attribute
     {
         return Attribute::make(
             get: fn () => number_format($this->size / 1024 / 1024, 1).' MB',
         );
     }
 
-    public function url(): Attribute
+    protected function url(): Attribute
     {
         return Attribute::make(
             get: fn() => Storage::disk($this->disk)->url($this->file_name),

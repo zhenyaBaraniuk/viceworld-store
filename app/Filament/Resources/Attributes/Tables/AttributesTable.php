@@ -17,7 +17,7 @@ class AttributesTable
             ->columns([
                 TextColumn::make('name')
                     ->label('Name')
-                    ->getStateUsing(fn($record) => $record->getTranslatedAttribute('name'))
+                    ->getStateUsing(fn($record) => $record->translated('name'))
                     ->searchable(query: function (Builder $query, string $search): Builder {
                         return $query->whereHas('translations', fn($q) => $q->where('name', 'like', "%{$search}%"));
                     }),

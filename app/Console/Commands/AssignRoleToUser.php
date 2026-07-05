@@ -17,7 +17,7 @@ class AssignRoleToUser extends Command
     {
         $email = $this->argument('email');
 
-        $user = User::where('email', $email)->first();
+        $user = User::query()->where('email', $email)->first();
 
         if (!$user) {
             $this->error("User with email {$email} not found");
@@ -25,7 +25,7 @@ class AssignRoleToUser extends Command
             return Command::FAILURE;
         }
 
-        $roles = Role::pluck('name')->toArray();
+        $roles = Role::query()->pluck('name')->toArray();
 
         $role = select(
             label: 'Оберіть роль',

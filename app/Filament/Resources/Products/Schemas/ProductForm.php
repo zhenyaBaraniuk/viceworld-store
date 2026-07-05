@@ -41,7 +41,7 @@ class ProductForm
                                 ->pluck('name', 'id'))
                             ->searchable()
                             ->getSearchResultsUsing(function (string $search): array {
-                                return Category::whereHas('translations', function ($q) use ($search) {
+                                return Category::query()->whereHas('translations', function ($q) use ($search): void {
                                     if ($search) {
                                         $q->where('name', 'like', "%{$search}%");
                                     }
@@ -49,7 +49,7 @@ class ProductForm
                                     fn ($category) => [$category->id => $category->translate(app()->getLocale(), true)?->name]
                                 )->toArray();
                             })
-                            ->getOptionLabelUsing(fn (string $value): ?string => Category::find($value)?->translate(app()->getLocale(), true)?->name)
+                            ->getOptionLabelUsing(fn (string $value): ?string => Category::query()->find($value)?->translate(app()->getLocale(), true)?->name)
                             ->required(),
 
                         TextInput::make('price')

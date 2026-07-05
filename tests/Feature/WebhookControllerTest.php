@@ -43,8 +43,8 @@ class WebhookControllerTest extends TestCase
             'signature' => 'fake_signature',
         ]);
 
-        $webhook = PaymentWebhook::first();
-        $transaction = Transaction::first();
+        $webhook = PaymentWebhook::query()->first();
+        $transaction = Transaction::query()->first();
 
         $response->assertStatus(200);
 
@@ -106,7 +106,7 @@ class WebhookControllerTest extends TestCase
             'signature' => 'fake_signature',
         ]);
 
-        $transaction = Transaction::first();
+        $transaction = Transaction::query()->first();
 
         $response->assertStatus(200);
 
@@ -202,8 +202,8 @@ class WebhookControllerTest extends TestCase
             'signature' => 'fake_signature',
         ]);
 
-        $webhook = PaymentWebhook::first();
-        $transaction = Transaction::first();
+        $webhook = PaymentWebhook::query()->first();
+        $transaction = Transaction::query()->first();
 
         $response->assertStatus(200);
 
@@ -264,7 +264,7 @@ class WebhookControllerTest extends TestCase
             'signature' => 'fake_signature',
         ]);
 
-        $transaction = Transaction::first();
+        $transaction = Transaction::query()->first();
 
         $response->assertStatus(200);
 

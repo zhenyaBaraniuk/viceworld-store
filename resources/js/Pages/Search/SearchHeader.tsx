@@ -1,51 +1,51 @@
 import "../../../css/front/pages/search/search-header.css";
+import type { SearchProps } from "@/types";
+import { useState } from "react";
+import { route } from "@/lib/route";
+import { router } from "@inertiajs/react";
+import { ArrowRight } from "lucide-react";
 
-export default function SearchHeader() {
+type Props = Pick<SearchProps, "query" | "total">;
+
+export default function SearchHeader({ query, total }: Props) {
+    const [input, setInput] = useState(query);
+
+    function handleSearch(e: React.SubmitEvent) {
+        e.preventDefault();
+        router.get(route("search"), { q: input }, { preserveState: false });
+    }
+
     return (
         <section className="search-header">
-            <div className="search-header__title group">
-                <h1 className="text-6xl md:text-8xl font-headline font-black uppercase leading-tight">
-                    JACKET
+            <form
+                onSubmit={handleSearch}
+                className="search-header__title group"
+            >
+                <h1 className="text-3xl md:text-5xl font-headline font-black uppercase leading-tight">
+                    <input
+                        type="text"
+                        value={input}
+                        onChange={(e) => setInput(e.target.value)}
+                        placeholder="Search..."
+                        className="bg-transparent w-full uppercase placeholder:text-outline"
+                        autoFocus
+                    />
                 </h1>
 
-                <div className="search-header__arrow text-primary">
-                    <span
-                        className="material-symbols-outlined text-5xl"
-                        data-icon="arrow_forward"
-                    >
-                        arrow_forward
-                    </span>
-                </div>
-            </div>
+                <button
+                    type="submit"
+                    className="search-header__arrow text-primary"
+                >
+                    <ArrowRight className="flex" size={48} />
+                </button>
+            </form>
 
             <div className="search-header__result border-outline-variant">
                 <h2 className="search-header__result-title text-on-surface">
-                    24 results for 'jacket'
+                    {query
+                        ? `${total} results for '${query}'`
+                        : `${total} products`}
                 </h2>
-
-                <div className="search-header__result-filters">
-                    <button className="search-header__result-btn hover:text-primary transition-colors">
-                        <span
-                            className="material-symbols-outlined text-lg"
-                            data-icon="tune"
-                        >
-                            tune
-                        </span>
-                        Filters
-                    </button>
-
-                    <div className="h-4 w-px bg-outline-variant"></div>
-
-                    <button className="search-header__result-btn hover:text-primary transition-colors">
-                        Sort: Relevant
-                        <span
-                            className="material-symbols-outlined text-lg"
-                            data-icon="expand_more"
-                        >
-                            expand_more
-                        </span>
-                    </button>
-                </div>
             </div>
         </section>
     );

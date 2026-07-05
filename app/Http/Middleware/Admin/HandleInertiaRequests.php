@@ -2,7 +2,7 @@
 
 namespace App\Http\Middleware\Admin;
 
-use App\Http\Middleware\Front\MenuSharedData;
+use App\Http\Middleware\SharedData\MenuSharedData;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 

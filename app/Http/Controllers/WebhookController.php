@@ -26,7 +26,7 @@ class WebhookController
 
         $isVerified = $liqpayProvider->verifyPayment($request);
 
-        $webhook = PaymentWebhook::create([
+        $webhook = PaymentWebhook::query()->create([
             'provider' => PaymentProvider::LiqPay,
             'is_valid' => $isVerified,
             'status' => PaymentWebhookStatus::PENDING,
@@ -40,7 +40,7 @@ class WebhookController
 
         $data = $liqpayProvider->parseWebhook($request);
 
-        $payment = Payment::find($data['order_id']);
+        $payment = Payment::query()->find($data['order_id']);
 
         if (! $payment) {
             $webhook->update([
@@ -50,7 +50,7 @@ class WebhookController
             return response('Payment not found', 404);
         }
 
-        $transaction = Transaction::create([
+        $transaction = Transaction::query()->create([
             'external_id' => $data['payment_id'],
             'payment_id' => $payment->id,
             'provider' => PaymentProvider::LiqPay,
@@ -83,7 +83,7 @@ class WebhookController
 
         $isVerified = $monobankProvider->verifyPayment($request);
 
-        $webhook = PaymentWebhook::create([
+        $webhook = PaymentWebhook::query()->create([
             'provider' => PaymentProvider::Monobank,
             'is_valid' => $isVerified,
             'status' => PaymentWebhookStatus::PENDING,
@@ -97,7 +97,7 @@ class WebhookController
 
         $data = $monobankProvider->parseWebhook($request);
 
-        $payment = Payment::find($data['reference']);
+        $payment = Payment::query()->find($data['reference']);
 
         if (! $payment) {
             $webhook->update([
@@ -107,7 +107,7 @@ class WebhookController
             return response('Payment not found', 404);
         }
 
-        $transaction = Transaction::create([
+        $transaction = Transaction::query()->create([
             'external_id' => $data['invoiceId'],
             'payment_id' => $payment->id,
             'provider' => PaymentProvider::Monobank,

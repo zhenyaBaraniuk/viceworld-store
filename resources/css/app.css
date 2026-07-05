@@ -25,3 +25,9 @@
 *::after {
     border-radius: 0;
 }
+
+@layer base {
+    button:not(:disabled) {
+        cursor: pointer;
+    }
+}

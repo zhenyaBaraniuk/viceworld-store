@@ -113,6 +113,12 @@ declare module 'ziggy-js' {
             "required": true
         }
     ],
+    "search": [
+        {
+            "name": "locale",
+            "required": true
+        }
+    ],
     "home": [
         {
             "name": "locale",

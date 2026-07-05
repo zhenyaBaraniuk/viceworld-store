@@ -1,10 +1,11 @@
 import "../../css/front/components/header.css";
-import {route} from "@/lib/route";
-import {useState} from "react";
-import {Moon, Search, ShoppingBag, Sun, User} from "lucide-react";
-import {Link, usePage} from "@inertiajs/react";
+import { Link, router, usePage } from "@inertiajs/react";
+import { route } from "@/lib/route";
+import { useState } from "react";
+import { Moon, Search, ShoppingBag, Sun, User, X } from "lucide-react";
 import LangSwitcher from "@/Components/LangSwitcher";
-import {NavCategory} from "@/types";
+import * as Dialog from "@radix-ui/react-dialog";
+import { NavCategory } from "@/types";
 import clsx from "clsx";
 
 export default function Header() {
@@ -12,7 +13,14 @@ export default function Header() {
         nav_categories: NavCategory[];
     };
 
+    const [value, setValue] = useState("");
     const [theme, setTheme] = useState<"light" | "dark">("light");
+
+    function handleSubmit(e: React.SubmitEvent<HTMLFormElement>) {
+        e.preventDefault();
+
+        router.get(route("search"), { q: value });
+    }
 
     const isCategoryActive = (slug: string) =>
         route().current("catalog.show", { slug });
@@ -61,9 +69,40 @@ export default function Header() {
                 </div>
 
                 <div className="navbar__actions">
-                    <button className="navbar__action-btn text-neutral-900 dark:text-white">
-                        <Search size={20} />
-                    </button>
+                    <Dialog.Root>
+                        <Dialog.Trigger asChild>
+                            <button className="navbar__action-btn text-neutral-900 dark:text-white">
+                                <Search size={20} />
+                            </button>
+                        </Dialog.Trigger>
+
+                        <Dialog.Portal>
+                            <Dialog.Overlay className="dialog-overlay" />
+
+                            <Dialog.Content className="dialog-content bg-surface dark:bg-neutral-900">
+                                <Dialog.Title className="dialog-title">
+                                    Search
+                                </Dialog.Title>
+
+                                <form onSubmit={handleSubmit}>
+                                    <input
+                                        autoFocus
+                                        value={value}
+                                        onChange={(e) =>
+                                            setValue(e.target.value)
+                                        }
+                                        className="dialog-input border-neutral-900 dark:border-white placeholder:text-neutral-400"
+                                    />
+                                </form>
+
+                                <Dialog.Close asChild>
+                                    <button className="close-btn text-neutral-900 dark:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800">
+                                        <X size={20} />
+                                    </button>
+                                </Dialog.Close>
+                            </Dialog.Content>
+                        </Dialog.Portal>
+                    </Dialog.Root>
 
                     <button className="navbar_action-btn text-neutral-900 dark:text-white">
                         <User size={20} />

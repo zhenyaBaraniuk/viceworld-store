@@ -50,13 +50,11 @@ class CategoryForm
                         ->pluck('name', 'id'))
                     ->searchable()
                     ->getSearchResultsUsing(function (string $search): array {
-                        return Category::whereHas('translations',
-                            fn ($q) => $q->where('name', 'like', "%{$search}%")
-                        )->limit(50)->get()->mapWithKeys(
+                        return Category::query()->whereHas('translations', fn ($q) => $q->where('name', 'like', "%{$search}%"))->limit(50)->get()->mapWithKeys(
                             fn ($category) => [$category->id => $category->translate(app()->getLocale(), true)?->name]
                         )->toArray();
                     })
-                    ->getOptionLabelUsing(fn (string $value): ?string => Category::find($value)?->translate(app()->getLocale(), true)?->name),
+                    ->getOptionLabelUsing(fn (string $value): ?string => Category::query()->find($value)?->translate(app()->getLocale(), true)?->name),
 
                 Select::make('gender_line')
                     ->options(GenderLine::class)

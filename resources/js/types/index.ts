@@ -5,5 +5,7 @@ export * from "./models/product-variant";
 export * from "./models/media";
 export * from "./pages/product";
 export * from "./pages/catalog";
+export * from "./pages/search";
+export * from "./shared/product-filters";
 export * from "./shared/header";
 export * from "./shared/breadcrumbs";
