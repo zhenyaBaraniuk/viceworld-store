@@ -1,6 +1,6 @@
 <?php
 
-namespace tests\Feature;
+namespace Tests\Feature\Payments;
 
 use App\Contracts\PaymentProviderInterface;
 use App\Enums\Currency;
@@ -13,6 +13,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Mockery;
 use Mockery\MockInterface;
 use PaymentManager;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class WebhookControllerTest extends TestCase
@@ -76,9 +77,7 @@ class WebhookControllerTest extends TestCase
         ]);
     }
 
-    /**
-     * @dataProvider liqpayStatusProvider
-     */
+    #[DataProvider('liqpayStatusProvider')]
     public function test_liqpay_maps_different_statuses_correctly(
         string $liqpayStatus,
         string $expectedPaymentStatus,
@@ -235,9 +234,7 @@ class WebhookControllerTest extends TestCase
         ]);
     }
 
-    /**
-     * @dataProvider monobankStatusProvider
-     */
+    #[DataProvider('monobankStatusProvider')]
     public function test_monobank_maps_different_statuses_correctly(
         string $monobankStatus,
         string $expectedPaymentStatus,
