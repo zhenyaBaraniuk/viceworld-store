@@ -37,7 +37,7 @@ class FileManager extends Page
                     FileUpload::make('files')
                         ->multiple()
                         ->acceptedFileTypes(['video/*', 'image/*'])
-                        ->disk('public')
+                        ->disk(config('filesystems.default'))
                         ->directory('media')
                         ->storeFileNamesIn('original_names')
                         ->moveFiles(),
@@ -71,25 +71,13 @@ class FileManager extends Page
     public function uploadFile(array $data)
     {
         foreach ($data['files'] as $filepath) {
-            $disk = Storage::disk('public');
             $originalName = $data['original_names'][$filepath];
 
-            Media::query()->create([
-                'folder_id' => $this->currentFolderId,
-                'collection_name' => 'default',
-                'name' => pathinfo($originalName, PATHINFO_FILENAME),
-                'file_name' => $filepath,
-                'mime_type' => $disk->mimeType($filepath),
-                'size' => $disk->size($filepath),
-                'disk' => 'public',
-                'conversions_disk' => config('filesystems.default'),
-                'model_type' => null,
-                'model_id' => null,
-                'manipulations' => [],
-                'custom_properties' => [],
-                'generated_conversions' => [],
-                'responsive_images' => [],
-            ]);
+            Media::createFromFile(
+                name: $originalName,
+                path: $filepath,
+                folderId: $this->currentFolderId
+            );
         }
     }
 

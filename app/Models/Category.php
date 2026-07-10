@@ -7,6 +7,7 @@ use App\Filament\Trait\HasTranslateAttributes;
 use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 use Astrotomic\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -16,7 +17,7 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 
 class Category extends Model implements HasMedia, TranslatableContract
 {
-    use HasTranslateAttributes, HasUlids, InteractsWithMedia, Translatable;
+    use HasFactory, HasTranslateAttributes, HasUlids, InteractsWithMedia, Translatable;
 
     protected $fillable = [
         'parent_id',

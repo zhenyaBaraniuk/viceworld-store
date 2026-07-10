@@ -45,4 +45,8 @@ return [
         'redirect_url' => env('MONOBANK_REDIRECT_URL'),
         'webhook_url' => env('MONOBANK_WEBHOOK_URL'),
     ],
+
+    'pexels' => [
+        'key' => env('PEXELS_API_KEY'),
+    ],
 ];
