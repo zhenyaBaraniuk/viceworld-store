@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\Payments;
 
 use App\Contracts\PaymentProviderInterface;
 use App\Enums\Currency;
@@ -164,10 +164,5 @@ class PaymentControllerTest extends TestCase
 
         $response->assertStatus(422)
             ->assertJsonValidationErrors('description');
-    }
-
-    public function test_return_error_when_provider_throws_exception(): void
-    {
-        //
     }
 }
