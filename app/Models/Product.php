@@ -10,6 +10,7 @@ use Astrotomic\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -19,7 +20,7 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 
 class Product extends Model implements HasMedia, TranslatableContract
 {
-    use HasTranslateAttributes, HasUlids, InteractsWithMedia, Translatable;
+    use HasFactory, HasTranslateAttributes, HasUlids, InteractsWithMedia, Translatable;
 
     protected $fillable = [
         'category_id',

@@ -16,6 +16,29 @@ class Media extends BaseMedia
         return $this->belongsTo(MediaFolder::class);
     }
 
+    public static function createFromFile(string $name, string $path, ?string $folderId = null): self
+    {
+        $disk = config('filesystems.default');
+        $storage = Storage::disk($disk);
+
+        return self::query()->create([
+            'folder_id' => $folderId,
+            'collection_name' => 'default',
+            'name' => pathinfo($name, PATHINFO_FILENAME),
+            'file_name' => $path,
+            'mime_type' => $storage->mimeType($path),
+            'size' => $storage->size($path),
+            'disk' => $disk,
+            'conversions_disk' => config('filesystems.default'),
+            'model_type' => null,
+            'model_id' => null,
+            'manipulations' => [],
+            'custom_properties' => [],
+            'generated_conversions' => [],
+            'responsive_images' => [],
+        ]);
+    }
+
     protected function formattedSize(): Attribute
     {
         return Attribute::make(
@@ -26,7 +49,7 @@ class Media extends BaseMedia
     protected function url(): Attribute
     {
         return Attribute::make(
-            get: fn() => Storage::disk($this->disk)->url($this->file_name),
+            get: fn () => Storage::disk($this->disk)->url($this->file_name),
         );
     }
 }
