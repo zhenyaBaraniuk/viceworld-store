@@ -2,15 +2,15 @@
 
 namespace App\Filament\Resources\Orders\Tables;
 
-use Filament\Actions\ViewAction;
-use Filament\Tables\Filters\Filter;
-use Filament\Tables\Columns\TextColumn;
-use Filament\Forms\Components\DatePicker;
-use Filament\Tables\Filters\SelectFilter;
-use Illuminate\Database\Eloquent\Builder;
-use Filament\Actions\EditAction;
 use App\Enums\Order\OrderStatus;
+use Filament\Actions\EditAction;
+use Filament\Actions\ViewAction;
+use Filament\Forms\Components\DatePicker;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\Filter;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
 
 class OrdersTable
 {

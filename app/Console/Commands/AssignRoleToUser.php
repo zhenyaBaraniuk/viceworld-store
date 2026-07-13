@@ -2,10 +2,11 @@
 
 namespace App\Console\Commands;
 
-use function Laravel\Prompts\select;
-use Illuminate\Console\Command;
 use App\Models\Role;
 use App\Models\User;
+use Illuminate\Console\Command;
+
+use function Laravel\Prompts\select;
 
 class AssignRoleToUser extends Command
 {
@@ -17,15 +18,15 @@ class AssignRoleToUser extends Command
     {
         $email = $this->argument('email');
 
-        $user = User::where('email', $email)->first();
+        $user = User::query()->where('email', $email)->first();
 
-        if (!$user) {
+        if (! $user) {
             $this->error("User with email {$email} not found");
 
             return Command::FAILURE;
         }
 
-        $roles = Role::pluck('name')->toArray();
+        $roles = Role::query()->pluck('name')->toArray();
 
         $role = select(
             label: 'Оберіть роль',

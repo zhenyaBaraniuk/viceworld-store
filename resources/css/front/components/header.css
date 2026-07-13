@@ -84,3 +84,43 @@
         }
     }
 }
+
+.dialog-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    background: rgb(0 0 0 / 0.6);
+}
+
+.dialog-content {
+    position: fixed;
+    z-index: 61;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: min(90vw, 40rem);
+    padding: 2rem;
+}
+
+.dialog-input {
+    width: 100%;
+    background: transparent;
+    border-bottom-width: 2px;
+    padding-bottom: 0.5rem;
+    font-size: 1.5rem;
+    outline: none;
+    font-family: var(--font-display), serif;
+    text-transform: uppercase;
+}
+
+.close-btn {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    transition: background-color 150ms linear;
+}

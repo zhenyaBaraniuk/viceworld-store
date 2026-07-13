@@ -18,7 +18,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property Currency $currency
  * @property PaymentProvider $provider
  * @property PaymentStatus $status
- * @property string $amount
+ * @property float $amount
  * @property string|null $description
  * @property Carbon $created_at
  * @property Carbon $updated_at

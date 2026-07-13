@@ -1,12 +1,11 @@
 <?php
 
+use App\Http\Middleware\Admin\HandleInertiaRequests;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
-use App\Http\Middleware\HandleInertiaRequests;
-use Symfony\Component\HttpKernel\Exception\HttpException;
 use Inertia\Inertia;
-use Inertia\Response;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(

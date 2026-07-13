@@ -4,21 +4,26 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a Laravel 12 application with Filament 4 admin panel. It uses PHP 8.3, SQLite database, and Vite for frontend asset compilation with Tailwind CSS 4.
+This is a Laravel 12 application with Filament 4 admin panel. It uses PHP 8.5, SQLite database, and Vite for frontend asset compilation with Tailwind CSS 4.
 
 ## Development Commands
 
 ### Initial Setup
+
 ```bash
 composer setup
 ```
+
 This runs: composer install, copies .env.example to .env (if needed), generates app key, runs migrations, installs npm packages, and builds assets.
 
 ### Running Development Environment
+
 ```bash
 composer dev
 ```
+
 This starts multiple services concurrently:
+
 - Laravel development server (php artisan serve)
 - Queue worker (php artisan queue:listen --tries=1)
 - Log viewer (php artisan pail)
@@ -27,6 +32,7 @@ This starts multiple services concurrently:
 All services run together and will stop if any one fails.
 
 Alternatively, run services individually:
+
 ```bash
 php artisan serve         # Start Laravel dev server
 npm run dev              # Start Vite dev server
@@ -35,6 +41,7 @@ php artisan pail         # View logs in real-time
 ```
 
 ### Testing
+
 ```bash
 composer test
 # Or run directly:
@@ -52,6 +59,7 @@ php artisan test --coverage
 ```
 
 ### Code Quality
+
 ```bash
 # Format code with Laravel Pint:
 ./vendor/bin/pint
@@ -61,6 +69,7 @@ php artisan test --coverage
 ```
 
 ### Database
+
 ```bash
 # Run migrations:
 php artisan migrate
@@ -76,6 +85,7 @@ php artisan db:seed
 ```
 
 ### Artisan Commands
+
 ```bash
 # Clear caches:
 php artisan cache:clear
@@ -93,6 +103,7 @@ php artisan tinker
 ```
 
 ### Frontend Assets
+
 ```bash
 npm run build    # Build production assets
 npm run dev      # Start Vite dev server with HMR
@@ -105,17 +116,20 @@ npm run dev      # Start Vite dev server with HMR
 The application uses Filament 4 for the admin panel, configured at `/admin` path.
 
 **Admin Panel Configuration**: `app/Providers/Filament/AdminPanelProvider.php`
+
 - Panel ID: `admin`
 - Path: `/admin`
 - Authentication: Login page enabled
 - Primary color: Amber
 
 **Filament Directory Structure** (auto-discovered):
+
 - `app/Filament/Resources/` - CRUD resources (models with forms, tables, actions)
 - `app/Filament/Pages/` - Custom admin pages
 - `app/Filament/Widgets/` - Dashboard widgets
 
 When creating Filament resources, use:
+
 ```bash
 php artisan make:filament-resource ModelName --generate
 ```
@@ -123,6 +137,7 @@ php artisan make:filament-resource ModelName --generate
 ### Laravel Structure
 
 **Standard Laravel Directory Layout**:
+
 - `app/Http/Controllers/` - HTTP controllers
 - `app/Models/` - Eloquent models
 - `app/Providers/` - Service providers
@@ -140,6 +155,7 @@ php artisan make:filament-resource ModelName --generate
 ### Frontend Setup
 
 Uses Vite with Laravel plugin for asset compilation:
+
 - Tailwind CSS 4 (via @tailwindcss/vite plugin)
 - Hot Module Replacement in development
 - Entry points: `resources/css/app.css` and `resources/js/app.jsx`
@@ -147,17 +163,20 @@ Uses Vite with Laravel plugin for asset compilation:
 
 ### Database
 
-Uses SQLite by default (`database/database.sqlite`).
+Uses mysql by default (`database/database.mysql`).
+
 - In testing environment, uses in-memory SQLite (`:memory:`)
 - Connection configured via `DB_CONNECTION` and `DB_DATABASE` env variables
 
 ### Testing Configuration
 
 PHPUnit is configured with two test suites:
+
 - **Unit**: `tests/Unit/` - Isolated unit tests
 - **Feature**: `tests/Feature/` - Integration tests
 
 Test environment uses:
+
 - In-memory SQLite database
 - Array cache driver
 - Sync queue connection

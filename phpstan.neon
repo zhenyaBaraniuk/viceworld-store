@@ -10,3 +10,5 @@ parameters:
         - app/Enums/
 
     level: 5
+
+    parseModelCastsMethod: true

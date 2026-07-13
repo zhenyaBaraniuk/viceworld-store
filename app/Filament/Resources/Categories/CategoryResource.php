@@ -27,6 +27,9 @@ class CategoryResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedTag;
 
+    /**
+     * @param  Category|null  $record
+     */
     public static function getRecordTitle(?Model $record): string|Htmlable|null
     {
         return $record->translate(app()->getLocale(), true)?->name;
@@ -55,6 +58,13 @@ class CategoryResource extends Resource
             'index' => ListCategories::route('/'),
             'create' => CreateCategory::route('/create'),
             'edit' => EditCategory::route('/{record}/edit'),
+        ];
+    }
+
+    public static function mediaCollections(): array
+    {
+        return [
+            'main_image' => ['multiple' => false, 'accept' => 'image/*'],
         ];
     }
 }

@@ -1,9 +1,9 @@
-@import 'material-symbols';
-@import '../../../../vendor/filament/filament/resources/css/theme.css';
+@import "material-symbols";
+@import "../../../../vendor/filament/filament/resources/css/theme.css";
 
-@import '../file-manager/file-manager.css';
-@import '../file-manager/theme.css';
-@import '../file-manager/modal.css';
+@import "../file-manager/file-manager.css";
+@import "../file-manager/theme.css";
+@import "../file-manager/modal.css";
 
 @source '../../../../app/Filament/**/*';
 @source '../../../../resources/views/filament/**/*';

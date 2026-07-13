@@ -3,8 +3,12 @@
 namespace App\Filament\Resources\Attributes\Pages;
 
 use App\Filament\Resources\Attributes\AttributeResource;
+use App\Models\Attribute;
 use Filament\Resources\Pages\CreateRecord;
 
+/**
+ * @method Attribute getRecord()
+ */
 class CreateAttribute extends CreateRecord
 {
     protected static string $resource = AttributeResource::class;
@@ -16,7 +20,7 @@ class CreateAttribute extends CreateRecord
 
     protected function afterCreate(): void
     {
-        $this->record->translateOrNew(app()->getLocale())->fill([
+        $this->getRecord()->translateOrNew(app()->getLocale())->fill([
             'name' => $this->data['name'],
         ])->save();
     }

@@ -4,8 +4,12 @@ namespace App\Filament\Resources\Categories\Pages;
 
 use App\Filament\Resources\Categories\CategoryResource;
 use App\Filament\Trait\SyncMedia;
+use App\Models\Category;
 use Filament\Resources\Pages\CreateRecord;
 
+/**
+ * @method Category getRecord()
+ */
 class CreateCategory extends CreateRecord
 {
     use SyncMedia;
@@ -21,7 +25,7 @@ class CreateCategory extends CreateRecord
     {
         $this->syncMedia();
 
-        $this->record->translateOrNew(app()->getLocale())->fill([
+        $this->getRecord()->translateOrNew(app()->getLocale())->fill([
             'name' => $this->data['name'],
             'slug' => $this->data['slug'],
         ])->save();
@@ -29,8 +33,6 @@ class CreateCategory extends CreateRecord
 
     private function getMediaCollections(): array
     {
-        return [
-            'main_image' => false,
-        ];
+        return CategoryResource::mediaCollections();
     }
 }

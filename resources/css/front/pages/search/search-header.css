@@ -1,15 +1,16 @@
 .search-header {
+    padding-top: 8rem;
     margin-bottom: 4rem;
 
     .search-header__title {
-        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
         max-width: 42rem;
     }
 
     .search-header__arrow {
-        position: absolute;
-        right: -3rem;
-        bottom: 1rem;
+        flex-shrink: 0;
     }
 
     .search-header__result {

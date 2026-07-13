@@ -41,7 +41,7 @@ class ProductForm
                                 ->pluck('name', 'id'))
                             ->searchable()
                             ->getSearchResultsUsing(function (string $search): array {
-                                return Category::whereHas('translations', function ($q) use ($search) {
+                                return Category::query()->whereHas('translations', function ($q) use ($search): void {
                                     if ($search) {
                                         $q->where('name', 'like', "%{$search}%");
                                     }
@@ -49,7 +49,7 @@ class ProductForm
                                     fn ($category) => [$category->id => $category->translate(app()->getLocale(), true)?->name]
                                 )->toArray();
                             })
-                            ->getOptionLabelUsing(fn (string $value): ?string => Category::find($value)?->translate(app()->getLocale(), true)?->name)
+                            ->getOptionLabelUsing(fn (string $value): ?string => Category::query()->find($value)?->translate(app()->getLocale(), true)?->name)
                             ->required(),
 
                         TextInput::make('price')
@@ -67,8 +67,16 @@ class ProductForm
                             ->required(),
                     ]),
 
-                Tabs::make('Images')
+                Tabs::make('Media')
                     ->tabs([
+                        Tab::make('Відео')
+                            ->schema([
+                                MediaPicker::make('video')
+                                    ->hiddenLabel()
+                                    ->columnSpanFull()
+                                    ->collection('video'),
+                            ]),
+
                         Tab::make('Головне фото')
                             ->schema([
                                 MediaPicker::make('main_image')
@@ -95,6 +103,7 @@ class ProductForm
                         'subscript',
                         'superscript',
                     ])
+                    ->json()
                     ->columnSpanFull(),
 
                 Toggle::make('is_featured')

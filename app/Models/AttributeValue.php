@@ -19,11 +19,17 @@ class AttributeValue extends Model
         'color',
     ];
 
+    /**
+     * @return BelongsToMany<ProductVariant, $this>
+     */
     public function productVariants(): BelongsToMany
     {
         return $this->belongsToMany(ProductVariant::class);
     }
 
+    /**
+     * @return BelongsTo<Attribute, $this>
+     */
     public function attribute(): BelongsTo
     {
         return $this->belongsTo(Attribute::class);

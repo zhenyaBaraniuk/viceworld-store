@@ -2,13 +2,13 @@
 
 namespace App\Filament\Resources\Customers\Tables;
 
-use Filament\Tables\Filters\TernaryFilter;
-use Illuminate\Database\Eloquent\Builder;
+use Filament\Actions\ViewAction;
 use Filament\Forms\Components\DatePicker;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\Filter;
-use Filament\Actions\ViewAction;
+use Filament\Tables\Filters\TernaryFilter;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
 
 class CustomersTable
 {
