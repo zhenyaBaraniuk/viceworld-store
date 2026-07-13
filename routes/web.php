@@ -3,6 +3,7 @@
 use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\Error\NotFoundController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\NewsletterSubscriberController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SearchController;
 use App\Http\Middleware\Front\SetLocale;
@@ -25,3 +26,5 @@ Route::prefix('{locale}')
         Route::get('/404', NotFoundController::class);
         Route::get('/500', fn () => Inertia::render('Error/ServerError'));
     });
+
+Route::post('/newsletter/subscribe', [NewsletterSubscriberController::class, 'store'])->name('newsletter.subscribe');

@@ -1,8 +1,23 @@
 import "../../css/front/components/footer.css";
 import { ArrowRight } from "lucide-react";
+import { useForm } from "@inertiajs/react";
+import { route } from "@/lib/route";
 
 export default function Footer() {
     const year = new Date().getFullYear();
+
+    const { data, setData, post, errors, wasSuccessful } = useForm({
+        email: "",
+    });
+
+    const subscribe = (e: React.SubmitEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
+        post(route("newsletter.subscribe"), {
+            preserveScroll: true,
+            onSuccess: () => setData("email", ""),
+        });
+    };
 
     return (
         <footer className="site-footer bg-black border-primary">
@@ -78,16 +93,30 @@ export default function Footer() {
                         Access limited drops via archival subscription.
                     </p>
 
-                    <div className="site-footer__newsletter-form border-neutral-800">
+                    <form
+                        onSubmit={subscribe}
+                        className="site-footer__newsletter-form border-neutral-800"
+                    >
                         <input
                             className="site-footer__newsletter-input text-white placeholder:text-neutral-800"
-                            placeholder="ENTER@COMMUNICATIONS.INT"
+                            placeholder="ENTER@COMMUNICATIONS.COM"
                             type="email"
+                            value={data.email}
+                            onChange={(e) => setData("email", e.target.value)}
                         />
+
                         <button className="text-white p-3 hover:text-primary">
                             <ArrowRight size={20} />
                         </button>
-                    </div>
+                    </form>
+                    {errors.email && (
+                        <p className="text-primary text-sm">{errors.email}</p>
+                    )}
+                    {wasSuccessful && (
+                        <p className="text-primary text-sm font-bold uppercase tracking-widest">
+                            Subscribed.
+                        </p>
+                    )}
 
                     <div className="site-footer__socials">
                         <a
