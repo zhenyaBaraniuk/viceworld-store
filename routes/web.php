@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\Error\NotFoundController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SearchController;
 use App\Http\Middleware\Front\SetLocale;
@@ -18,7 +19,7 @@ Route::prefix('{locale}')
         Route::get('/product/{slug}', [ProductController::class, 'show'])->name('product.show');
         Route::get('/search', SearchController::class)->name('search');
         Route::get('/profile', fn () => Inertia::render('Profile/index'));
-        Route::get('/', fn () => Inertia::render('Home/index'))->name('home');
+        Route::get('/', HomeController::class)->name('home');
         Route::get('/checkout', fn () => Inertia::render('Checkout/index'));
         Route::get('/success-order', fn () => Inertia::render('SuccessOrder/index'));
         Route::get('/404', NotFoundController::class);
