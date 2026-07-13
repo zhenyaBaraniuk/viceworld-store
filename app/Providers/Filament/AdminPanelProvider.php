@@ -29,7 +29,7 @@ class AdminPanelProvider extends PanelProvider
             ->path('admin')
             ->viteTheme([
                 'resources/css/filament/admin/theme.css',
-                'resources/js/admin.js',
+                'resources/js/Filament/admin.js',
             ])
             ->login()
             ->colors([

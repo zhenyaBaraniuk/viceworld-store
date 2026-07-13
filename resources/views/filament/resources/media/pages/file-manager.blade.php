@@ -81,6 +81,13 @@
                             <img
                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-100"
                                 src="{{ $file->url }}" alt="{{ $file->name }}"/>
+
+                        @elseif(str_starts_with($file->mime_type, 'video/'))
+                            <video
+                                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-100"
+                            >
+                                <source src="{{ $file->url }}#t=0.1">
+                            </video>
                         @else
                             <span
                                 class="material-symbols-outlined text-fm-on-surface-variant text-4xl">description</span>

@@ -19,11 +19,12 @@
     }
 
     .fm-search-input:focus {
-        box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-fm-primary) 40%, transparent) !important;
+        box-shadow: 0 0 0 2px
+            color-mix(in srgb, var(--color-fm-primary) 40%, transparent) !important;
     }
 
     .fm-filter-btn {
-        @apply px-4 py-1.5 text-xs font-bold rounded-full transition-colors
+        @apply px-4 py-1.5 text-xs font-bold rounded-full transition-colors;
     }
 
     .fm-filter-btn--active {
@@ -40,6 +41,6 @@
 
     .fm-icon-folder {
         font-size: 72px !important;
-        font-variation-settings: 'FILL' 1;
+        font-variation-settings: "FILL" 1;
     }
 }

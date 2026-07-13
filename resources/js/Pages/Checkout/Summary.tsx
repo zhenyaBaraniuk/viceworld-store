@@ -1,4 +1,4 @@
-import '../../../css/front/pages/checkout/summary.css';
+import "../../../css/front/pages/checkout/summary.css";
 
 export default function Summary() {
     return (
@@ -11,9 +11,10 @@ export default function Summary() {
                 <div className="summary__order space-y-10">
                     <div className="summary__order-info">
                         <div className="summary__order-img bg-surface-container">
-                            <img alt="Product"
-                                 className="w-full h-full object-cover mix-blend-multiply"
-                                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuDHdqw6TvVY2GaDKDKJVRRmddkinEHTLR503dtxiIcJ9gKwXyt1rbx7jKfXMYOS4VxmOcuKoxggO5eW9tnA5bg0Ze2z2GFapEXp_s9bQmcVptCcw_ZFRQnX5dmbpee4Mm5Q-AugvGD9ACf55Czgt_fvd83kly2H0Tjz_RaYw_maMgwMWKdvumsHVW35Fvv1X_G0NL83orJ48WqdnERqcyc8zGTyd8jMtCrI3x6xqilMJSmWFdbdmMH_OfXuncdLGfnHN5drR674qEmC"
+                            <img
+                                alt="Product"
+                                className="w-full h-full object-cover mix-blend-multiply"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDHdqw6TvVY2GaDKDKJVRRmddkinEHTLR503dtxiIcJ9gKwXyt1rbx7jKfXMYOS4VxmOcuKoxggO5eW9tnA5bg0Ze2z2GFapEXp_s9bQmcVptCcw_ZFRQnX5dmbpee4Mm5Q-AugvGD9ACf55Czgt_fvd83kly2H0Tjz_RaYw_maMgwMWKdvumsHVW35Fvv1X_G0NL83orJ48WqdnERqcyc8zGTyd8jMtCrI3x6xqilMJSmWFdbdmMH_OfXuncdLGfnHN5drR674qEmC"
                             />
                         </div>
 
@@ -62,18 +63,17 @@ export default function Summary() {
                 </div>
 
                 <div className="summary__bill space-y-5 border-t border-surface-container-highest">
-                    <div
-                        className="summary__bill-chapters font-headline">
+                    <div className="summary__bill-chapters font-headline">
                         <span className="text-outline">Subtotal</span>
                         <span>₴7,700.00</span>
                     </div>
-                    <div
-                        className="summary__bill-chapters font-headline">
+                    <div className="summary__bill-chapters font-headline">
                         <span className="text-outline">Shipping</span>
-                        <span className="text-primary-container">Next Step</span>
+                        <span className="text-primary-container">
+                            Next Step
+                        </span>
                     </div>
-                    <div
-                        className="summary__bill-chapters font-headline">
+                    <div className="summary__bill-chapters font-headline">
                         <span className="text-outline">Tax</span>
                         <span>₴0.00</span>
                     </div>
@@ -102,8 +102,7 @@ export default function Summary() {
                             type="text"
                         />
 
-                        <button
-                            className="summary__promocode-btn font-headline text-primary-container">
+                        <button className="summary__promocode-btn font-headline text-primary-container">
                             Apply
                         </button>
                     </div>

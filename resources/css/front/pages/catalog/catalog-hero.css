@@ -5,7 +5,6 @@
     margin-right: auto;
     position: relative;
     overflow: hidden;
-
     & .catalog-hero__watermark {
         right: -2.5rem;
         position: absolute;
@@ -33,7 +32,7 @@
 
         @media (min-width: 768px) {
             flex-direction: row;
-            align-items: flex-end
+            align-items: flex-end;
         }
 
         & .catalog-hero__meta {

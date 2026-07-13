@@ -1,3 +1,3 @@
-import { createInertiaApp } from '@inertiajs/react'
+import { createInertiaApp } from "@inertiajs/react";
 
-void createInertiaApp()
+void createInertiaApp();

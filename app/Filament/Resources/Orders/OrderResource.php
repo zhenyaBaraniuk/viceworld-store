@@ -2,19 +2,19 @@
 
 namespace App\Filament\Resources\Orders;
 
-use App\Filament\Resources\Orders\RelationManagers\OrderItemsRelationManager;
-use App\Filament\Resources\Orders\Schemas\OrderInfolist;
-use App\Filament\Resources\Orders\Tables\OrdersTable;
-use App\Filament\Resources\Orders\Schemas\OrderForm;
+use App\Filament\Resources\Orders\Pages\EditOrder;
 use App\Filament\Resources\Orders\Pages\ListOrders;
 use App\Filament\Resources\Orders\Pages\ViewOrder;
-use App\Filament\Resources\Orders\Pages\EditOrder;
-use Filament\Support\Icons\Heroicon;
-use Filament\Resources\Resource;
-use Filament\Schemas\Schema;
-use Filament\Tables\Table;
+use App\Filament\Resources\Orders\RelationManagers\OrderItemsRelationManager;
+use App\Filament\Resources\Orders\Schemas\OrderForm;
+use App\Filament\Resources\Orders\Schemas\OrderInfolist;
+use App\Filament\Resources\Orders\Tables\OrdersTable;
 use App\Models\Order;
 use BackedEnum;
+use Filament\Resources\Resource;
+use Filament\Schemas\Schema;
+use Filament\Support\Icons\Heroicon;
+use Filament\Tables\Table;
 use UnitEnum;
 
 class OrderResource extends Resource

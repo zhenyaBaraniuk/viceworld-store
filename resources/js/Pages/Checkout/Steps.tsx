@@ -1,4 +1,4 @@
-import '../../../css/front/pages/checkout/steps.css';
+import "../../../css/front/pages/checkout/steps.css";
 
 export default function Steps() {
     return (
@@ -13,28 +13,24 @@ export default function Steps() {
                 </span>
             </div>
 
-            <div className="steps__delivery bg-surface-container-highest"></div>
+            <div className="steps__delivery bg-surface-container-highest" />
 
             <div className="steps__address group opacity-20">
                 <div className="steps__number bg-surface-container-highest text-on-surface font-headline">
                     2
                 </div>
 
-                <span className="steps__label font-headline">
-                    Delivery
-                </span>
+                <span className="steps__label font-headline">Delivery</span>
             </div>
 
-            <div className="steps__payment bg-surface-container-highest"></div>
+            <div className="steps__payment bg-surface-container-highest" />
 
             <div className="steps__address group opacity-20">
                 <div className="steps__number bg-surface-container-highest text-on-surface font-headline">
                     3
                 </div>
 
-                <span className="steps__label font-headline">
-                    Payment
-                </span>
+                <span className="steps__label font-headline">Payment</span>
             </div>
         </div>
     );

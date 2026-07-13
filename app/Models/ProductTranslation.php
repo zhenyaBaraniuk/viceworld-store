@@ -14,4 +14,11 @@ class ProductTranslation extends Model
         'slug',
         'description',
     ];
+
+    protected function casts(): array
+    {
+        return [
+            'description' => 'array',
+        ];
+    }
 }

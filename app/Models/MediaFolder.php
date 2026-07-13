@@ -22,20 +22,26 @@ class MediaFolder extends Model
         return $this->belongsTo(self::class, 'parent_id');
     }
 
+    /**
+     * @return HasMany<MediaFolder, $this>
+     */
     public function children(): HasMany
     {
         return $this->hasMany(self::class, 'parent_id');
     }
 
+    /**
+     * @return HasMany<Media, $this>
+     */
     public function media(): HasMany
     {
         return $this->hasMany(Media::class, 'folder_id');
     }
 
-    public function itemsCount(): Attribute
+    protected function itemsCount(): Attribute
     {
         return Attribute::make(
-            get: fn () => ($this->children_count ?? 0 + $this->media_count ?? 0),
+            get: fn () => ($this->children_count ?? 0) + ($this->media_count ?? 0),
         );
     }
 }

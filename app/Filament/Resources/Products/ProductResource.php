@@ -28,6 +28,9 @@ class ProductResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::ShoppingBag;
 
+    /**
+     * @param  Product|null  $record
+     */
     public static function getRecordTitle(?Model $record): string|Htmlable|null
     {
         return $record->translate(app()->getLocale(), true)?->name;
@@ -56,6 +59,15 @@ class ProductResource extends Resource
             'index' => ListProducts::route('/'),
             'create' => CreateProduct::route('/create'),
             'edit' => EditProduct::route('/{record}/edit'),
+        ];
+    }
+
+    public static function mediaCollections(): array
+    {
+        return [
+            'main_image' => ['multiple' => false, 'accept' => 'image/*'],
+            'video' => ['multiple' => false, 'accept' => 'video/*'],
+            'images' => ['multiple' => true, 'accept' => 'image/*'],
         ];
     }
 }

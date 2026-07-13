@@ -21,21 +21,21 @@ class CategoriesTable
             ->columns([
                 TextColumn::make('name')
                     ->label('Name')
-                    ->getStateUsing(fn ($record) => $record->getTranslatedAttribute('name'))
+                    ->getStateUsing(fn ($record) => $record->translated('name'))
                     ->searchable(query: function (Builder $query, string $search): Builder {
                         return $query->whereHas('translations', fn ($q) => $q->where('name', 'like', "%{$search}%"));
                     }),
 
                 TextColumn::make('slug')
                     ->label('Slug')
-                    ->getStateUsing(fn ($record) => $record->getTranslatedAttribute('slug'))
+                    ->getStateUsing(fn ($record) => $record->translated('slug'))
                     ->searchable(query: function (Builder $query, string $search): Builder {
                         return $query->whereHas('translations', fn ($q) => $q->where('slug', 'like', "%{$search}%"));
                     }),
 
                 TextColumn::make('parent')
                     ->label('Category parent')
-                    ->getStateUsing(fn ($record) => $record->parent?->getTranslatedAttribute('name'))
+                    ->getStateUsing(fn ($record) => $record->parent?->translated('name'))
                     ->searchable(query: function (Builder $query, string $search): Builder {
                         return $query->whereHas('translations', fn ($q) => $q->where('name', 'like', "%{$search}%"));
                     }),

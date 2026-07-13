@@ -6,7 +6,7 @@ import Order from "./Order";
 export default function Profile() {
     return (
         <>
-            <Header/>
+            <Header />
             <main className="max-w-[1440px] mx-auto px-6 md:px-12 pb-24">
                 <div className="mb-16">
                     <h1 className="text-7xl font-black text-header mb-4">
@@ -19,11 +19,11 @@ export default function Profile() {
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
-                    <Navigation/>
-                    <Order/>
+                    <Navigation />
+                    <Order />
                 </div>
             </main>
-            <Footer/>
+            <Footer />
         </>
     );
 }

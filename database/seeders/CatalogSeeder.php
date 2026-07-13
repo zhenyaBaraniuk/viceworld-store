@@ -2,12 +2,12 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Support\Facades\DB;
-use App\Models\AttributeValue;
-use Illuminate\Database\Seeder;
 use App\Models\Attribute;
+use App\Models\AttributeValue;
 use App\Models\Category;
 use App\Models\Product;
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 use Throwable;
 
 class CatalogSeeder extends Seeder
@@ -17,7 +17,7 @@ class CatalogSeeder extends Seeder
      */
     public function run(): void
     {
-        $data = require __DIR__ . '/data/catalog.php';
+        $data = require __DIR__.'/data/catalog.php';
 
         $categories = $data['categories'];
         $attributes = $data['attributes'];

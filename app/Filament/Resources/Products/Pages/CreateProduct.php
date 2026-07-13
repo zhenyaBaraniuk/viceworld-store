@@ -4,8 +4,12 @@ namespace App\Filament\Resources\Products\Pages;
 
 use App\Filament\Resources\Products\ProductResource;
 use App\Filament\Trait\SyncMedia;
+use App\Models\Product;
 use Filament\Resources\Pages\CreateRecord;
 
+/**
+ * @method Product getRecord()
+ */
 class CreateProduct extends CreateRecord
 {
     use SyncMedia;
@@ -21,18 +25,15 @@ class CreateProduct extends CreateRecord
     {
         $this->syncMedia();
 
-        $this->record->translateOrNew(app()->getLocale())->fill([
+        $this->getRecord()->translateOrNew(app()->getLocale())->fill([
             'name' => $this->data['name'],
             'slug' => $this->data['slug'],
             'description' => $this->data['description'],
         ])->save();
     }
 
-    private function getMediaCollections(): array
+    protected function getMediaCollections(): array
     {
-        return [
-            'main_image' => false,
-            'images' => true,
-        ];
+        return ProductResource::mediaCollections();
     }
 }
