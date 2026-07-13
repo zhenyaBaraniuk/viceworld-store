@@ -32,7 +32,7 @@ class EditProduct extends EditRecord
         $media = $this->record->mediaFiles()
             ->whereIn('collection', ['images', 'main_image', 'video'])
             ->get()
-            ->groupBy(fn($image) => $image->pivot->collection);
+            ->groupBy(fn ($image) => $image->pivot->collection);
 
         $video = $media->get('video')?->first();
         $data['video'] = $video
@@ -45,7 +45,7 @@ class EditProduct extends EditRecord
             : null;
 
         $data['images'] = $media->get('images', collect())
-            ->map(fn($image) => ['id' => $image->id, 'url' => $image->url, 'mime_type' => $image->mime_type])
+            ->map(fn ($image) => ['id' => $image->id, 'url' => $image->url, 'mime_type' => $image->mime_type])
             ->toArray();
 
         $data['name'] = $translation?->name;

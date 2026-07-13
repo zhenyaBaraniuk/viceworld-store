@@ -5,8 +5,8 @@ namespace Database\Seeders;
 use App\Models\AttributeValue;
 use App\Models\Product;
 use App\Models\ProductVariant;
-use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 
 class ProductVariantSeeder extends Seeder
@@ -32,8 +32,8 @@ class ProductVariantSeeder extends Seeder
                         'product_id' => $product->id,
                         'price' => $product->price,
                         'stock' => rand(1, 25),
-                        'sku' => Str::upper($product->translate('en')->slug .
-                            '-' . $size->value . '-' . $color->value),
+                        'sku' => Str::upper($product->translate('en')->slug.
+                            '-'.$size->value.'-'.$color->value),
                         'is_active' => true,
                     ]);
 

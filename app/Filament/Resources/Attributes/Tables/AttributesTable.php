@@ -17,14 +17,14 @@ class AttributesTable
             ->columns([
                 TextColumn::make('name')
                     ->label('Name')
-                    ->getStateUsing(fn($record) => $record->translated('name'))
+                    ->getStateUsing(fn ($record) => $record->translated('name'))
                     ->searchable(query: function (Builder $query, string $search): Builder {
-                        return $query->whereHas('translations', fn($q) => $q->where('name', 'like', "%{$search}%"));
+                        return $query->whereHas('translations', fn ($q) => $q->where('name', 'like', "%{$search}%"));
                     }),
 
                 TextColumn::make('value')
                     ->label('Values')
-                    ->getStateUsing(fn($record) => $record->attributeValues->pluck('value')->join(', ')),
+                    ->getStateUsing(fn ($record) => $record->attributeValues->pluck('value')->join(', ')),
             ])
             ->recordActions([
                 EditAction::make(),
