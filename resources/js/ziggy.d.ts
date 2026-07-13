@@ -125,6 +125,7 @@ declare module 'ziggy-js' {
             "required": true
         }
     ],
+    "newsletter.subscribe": [],
     "storage.local": [
         {
             "name": "path",
