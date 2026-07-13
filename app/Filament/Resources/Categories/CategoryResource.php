@@ -57,4 +57,11 @@ class CategoryResource extends Resource
             'edit' => EditCategory::route('/{record}/edit'),
         ];
     }
+
+    public static function mediaCollections(): array
+    {
+        return [
+            'main_image' => ['multiple' => false, 'accept' => 'image/*'],
+        ];
+    }
 }

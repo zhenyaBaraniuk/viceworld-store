@@ -46,6 +46,14 @@ class EditCategory extends EditRecord
     {
         $translation = $this->record->translate(app()->getLocale(), false);
 
+        $mainImage = $this->record->mediaFiles()
+            ->wherePivot('collection', 'main_image')
+            ->first();
+
+        $data['main_image'] = $mainImage
+            ? ['id' => $mainImage->id, 'url' => $mainImage->url, 'mime_type' => $mainImage->mime_type]
+            : null;
+
         $data['name'] = $translation?->name;
         $data['slug'] = $translation?->slug;
         $data['description'] = $translation?->description;
@@ -60,22 +68,12 @@ class EditCategory extends EditRecord
         $this->record->translateOrNew(app()->getLocale())->fill([
             'name' => $this->data['name'],
             'slug' => $this->data['slug'],
+            'description' => $this->data['description'],
         ])->save();
-    }
-
-    protected function afterFill(): void
-    {
-        $media = $this->record->mediaFiles()
-            ->wherePivot('collection', 'main_image')
-            ->first();
-
-        $this->data['main_image'] = $media?->id;
     }
 
     protected function getMediaCollections(): array
     {
-        return [
-            'main_image' => false,
-        ];
+        return CategoryResource::mediaCollections();
     }
 }

@@ -29,8 +29,6 @@ class CreateCategory extends CreateRecord
 
     private function getMediaCollections(): array
     {
-        return [
-            'main_image' => false,
-        ];
+        return CategoryResource::mediaCollections();
     }
 }
