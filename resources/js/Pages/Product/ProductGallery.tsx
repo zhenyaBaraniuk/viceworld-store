@@ -26,7 +26,12 @@ export default function ProductGallery({
 
     const togglePlay = () => {
         if (!videoRef.current) return;
-        isPlaying ? videoRef.current.pause() : videoRef.current.play();
+        if (isPlaying) {
+            videoRef.current.pause();
+        } else {
+            videoRef.current.play();
+        }
+
         setIsPlaying((prev) => !prev);
     };
 
@@ -124,7 +129,7 @@ export default function ProductGallery({
                     <div
                         key={image.id}
                         className="product-gallery__thumb bg-surface-container-low"
-                        onClick={() => openLightbox(imageSlideIndex(1))}
+                        onClick={() => openLightbox(imageSlideIndex(index))}
                     >
                         <img
                             className="product-gallery__thumb-img"

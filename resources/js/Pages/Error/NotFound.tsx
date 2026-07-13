@@ -7,7 +7,7 @@ export default function NotFound() {
                 <h1 className="backdrop__number">404</h1>
             </div>
 
-            <div className="gradient-overlay"></div>
+            <div className="gradient-overlay" />
 
             <div className="content">
                 <h2 className="font-headline font-black text-4xl md:text-6xl tracking-[-0.02em] mb-4 text-white">
