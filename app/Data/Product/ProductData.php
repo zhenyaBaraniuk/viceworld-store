@@ -16,7 +16,7 @@ class ProductData extends Data
         public ?array $description,
         public ?array $main_image,
         public ?array $video,
-        /** @var string[] */
+        /** @var array<array{id: string, url: string, mime_type: string}> */
         public array $images,
         /** @var array<ProductVariantData> */
         public array $product_variants,

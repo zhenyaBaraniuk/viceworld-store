@@ -4,10 +4,14 @@ namespace App\Filament\Resources\Categories\Pages;
 
 use App\Filament\Resources\Categories\CategoryResource;
 use App\Filament\Trait\SyncMedia;
+use App\Models\Category;
 use Filament\Actions\DeleteAction;
 use Filament\Resources\Pages\EditRecord;
 use Illuminate\Validation\ValidationException;
 
+/**
+ * @method Category getRecord()
+ */
 class EditCategory extends EditRecord
 {
     use SyncMedia;
@@ -29,13 +33,13 @@ class EditCategory extends EditRecord
             return;
         }
 
-        if ($parentId === $this->record->id) {
+        if ($parentId === $this->getRecord()->id) {
             throw ValidationException::withMessages([
                 'data.parent_id' => 'Parent cannot be the category itself',
             ]);
         }
 
-        if (in_array($parentId, $this->record->getDescendantIds())) {
+        if (in_array($parentId, $this->getRecord()->getDescendantIds())) {
             throw ValidationException::withMessages([
                 'data.parent_id' => 'Descendant cannot assign as parent',
             ]);
@@ -44,9 +48,9 @@ class EditCategory extends EditRecord
 
     protected function mutateFormDataBeforeFill(array $data): array
     {
-        $translation = $this->record->translate(app()->getLocale(), false);
+        $translation = $this->getRecord()->translate(app()->getLocale());
 
-        $mainImage = $this->record->mediaFiles()
+        $mainImage = $this->getRecord()->mediaFiles()
             ->wherePivot('collection', 'main_image')
             ->first();
 
@@ -65,7 +69,7 @@ class EditCategory extends EditRecord
     {
         $this->syncMedia();
 
-        $this->record->translateOrNew(app()->getLocale())->fill([
+        $this->getRecord()->translateOrNew(app()->getLocale())->fill([
             'name' => $this->data['name'],
             'slug' => $this->data['slug'],
             'description' => $this->data['description'],
