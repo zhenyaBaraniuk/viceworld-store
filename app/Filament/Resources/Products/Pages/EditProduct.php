@@ -4,9 +4,13 @@ namespace App\Filament\Resources\Products\Pages;
 
 use App\Filament\Resources\Products\ProductResource;
 use App\Filament\Trait\SyncMedia;
+use App\Models\Product;
 use Filament\Actions\DeleteAction;
 use Filament\Resources\Pages\EditRecord;
 
+/**
+ * @method Product getRecord()
+ */
 class EditProduct extends EditRecord
 {
     use SyncMedia;
@@ -27,9 +31,9 @@ class EditProduct extends EditRecord
 
     protected function mutateFormDataBeforeFill(array $data): array
     {
-        $translation = $this->record->translate(app()->getLocale(), false);
+        $translation = $this->getRecord()->translate(app()->getLocale(), false);
 
-        $media = $this->record->mediaFiles()
+        $media = $this->getRecord()->mediaFiles()
             ->whereIn('collection', ['images', 'main_image', 'video'])
             ->get()
             ->groupBy(fn ($image) => $image->pivot->collection);
@@ -59,7 +63,7 @@ class EditProduct extends EditRecord
     {
         $this->syncMedia();
 
-        $this->record->translateOrNew(app()->getLocale())->fill([
+        $this->getRecord()->translateOrNew(app()->getLocale())->fill([
             'name' => $this->data['name'],
             'slug' => $this->data['slug'],
             'description' => $this->data['description'],

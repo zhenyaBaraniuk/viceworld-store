@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Contracts\MediaFileInterface;
 use App\Enums\GenderLine;
 use App\Enums\Product\ProductStatus;
 use App\Filament\Trait\HasTranslateAttributes;
@@ -18,7 +19,14 @@ use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Product extends Model implements HasMedia, TranslatableContract
+/**
+ * @property string $name
+ * @property string $slug
+ * @property array|null $description
+ *
+ * @method ProductTranslation|null translate(?string $locale = null, bool $withFallback = false)
+ */
+class Product extends Model implements HasMedia, MediaFileInterface, TranslatableContract
 {
     use HasFactory, HasTranslateAttributes, HasUlids, InteractsWithMedia, Translatable;
 
@@ -54,16 +62,25 @@ class Product extends Model implements HasMedia, TranslatableContract
         $this->addMediaCollection('images');
     }
 
+    /**
+     * @return BelongsTo<Category, $this>
+     */
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
     }
 
+    /**
+     * @return HasMany<ProductVariant, $this>
+     */
     public function productVariants(): HasMany
     {
         return $this->hasMany(ProductVariant::class);
     }
 
+    /**
+     * @return MorphToMany<Media, $this, Mediable>
+     */
     public function mediaFiles(): MorphToMany
     {
         return $this->morphToMany(Media::class, 'mediable')

@@ -2,6 +2,7 @@
 
 namespace App\Services\Concerns;
 
+use App\Enums\Product\ProductStatus;
 use App\Models\AttributeValue;
 use App\Models\Product;
 use Illuminate\Database\Eloquent\Builder;
@@ -14,7 +15,7 @@ trait FiltersProducts
         return AttributeValue::query()
             ->whereNotNull('color')
             ->whereHas('productVariants.product', function (Builder $query): void {
-                $query->active();
+                $query->where('status', ProductStatus::ACTIVE);
             })
             ->select(['value', 'color'])
             ->distinct()

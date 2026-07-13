@@ -157,7 +157,7 @@ class FileManager extends Page
         $folder = MediaFolder::with(['media', 'children'])->findOrFail($id);
 
         foreach ($folder->media as $media) {
-            $this->deleteFile($media->id);
+            $this->deleteFile((string) $media->id);
         }
 
         foreach ($folder->children as $child) {

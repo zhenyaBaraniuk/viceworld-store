@@ -28,6 +28,9 @@ class ProductResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::ShoppingBag;
 
+    /**
+     * @param  Product|null  $record
+     */
     public static function getRecordTitle(?Model $record): string|Htmlable|null
     {
         return $record->translate(app()->getLocale(), true)?->name;

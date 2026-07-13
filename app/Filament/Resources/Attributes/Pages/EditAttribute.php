@@ -3,9 +3,13 @@
 namespace App\Filament\Resources\Attributes\Pages;
 
 use App\Filament\Resources\Attributes\AttributeResource;
+use App\Models\Attribute;
 use Filament\Actions\DeleteAction;
 use Filament\Resources\Pages\EditRecord;
 
+/**
+ * @method Attribute getRecord()
+ */
 class EditAttribute extends EditRecord
 {
     protected static string $resource = AttributeResource::class;
@@ -19,7 +23,7 @@ class EditAttribute extends EditRecord
 
     protected function mutateFormDataBeforeFill(array $data): array
     {
-        $translation = $this->record->translate(app()->getLocale(), false);
+        $translation = $this->getRecord()->translate(app()->getLocale());
 
         $data['name'] = $translation?->name;
 
@@ -28,7 +32,7 @@ class EditAttribute extends EditRecord
 
     protected function afterSave(): void
     {
-        $this->record->translateOrNew(app()->getLocale())->fill([
+        $this->getRecord()->translateOrNew(app()->getLocale())->fill([
             'name' => $this->data['name'],
         ])->save();
     }

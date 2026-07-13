@@ -2,6 +2,12 @@
 
 namespace App\Filament\Trait;
 
+use App\Contracts\MediaFileInterface;
+use Illuminate\Database\Eloquent\Model;
+
+/**
+ * @method (Model&MediaFileInterface) getRecord()
+ */
 trait SyncMedia
 {
     public function syncMedia(): void
@@ -29,11 +35,11 @@ trait SyncMedia
 
     private function syncFile(string $collection, int $id): void
     {
-        $this->record->mediaFiles()
+        $this->getRecord()->mediaFiles()
             ->wherePivot('collection', $collection)
             ->sync([]);
 
-        $this->record->mediaFiles()->attach($id, [
+        $this->getRecord()->mediaFiles()->attach($id, [
             'collection' => $collection,
             'order' => 0,
         ]);
@@ -43,12 +49,12 @@ trait SyncMedia
     {
         $filteredIds = $this->filterDuplicates($collection, $ids);
 
-        $order = $this->record->mediaFiles()
+        $order = $this->getRecord()->mediaFiles()
             ->wherePivot('collection', $collection)
             ->count();
 
         foreach ($filteredIds as $id) {
-            $this->record->mediaFiles()->attach($id, [
+            $this->getRecord()->mediaFiles()->attach($id, [
                 'collection' => $collection,
                 'order' => $order++,
             ]);
@@ -57,7 +63,7 @@ trait SyncMedia
 
     private function filterDuplicates(string $collection, array $ids): array
     {
-        $existingIds = $this->record->mediaFiles()
+        $existingIds = $this->getRecord()->mediaFiles()
             ->wherePivot('collection', $collection)
             ->pluck('media.id');
 

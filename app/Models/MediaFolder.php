@@ -22,11 +22,17 @@ class MediaFolder extends Model
         return $this->belongsTo(self::class, 'parent_id');
     }
 
+    /**
+     * @return HasMany<MediaFolder, $this>
+     */
     public function children(): HasMany
     {
         return $this->hasMany(self::class, 'parent_id');
     }
 
+    /**
+     * @return HasMany<Media, $this>
+     */
     public function media(): HasMany
     {
         return $this->hasMany(Media::class, 'folder_id');

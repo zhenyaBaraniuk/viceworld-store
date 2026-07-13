@@ -7,6 +7,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\Storage;
 use Spatie\MediaLibrary\MediaCollections\Models\Media as BaseMedia;
 
+/**
+ * @property-read string $url
+ * @property-read string $formattedSize
+ * @property-read Mediable $pivot
+ */
 class Media extends BaseMedia
 {
     protected $guarded = [];

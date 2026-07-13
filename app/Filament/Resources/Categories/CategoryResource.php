@@ -27,6 +27,9 @@ class CategoryResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedTag;
 
+    /**
+     * @param  Category|null  $record
+     */
     public static function getRecordTitle(?Model $record): string|Htmlable|null
     {
         return $record->translate(app()->getLocale(), true)?->name;

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Contracts\MediaFileInterface;
 use App\Enums\GenderLine;
 use App\Filament\Trait\HasTranslateAttributes;
 use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
@@ -15,7 +16,15 @@ use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Category extends Model implements HasMedia, TranslatableContract
+/**
+ * @property string $name
+ * @property string $slug
+ * @property string|null $description
+ *
+ * @method CategoryTranslation translateOrNew(?string $locale = null)
+ * @method CategoryTranslation|null translate(?string $locale = null, bool $withFallback = false)
+ */
+class Category extends Model implements HasMedia, MediaFileInterface, TranslatableContract
 {
     use HasFactory, HasTranslateAttributes, HasUlids, InteractsWithMedia, Translatable;
 
@@ -44,6 +53,9 @@ class Category extends Model implements HasMedia, TranslatableContract
         return $this->belongsTo(self::class, 'parent_id');
     }
 
+    /**
+     * @return HasMany<Category, $this>
+     */
     public function children(): HasMany
     {
         return $this->hasMany(self::class, 'parent_id');
@@ -54,6 +66,9 @@ class Category extends Model implements HasMedia, TranslatableContract
         return $this->hasMany(Product::class);
     }
 
+    /**
+     * @return MorphToMany<Media, $this, Mediable>
+     */
     public function mediaFiles(): MorphToMany
     {
         return $this->morphToMany(Media::class, 'mediable')
