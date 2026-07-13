@@ -20,7 +20,7 @@ export default function Order() {
                                 <th className="order__table-tr text-header text-right">
                                     Total
                                 </th>
-                                <th className="order__table-tr text-header"></th>
+                                <th className="order__table-tr text-header" />
                             </tr>
                         </thead>
 

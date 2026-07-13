@@ -13,7 +13,7 @@ export default function Steps() {
                 </span>
             </div>
 
-            <div className="steps__delivery bg-surface-container-highest"></div>
+            <div className="steps__delivery bg-surface-container-highest" />
 
             <div className="steps__address group opacity-20">
                 <div className="steps__number bg-surface-container-highest text-on-surface font-headline">
@@ -23,7 +23,7 @@ export default function Steps() {
                 <span className="steps__label font-headline">Delivery</span>
             </div>
 
-            <div className="steps__payment bg-surface-container-highest"></div>
+            <div className="steps__payment bg-surface-container-highest" />
 
             <div className="steps__address group opacity-20">
                 <div className="steps__number bg-surface-container-highest text-on-surface font-headline">

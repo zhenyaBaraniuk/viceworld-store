@@ -19,7 +19,7 @@ export default function ServerError() {
                 <h1 className="backdrop__number">500</h1>
             </div>
 
-            <div className="gradient-overlay"></div>
+            <div className="gradient-overlay" />
 
             <div className="content">
                 <h2 className="font-headline font-black text-white text-4xl md:text-6xl lg:text-7xl tracking-[-0.02em] mb-4 uppercase leading-[0.9]">
@@ -51,10 +51,10 @@ export default function ServerError() {
                 </div>
             </div>
 
-            <div className="absolute top-0 left-0 w-full h-px bg-zinc-900/50"></div>
-            <div className="absolute bottom-0 left-0 w-full h-px bg-zinc-900/50"></div>
-            <div className="absolute top-0 left-8 w-px h-full bg-zinc-900/20"></div>
-            <div className="absolute top-0 right-8 w-px h-full bg-zinc-900/20"></div>
+            <div className="absolute top-0 left-0 w-full h-px bg-zinc-900/50" />
+            <div className="absolute bottom-0 left-0 w-full h-px bg-zinc-900/50" />
+            <div className="absolute top-0 left-8 w-px h-full bg-zinc-900/20" />
+            <div className="absolute top-0 right-8 w-px h-full bg-zinc-900/20" />
         </main>
     );
 }

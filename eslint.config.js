@@ -7,6 +7,9 @@ import eslintConfigPrettier from "eslint-config-prettier";
 
 export default defineConfig([
     {
+        ignores: ["resources/js/ziggy.js"],
+    },
+    {
         files: ["**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}"],
         plugins: { js, react: reactPlugin },
         extends: ["js/recommended"],
@@ -15,6 +18,12 @@ export default defineConfig([
             "react/jsx-key": "error",
             "react/no-unknown-property": "error",
             "react/self-closing-comp": "warn",
+        },
+    },
+    {
+        files: ["resources/js/Filament/**/*.js"],
+        languageOptions: {
+            globals: { Alpine: "readonly", Viewer: "readonly" },
         },
     },
     tseslint.configs.recommended,
