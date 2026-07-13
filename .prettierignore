@@ -1,0 +1,6 @@
+# Vendor / build artifacts
+public/
+vendor/
+.github/
+resources/js/ziggy.js
+resources/js/ziggy.d.ts

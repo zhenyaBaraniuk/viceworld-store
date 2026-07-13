@@ -35,4 +35,18 @@ return [
         ],
     ],
 
+    'liqpay' => [
+        'public_key' => env('LIQPAY_PUBLIC_KEY'),
+        'private_key' => env('LIQPAY_PRIVATE_KEY'),
+    ],
+
+    'monobank' => [
+        'key' => env('MONOBANK_API_KEY'),
+        'redirect_url' => env('MONOBANK_REDIRECT_URL'),
+        'webhook_url' => env('MONOBANK_WEBHOOK_URL'),
+    ],
+
+    'pexels' => [
+        'key' => env('PEXELS_API_KEY'),
+    ],
 ];

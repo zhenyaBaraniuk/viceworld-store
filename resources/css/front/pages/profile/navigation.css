@@ -1,0 +1,16 @@
+.navigation {
+    .navigation__nav {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+
+        .navigation__nav-link {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+    }
+}

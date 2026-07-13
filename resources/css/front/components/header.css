@@ -1,0 +1,126 @@
+.navbar {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 50;
+    border-bottom-width: 1px;
+
+    & .navbar__inner {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 1.5rem;
+        margin-inline: auto;
+        max-width: 1440px;
+
+        & .navbar__left {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+
+            & .navbar__logo {
+                font-size: 1.5rem;
+                font-weight: 900;
+                text-transform: uppercase;
+                font-family: var(--font-display), serif;
+                letter-spacing: -0.05em;
+            }
+
+            & .navbar__nav {
+                gap: 2rem;
+
+                & .nav-link {
+                    font-weight: 700;
+                    font-family: var(--font-display), serif;
+                    text-transform: uppercase;
+                    letter-spacing: -0.02em;
+                    transition: color 150ms linear;
+                }
+
+                & .nav-link--active {
+                    border-bottom-width: 2px;
+                    padding-bottom: calc(var(--spacing) * 1);
+                }
+            }
+        }
+
+        & .navbar__actions {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+
+            & .navbar__action-btn {
+                transition: transform 100ms linear;
+
+                &:active {
+                    transform: scale(0.95);
+                }
+            }
+
+            & .navbar__lang {
+                font-family: var(--font-display), serif;
+                letter-spacing: var(--tracking-tighter);
+                display: flex;
+                align-items: center;
+                font-size: 10px;
+                gap: 0.25rem;
+                text-transform: uppercase;
+                font-weight: 700;
+                cursor: pointer;
+
+                & .navbar-lang-item {
+                    transition: transform 150ms linear;
+                }
+            }
+
+            & .navbar__theme {
+                transition: transform 100ms linear;
+
+                &:active {
+                    transform: scale(0.95);
+                }
+            }
+        }
+    }
+}
+
+.dialog-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    background: rgb(0 0 0 / 0.6);
+}
+
+.dialog-content {
+    position: fixed;
+    z-index: 61;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: min(90vw, 40rem);
+    padding: 2rem;
+}
+
+.dialog-input {
+    width: 100%;
+    background: transparent;
+    border-bottom-width: 2px;
+    padding-bottom: 0.5rem;
+    font-size: 1.5rem;
+    outline: none;
+    font-family: var(--font-display), serif;
+    text-transform: uppercase;
+}
+
+.close-btn {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    transition: background-color 150ms linear;
+}

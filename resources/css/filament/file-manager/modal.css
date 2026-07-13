@@ -1,0 +1,27 @@
+[x-cloak] {
+    display: none !important;
+}
+
+.glass-panel {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+}
+
+@layer components {
+    .fm-meta-text {
+        @apply text-sm font-bold text-fm-on-surface;
+    }
+
+    .fm-meta-label {
+        @apply text-[10px] text-fm-on-surface-variant font-medium;
+    }
+
+    .fm-meta-card {
+        @apply bg-fm-surface-low p-4 rounded-xl space-y-1;
+    }
+
+    .fm-row {
+        @apply flex items-center gap-3;
+    }
+}
