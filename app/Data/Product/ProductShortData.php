@@ -8,12 +8,11 @@ use Spatie\LaravelData\Data;
 class ProductShortData extends Data
 {
     public function __construct(
-        public string  $name,
-        public string  $slug,
-        public string  $price,
+        public string $name,
+        public string $slug,
+        public string $price,
         public ?string $main_image,
-    )
-    {}
+    ) {}
 
     public static function fromModel(Product $product): self
     {

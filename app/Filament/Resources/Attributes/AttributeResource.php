@@ -2,18 +2,18 @@
 
 namespace App\Filament\Resources\Attributes;
 
-use App\Filament\Resources\Attributes\RelationManagers\AttributeValuesRelationManager;
 use App\Filament\Resources\Attributes\Pages\CreateAttribute;
 use App\Filament\Resources\Attributes\Pages\EditAttribute;
 use App\Filament\Resources\Attributes\Pages\ListAttributes;
+use App\Filament\Resources\Attributes\RelationManagers\AttributeValuesRelationManager;
 use App\Filament\Resources\Attributes\Schemas\AttributeForm;
 use App\Filament\Resources\Attributes\Tables\AttributesTable;
+use App\Models\Attribute;
 use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
-use App\Models\Attribute;
 use UnitEnum;
 
 class AttributeResource extends Resource
