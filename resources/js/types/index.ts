@@ -1,6 +1,7 @@
 export * from "./common/pagination";
 export * from "./models/category";
 export * from "./models/product";
+export * from "./models/customer";
 export * from "./models/product-variant";
 export * from "./models/media";
 export * from "./pages/product";

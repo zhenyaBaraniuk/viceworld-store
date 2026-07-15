@@ -125,6 +125,18 @@ declare module 'ziggy-js' {
             "required": true
         }
     ],
+    "login": [
+        {
+            "name": "locale",
+            "required": true
+        }
+    ],
+    "login.check": [
+        {
+            "name": "locale",
+            "required": true
+        }
+    ],
     "register": [
         {
             "name": "locale",

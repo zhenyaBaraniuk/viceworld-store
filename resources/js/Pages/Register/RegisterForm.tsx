@@ -1,4 +1,4 @@
-import { useForm } from "@inertiajs/react";
+import {Link, useForm} from "@inertiajs/react";
 import { route } from "@/lib/route";
 import { ArrowRight } from "lucide-react";
 
@@ -141,12 +141,12 @@ export default function RegisterForm() {
                             <span className="text-xs uppercase font-bold text-neutral-400">
                                 Already a member?
                             </span>
-                            <button
-                                type="submit"
+                            <Link
+                                href={route("login")}
                                 className="text-xs uppercase font-black tracking-widest border-b-2 border-neutral-900 pb-1 hover:text-primary hover:border-primary transition-all"
                             >
                                 Sign In
-                            </button>
+                            </Link>
                         </div>
                     </div>
                 </form>
