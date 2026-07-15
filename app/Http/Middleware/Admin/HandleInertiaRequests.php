@@ -23,6 +23,9 @@ class HandleInertiaRequests extends Middleware
     {
         return [
             'locale' => app()->getLocale(),
+            'auth' => [
+                'customer' => $request->user('customer'),
+            ],
             ...parent::share($request),
             ...$this->menuSharedData->resolve($request),
         ];
