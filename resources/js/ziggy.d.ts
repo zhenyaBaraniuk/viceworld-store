@@ -93,6 +93,12 @@ declare module 'ziggy-js' {
             "required": true
         }
     ],
+    "home": [
+        {
+            "name": "locale",
+            "required": true
+        }
+    ],
     "catalog.show": [
         {
             "name": "locale",
@@ -119,7 +125,13 @@ declare module 'ziggy-js' {
             "required": true
         }
     ],
-    "home": [
+    "register": [
+        {
+            "name": "locale",
+            "required": true
+        }
+    ],
+    "register.store": [
         {
             "name": "locale",
             "required": true
