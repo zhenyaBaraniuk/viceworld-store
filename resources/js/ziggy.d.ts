@@ -149,6 +149,12 @@ declare module 'ziggy-js' {
             "required": true
         }
     ],
+    "logout": [
+        {
+            "name": "locale",
+            "required": true
+        }
+    ],
     "newsletter.subscribe": [],
     "storage.local": [
         {

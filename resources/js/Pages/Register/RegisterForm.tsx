@@ -1,4 +1,4 @@
-import {Link, useForm} from "@inertiajs/react";
+import { Link, useForm } from "@inertiajs/react";
 import { route } from "@/lib/route";
 import { ArrowRight } from "lucide-react";
 

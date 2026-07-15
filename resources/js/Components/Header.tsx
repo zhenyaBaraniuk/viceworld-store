@@ -5,13 +5,13 @@ import { useState } from "react";
 import { Moon, Search, ShoppingBag, Sun, User, X } from "lucide-react";
 import LangSwitcher from "@/Components/LangSwitcher";
 import * as Dialog from "@radix-ui/react-dialog";
-import {Customer, NavCategory} from "@/types";
+import { Customer, NavCategory } from "@/types";
 import clsx from "clsx";
 
 export default function Header() {
     const { nav_categories } = usePage().props as {
         nav_categories: NavCategory[];
-        auth: {customer: Customer | null};
+        auth: { customer: Customer | null };
     };
 
     const [value, setValue] = useState("");

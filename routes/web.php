@@ -34,6 +34,10 @@ Route::prefix('{locale}')
             Route::get('/register', [RegisteredCustomerController::class, 'create'])->name('register');
             Route::post('/register', [RegisteredCustomerController::class, 'store'])->name('register.store');
         });
+
+        Route::middleware('auth:customer')->group(function (): void {
+            Route::post('/logout', [AuthenticatedCustomerController::class, 'logout'])->name('logout');
+        });
     });
 
 Route::post('/newsletter/subscribe', [NewsletterSubscriberController::class, 'store'])->name('newsletter.subscribe');

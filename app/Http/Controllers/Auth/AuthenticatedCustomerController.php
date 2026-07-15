@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginCustomerRequest;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -28,5 +29,15 @@ class AuthenticatedCustomerController extends Controller
         }
 
         return to_route('login')->withErrors('Oppes! You have entered invalid credentials');
+    }
+
+    public function logout(Request $request): RedirectResponse
+    {
+        Auth::guard('customer')->logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return to_route('home');
     }
 }

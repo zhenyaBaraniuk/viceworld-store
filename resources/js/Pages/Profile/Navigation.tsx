@@ -1,4 +1,6 @@
 import "../../../css/front/pages/profile/navigation.css";
+import {Link} from "@inertiajs/react";
+import {route} from "@/lib/route";
 
 export default function Navigation() {
     return (
@@ -32,12 +34,12 @@ export default function Navigation() {
                     <span>Settings</span>
                 </a>
 
-                <a
+                <Link
                     className="navigation__nav-link text-error font-display mt-12 hover:bg-error-container transition-all"
-                    href="/logout"
+                    href={route("logout")}
                 >
                     <span>Log Out</span>
-                </a>
+                </Link>
             </nav>
         </aside>
     );
