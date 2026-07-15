@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\AuthenticatedCustomerController;
 use App\Http\Controllers\Auth\RegisteredCustomerController;
 use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\Error\NotFoundController;
@@ -28,6 +29,8 @@ Route::prefix('{locale}')
         Route::get('/500', fn () => Inertia::render('Error/ServerError'));
 
         Route::middleware('guest:customer')->group(function (): void {
+            Route::get('/login', [AuthenticatedCustomerController::class, 'login'])->name('login');
+            Route::post('/login', [AuthenticatedCustomerController::class, 'checkLogin'])->name('login.check');
             Route::get('/register', [RegisteredCustomerController::class, 'create'])->name('register');
             Route::post('/register', [RegisteredCustomerController::class, 'store'])->name('register.store');
         });

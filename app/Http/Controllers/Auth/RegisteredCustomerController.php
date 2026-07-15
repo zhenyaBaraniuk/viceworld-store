@@ -9,10 +9,11 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Inertia\Inertia;
+use Inertia\Response;
 
 class RegisteredCustomerController extends Controller
 {
-    public function create()
+    public function create(): Response
     {
         return Inertia::render('Register/index');
     }
