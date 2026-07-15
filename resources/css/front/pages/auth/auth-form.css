@@ -1,0 +1,49 @@
+.auth-form {
+    & .auth-form__label {
+        display: block;
+        font-size: 0.625rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-bottom: 0.25rem;
+        transition: color 150ms linear;
+        font-family: var(--font-display), serif
+    }
+
+    & .auth-form__input {
+        width: 100%;
+        background: transparent;
+        border: 0;
+        border-bottom-width: 2px;
+        font-weight: 700;
+        padding-top: 0.75rem;
+        padding-bottom: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: -0.025em;
+        transition: border-color 150ms linear;
+        font-family: var(--font-display), serif
+    }
+
+    & .auth-form__error {
+        font-size: 0.875rem;
+        margin-top: 0.25rem;
+    }
+
+    & .auth-form__submit {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-weight: 900;
+        text-transform: uppercase;
+        font-size: 1.25rem;
+        line-height: 1.75rem;
+        padding: 1.25rem 2rem;
+        transition: transform 150ms linear;
+        font-family: var(--font-display), serif;
+
+        &:active {
+            transform: scale(0.98);
+        }
+    }
+}

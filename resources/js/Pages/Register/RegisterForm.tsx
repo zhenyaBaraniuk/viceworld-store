@@ -1,3 +1,4 @@
+import "@css/front/pages/auth/auth-form.css";
 import { Link, useForm } from "@inertiajs/react";
 import { route } from "@/lib/route";
 import { ArrowRight } from "lucide-react";
@@ -18,7 +19,7 @@ export default function RegisterForm() {
     };
 
     return (
-        <div className="w-full max-w-[1440px] mx-auto px-6 flex justify-center border-t border-neutral-200">
+        <div className="auth-form w-full max-w-[1440px] mx-auto px-6 flex justify-center border-t border-neutral-200">
             <div className="w-full max-w-xl bg-white p-8 md:p-16 flex flex-col justify-center">
                 <div className="mb-12">
                     <h2 className="text-5xl font-black uppercase tracking-tighter mb-2 font-headline">
@@ -32,7 +33,7 @@ export default function RegisterForm() {
                 <form onSubmit={register} className="space-y-8">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                         <div className="relative group">
-                            <label className="block text-[10px] uppercase font-bold tracking-widest text-neutral-400 mb-1">
+                            <label className="auth-form__label text-neutral-400">
                                 First Name
                             </label>
                             <input
@@ -42,17 +43,17 @@ export default function RegisterForm() {
                                 onChange={(e) =>
                                     setData("first_name", e.target.value)
                                 }
-                                className="w-full bg-transparent border-t-0 border-x-0 border-b-2 border-neutral-200 py-3 font-headline font-bold uppercase tracking-tight input-brutalist transition-all placeholder:text-neutral-300"
+                                className="auth-form__input border-neutral-200 placeholder:text-neutral-300"
                             />
                             {errors.first_name && (
-                                <p className="text-primary text-sm mt-1">
+                                <p className="auth-form__error text-primary">
                                     {errors.first_name}
                                 </p>
                             )}
                         </div>
 
                         <div className="relative group">
-                            <label className="block text-[10px] uppercase font-bold tracking-widest text-neutral-400 mb-1">
+                            <label className="auth-form__label text-neutral-400">
                                 Last Name
                             </label>
                             <input
@@ -62,35 +63,35 @@ export default function RegisterForm() {
                                 onChange={(e) =>
                                     setData("last_name", e.target.value)
                                 }
-                                className="w-full bg-transparent border-t-0 border-x-0 border-b-2 border-neutral-200 py-3 font-headline font-bold uppercase tracking-tight input-brutalist transition-all placeholder:text-neutral-300"
+                                className="auth-form__input border-neutral-200 placeholder:text-neutral-300"
                             />
                             {errors.last_name && (
-                                <p className="text-primary text-sm mt-1">
+                                <p className="auth-form__error text-primary">
                                     {errors.last_name}
                                 </p>
                             )}
                         </div>
                     </div>
                     <div className="relative group">
-                        <label className="block text-[10px] uppercase font-bold tracking-widest text-neutral-400 mb-1">
+                        <label className="auth-form__label text-neutral-400">
                             Email Address
                         </label>
                         <input
                             type="email"
-                            className="w-full bg-transparent border-t-0 border-x-0 border-b-2 border-neutral-200 py-3 font-headline font-bold uppercase tracking-tight input-brutalist transition-all placeholder:text-neutral-300"
                             value={data.email}
                             onChange={(e) => setData("email", e.target.value)}
                             placeholder="CORE@VICEWORLD.COM"
+                            className="auth-form__input border-neutral-200 placeholder:text-neutral-300"
                         />
                         {errors.email && (
-                            <p className="text-primary text-sm mt-1">
+                            <p className="auth-form__error text-primary">
                                 {errors.email}
                             </p>
                         )}
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                         <div className="relative group">
-                            <label className="block text-[10px] uppercase font-bold tracking-widest text-neutral-400 mb-1">
+                            <label className="auth-form__label text-neutral-400">
                                 Password
                             </label>
                             <input
@@ -99,17 +100,17 @@ export default function RegisterForm() {
                                 onChange={(e) =>
                                     setData("password", e.target.value)
                                 }
-                                className="w-full bg-transparent border-t-0 border-x-0 border-b-2 border-neutral-200 py-3 font-headline font-bold uppercase tracking-tight input-brutalist transition-all placeholder:text-neutral-300"
+                                className="auth-form__input border-neutral-200 placeholder:text-neutral-300"
                                 placeholder="••••••••"
                             />
                             {errors.password && (
-                                <p className="text-primary text-sm mt-1">
+                                <p className="auth-form__error text-primary">
                                     {errors.password}
                                 </p>
                             )}
                         </div>
                         <div className="relative group">
-                            <label className="block text-[10px] uppercase font-bold tracking-widest text-neutral-400 mb-1">
+                            <label className="auth-form__label text-neutral-400">
                                 Confirm Password
                             </label>
                             <input
@@ -121,7 +122,7 @@ export default function RegisterForm() {
                                         e.target.value,
                                     )
                                 }
-                                className="w-full bg-transparent border-t-0 border-x-0 border-b-2 border-neutral-200 py-3 font-headline font-bold uppercase tracking-tight input-brutalist transition-all placeholder:text-neutral-300"
+                                className="auth-form__input border-neutral-200 placeholder:text-neutral-300"
                                 placeholder="••••••••"
                             />
                         </div>
@@ -131,7 +132,7 @@ export default function RegisterForm() {
                         <button
                             type="submit"
                             disabled={processing}
-                            className="w-full bg-primary text-white font-headline font-black uppercase text-xl py-5 tracking-tighter btn-hover-effect transition-transform flex justify-between items-center px-8"
+                            className="auth-form__submit bg-primary text-white"
                         >
                             Create Account
                             <ArrowRight size={20} />

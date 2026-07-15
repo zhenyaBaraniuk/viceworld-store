@@ -1,6 +1,6 @@
 import "../../../css/front/pages/profile/navigation.css";
-import {Link} from "@inertiajs/react";
-import {route} from "@/lib/route";
+import { Link } from "@inertiajs/react";
+import { route } from "@/lib/route";
 
 export default function Navigation() {
     return (
