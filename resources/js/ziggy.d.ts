@@ -93,6 +93,12 @@ declare module 'ziggy-js' {
             "required": true
         }
     ],
+    "home": [
+        {
+            "name": "locale",
+            "required": true
+        }
+    ],
     "catalog.show": [
         {
             "name": "locale",
@@ -119,7 +125,31 @@ declare module 'ziggy-js' {
             "required": true
         }
     ],
-    "home": [
+    "login": [
+        {
+            "name": "locale",
+            "required": true
+        }
+    ],
+    "login.check": [
+        {
+            "name": "locale",
+            "required": true
+        }
+    ],
+    "register": [
+        {
+            "name": "locale",
+            "required": true
+        }
+    ],
+    "register.store": [
+        {
+            "name": "locale",
+            "required": true
+        }
+    ],
+    "logout": [
         {
             "name": "locale",
             "required": true
