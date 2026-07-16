@@ -29,6 +29,6 @@ class RegisteredCustomerController extends Controller
 
         Auth::guard('customer')->login($customer);
 
-        return to_route('home');
+        return to_route('home')->with('success', 'You have successfully registered');
     }
 }

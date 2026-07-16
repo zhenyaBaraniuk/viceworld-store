@@ -26,6 +26,7 @@ class HandleInertiaRequests extends Middleware
             'auth' => [
                 'customer' => $request->user('customer'),
             ],
+            'flash' => fn () => $request->session()->only(['success', 'error']),
             ...parent::share($request),
             ...$this->menuSharedData->resolve($request),
         ];

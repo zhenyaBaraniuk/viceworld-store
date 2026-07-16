@@ -8,6 +8,7 @@ declare module "@inertiajs/core" {
         sharedPageProps: {
             nav_categories: NavCategory[];
             auth: { customer: Customer | null };
+            flash: Record<string, string | undefined>;
         };
     }
 }
