@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Auth\AuthenticatedCustomerController;
+use App\Http\Controllers\Auth\RegisteredCustomerController;
 use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\Error\NotFoundController;
 use App\Http\Controllers\HomeController;
@@ -16,15 +18,26 @@ Route::prefix('{locale}')
     ->whereIn('locale', ['en', 'uk'])
     ->middleware(SetLocale::class)
     ->group(function (): void {
+        Route::get('/', HomeController::class)->name('home');
         Route::get('/catalog/{slug}', [CatalogController::class, 'show'])->name('catalog.show');
         Route::get('/product/{slug}', [ProductController::class, 'show'])->name('product.show');
         Route::get('/search', SearchController::class)->name('search');
         Route::get('/profile', fn () => Inertia::render('Profile/index'));
-        Route::get('/', HomeController::class)->name('home');
         Route::get('/checkout', fn () => Inertia::render('Checkout/index'));
         Route::get('/success-order', fn () => Inertia::render('SuccessOrder/index'));
         Route::get('/404', NotFoundController::class);
         Route::get('/500', fn () => Inertia::render('Error/ServerError'));
+
+        Route::middleware('guest:customer')->group(function (): void {
+            Route::get('/login', [AuthenticatedCustomerController::class, 'login'])->name('login');
+            Route::post('/login', [AuthenticatedCustomerController::class, 'checkLogin'])->name('login.check');
+            Route::get('/register', [RegisteredCustomerController::class, 'create'])->name('register');
+            Route::post('/register', [RegisteredCustomerController::class, 'store'])->name('register.store');
+        });
+
+        Route::middleware('auth:customer')->group(function (): void {
+            Route::post('/logout', [AuthenticatedCustomerController::class, 'logout'])->name('logout');
+        });
     });
 
 Route::post('/newsletter/subscribe', [NewsletterSubscriberController::class, 'store'])->name('newsletter.subscribe');

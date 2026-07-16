@@ -1,0 +1,1 @@
+import{t as e}from"./jsx-runtime-By8HlURe.js";import{n as t,t as n}from"./Footer-BlvJH0zz.js";import r from"./Body-CfJnbHin.js";var i=e();function a(){return(0,i.jsxs)(i.Fragment,{children:[(0,i.jsx)(t,{}),(0,i.jsx)(`main`,{className:`min-h-screen flex flex-col items-center`,children:(0,i.jsx)(r,{})}),(0,i.jsx)(n,{})]})}export{a as default};

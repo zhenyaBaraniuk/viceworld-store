@@ -5,12 +5,13 @@ import { useState } from "react";
 import { Moon, Search, ShoppingBag, Sun, User, X } from "lucide-react";
 import LangSwitcher from "@/Components/LangSwitcher";
 import * as Dialog from "@radix-ui/react-dialog";
-import { NavCategory } from "@/types";
+import { Customer, NavCategory } from "@/types";
 import clsx from "clsx";
 
 export default function Header() {
     const { nav_categories } = usePage().props as {
         nav_categories: NavCategory[];
+        auth: { customer: Customer | null };
     };
 
     const [value, setValue] = useState("");
@@ -41,12 +42,12 @@ export default function Header() {
         <header className="navbar bg-surface dark:bg-neutral-900 border-neutral-100 dark:border-neutral-800">
             <div className="navbar__inner">
                 <div className="navbar__left">
-                    <a
+                    <Link
                         className="navbar__logo text-neutral-900 dark:text-white"
                         href={route("home")}
                     >
                         V<span className="text-primary">!</span>ceWorld
-                    </a>
+                    </Link>
 
                     <nav className="navbar__nav hidden md:flex">
                         {nav_categories.map((category) => (
@@ -104,9 +105,12 @@ export default function Header() {
                         </Dialog.Portal>
                     </Dialog.Root>
 
-                    <button className="navbar_action-btn text-neutral-900 dark:text-white">
+                    <Link
+                        href={route("login")}
+                        className="navbar_action-btn text-neutral-900 dark:text-white"
+                    >
                         <User size={20} />
-                    </button>
+                    </Link>
 
                     <button className="navbar_action-btn text-neutral-900 dark:text-white">
                         <ShoppingBag size={20} />
