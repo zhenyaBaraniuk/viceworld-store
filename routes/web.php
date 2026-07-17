@@ -7,6 +7,7 @@ use App\Http\Controllers\Error\NotFoundController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NewsletterSubscriberController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SearchController;
 use App\Http\Middleware\Front\SetLocale;
 use Illuminate\Support\Facades\Route;
@@ -22,7 +23,6 @@ Route::prefix('{locale}')
         Route::get('/catalog/{slug}', [CatalogController::class, 'show'])->name('catalog.show');
         Route::get('/product/{slug}', [ProductController::class, 'show'])->name('product.show');
         Route::get('/search', SearchController::class)->name('search');
-        Route::get('/profile', fn () => Inertia::render('Profile/index'));
         Route::get('/checkout', fn () => Inertia::render('Checkout/index'));
         Route::get('/success-order', fn () => Inertia::render('SuccessOrder/index'));
         Route::get('/404', NotFoundController::class);
@@ -37,6 +37,13 @@ Route::prefix('{locale}')
 
         Route::middleware('auth:customer')->group(function (): void {
             Route::post('/logout', [AuthenticatedCustomerController::class, 'logout'])->name('logout');
+
+            Route::get('/account', [ProfileController::class, 'show'])->name('account.show');
+            Route::post('/account', [ProfileController::class, 'update'])->name('account.update');
+
+            Route::get('/account/settings', [ProfileController::class, 'settings'])->name('account.settings');
+            Route::post('/account/settings/password', [ProfileController::class, 'updatePassword'])->name('account.settings.password');
+            Route::post('/account/settings/address', [ProfileController::class, 'updateAddress'])->name('account.settings.address');
         });
     });
 

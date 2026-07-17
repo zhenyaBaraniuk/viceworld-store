@@ -155,6 +155,36 @@ declare module 'ziggy-js' {
             "required": true
         }
     ],
+    "account.show": [
+        {
+            "name": "locale",
+            "required": true
+        }
+    ],
+    "account.update": [
+        {
+            "name": "locale",
+            "required": true
+        }
+    ],
+    "account.settings": [
+        {
+            "name": "locale",
+            "required": true
+        }
+    ],
+    "account.settings.password": [
+        {
+            "name": "locale",
+            "required": true
+        }
+    ],
+    "account.settings.address": [
+        {
+            "name": "locale",
+            "required": true
+        }
+    ],
     "newsletter.subscribe": [],
     "storage.local": [
         {

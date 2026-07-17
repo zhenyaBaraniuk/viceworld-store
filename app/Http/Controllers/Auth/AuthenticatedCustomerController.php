@@ -25,7 +25,7 @@ class AuthenticatedCustomerController extends Controller
         if (Auth::guard('customer')->attempt($customerData, $rememberMe)) {
             $request->session()->regenerate();
 
-            return to_route('home')->with('success', 'You have successfully signed in');
+            return to_route('account.show')->with('success', 'You have successfully signed in');
         }
 
         return to_route('login')->withErrors('Oppes! You have entered invalid credentials');
