@@ -1,38 +1,36 @@
 import "../../../css/front/pages/profile/navigation.css";
 import { Link } from "@inertiajs/react";
 import { route } from "@/lib/route";
+import { RouteList } from "ziggy-js";
+import { ArrowRight } from "lucide-react";
 
 export default function Navigation() {
+    const NAV_ITEMS: { label: string; routeName: keyof RouteList }[] = [
+        { label: "Profile", routeName: "account.show" },
+        { label: "Settings", routeName: "account.settings" },
+    ] as const;
+
     return (
         <aside className="navigation md:col-span-3">
             <nav className="navigation__nav">
-                <a
-                    className="navigation__nav-link bg-primary text-white font-display group"
-                    href="/account/orders"
-                >
-                    <span>Orders</span>
+                {NAV_ITEMS.map(({ label, routeName }) => {
+                    const active = route().current(routeName);
 
-                    <span
-                        className="material-symbols-outlined group-hover:translate-x-1 transition-transform"
-                        data-icon="arrow_forward"
-                    >
-                        arrow_forward
-                    </span>
-                </a>
-
-                <a
-                    className="navigation__nav-link text-neutral-500 hover:text-neutral-900 font-display bg-surface-container-low transition-all"
-                    href="/account/profile"
-                >
-                    <span>Profile</span>
-                </a>
-
-                <a
-                    className="navigation__nav-link text-neutral-500 hover:text-neutral-900 font-display bg-surface-container-low transition-all"
-                    href="/account/settings"
-                >
-                    <span>Settings</span>
-                </a>
+                    return (
+                        <Link
+                            key={routeName}
+                            href={route(routeName)}
+                            className={
+                                active
+                                    ? "navigation__nav-link bg-primary text-white font-display group"
+                                    : "navigation__nav-link text-neutral-500 hover:text-neutral-900 font-display bg-surface-container-low transition-all"
+                            }
+                        >
+                            <span>{label}</span>
+                            {active && <ArrowRight size={20} />}
+                        </Link>
+                    );
+                })}
 
                 <Link
                     className="navigation__nav-link text-error font-display mt-12 hover:bg-error-container transition-all"
