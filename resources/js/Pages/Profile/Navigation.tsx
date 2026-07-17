@@ -33,6 +33,7 @@ export default function Navigation() {
                 })}
 
                 <Link
+                    method="post"
                     className="navigation__nav-link text-error font-display mt-12 hover:bg-error-container transition-all"
                     href={route("logout")}
                 >
