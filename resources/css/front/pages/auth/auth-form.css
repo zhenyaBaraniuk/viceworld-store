@@ -23,11 +23,6 @@
         font-family: var(--font-display), serif
     }
 
-    & .auth-form__error {
-        font-size: 0.875rem;
-        margin-top: 0.25rem;
-    }
-
     & .auth-form__submit {
         width: 100%;
         display: flex;

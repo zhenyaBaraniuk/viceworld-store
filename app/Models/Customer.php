@@ -30,6 +30,9 @@ class Customer extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    /**
+     * @return HasMany<CustomerAddress, $this>
+     */
     public function addresses(): HasMany
     {
         return $this->hasMany(CustomerAddress::class);

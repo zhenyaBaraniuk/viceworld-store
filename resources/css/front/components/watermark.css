@@ -1,0 +1,16 @@
+.watermark {
+    position: absolute;
+    top: -3rem;
+    right: -3rem;
+    opacity: 0.05;
+    pointer-events: none;
+    user-select: none;
+
+    & .watermark__text {
+        font-family: var(--font-display), serif;
+        font-size: 20rem;
+        font-weight: 900;
+        line-height: 1;
+        text-transform: uppercase;
+    }
+}

@@ -1,4 +1,5 @@
 import "@css/front/pages/auth/auth-form.css";
+import "@css/front/components/field-error.css";
 import { ArrowRight } from "lucide-react";
 import { Link, useForm } from "@inertiajs/react";
 import { route } from "@/lib/route";
@@ -40,7 +41,7 @@ export default function LoginForm() {
                         className="auth-form__input border-neutral-200 placeholder:text-neutral-300"
                     />
                     {errors.email && (
-                        <p className="auth-form__error text-primary">
+                        <p className="field-error text-primary">
                             {errors.email}
                         </p>
                     )}
@@ -58,7 +59,7 @@ export default function LoginForm() {
                         className="auth-form__input border-neutral-200 placeholder:text-neutral-300"
                     />
                     {errors.password && (
-                        <p className="auth-form__error text-primary">
+                        <p className="field-error text-primary">
                             {errors.password}
                         </p>
                     )}
