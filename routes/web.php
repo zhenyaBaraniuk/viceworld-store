@@ -7,7 +7,6 @@ use App\Http\Controllers\Error\NotFoundController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NewsletterSubscriberController;
 use App\Http\Controllers\ProductController;
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SearchController;
 use App\Http\Middleware\Front\SetLocale;
 use Illuminate\Support\Facades\Route;
@@ -36,14 +35,7 @@ Route::prefix('{locale}')
         });
 
         Route::middleware('auth:customer')->group(function (): void {
-            Route::post('/logout', [AuthenticatedCustomerController::class, 'logout'])->name('logout');
-
-            Route::get('/account', [ProfileController::class, 'show'])->name('account.show');
-            Route::post('/account', [ProfileController::class, 'update'])->name('account.update');
-
-            Route::get('/account/settings', [ProfileController::class, 'settings'])->name('account.settings');
-            Route::post('/account/settings/password', [ProfileController::class, 'updatePassword'])->name('account.settings.password');
-            Route::post('/account/settings/address', [ProfileController::class, 'updateAddress'])->name('account.settings.address');
+            require __DIR__.'/profile.php';
         });
     });
 
