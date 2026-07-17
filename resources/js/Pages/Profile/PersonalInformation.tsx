@@ -1,6 +1,7 @@
 import "../../../css/front/components/watermark.css";
 import "../../../css/front/pages/profile/profile-header.css";
 import "../../../css/front/pages/profile/profile-form.css";
+import "@css/front/components/field-error.css";
 import { ReactNode } from "react";
 import SiteLayout from "@/Layouts/SiteLayout";
 import { ProfileProps } from "@/types/pages/profile";
@@ -50,7 +51,7 @@ function PersonalInformation({ customer }: ProfileProps) {
                             />
                         </div>
                         {errors.first_name && (
-                            <p className="auth-form__error text-primary">
+                            <p className="field-error text-primary">
                                 {errors.first_name}
                             </p>
                         )}
@@ -71,7 +72,7 @@ function PersonalInformation({ customer }: ProfileProps) {
                             />
                         </div>
                         {errors.last_name && (
-                            <p className="auth-form__error text-primary">
+                            <p className="field-error text-primary">
                                 {errors.last_name}
                             </p>
                         )}
@@ -95,7 +96,7 @@ function PersonalInformation({ customer }: ProfileProps) {
                             </span>
                         </div>
                         {errors.email && (
-                            <p className="auth-form__error text-primary">
+                            <p className="field-error text-primary">
                                 {errors.email}
                             </p>
                         )}
@@ -116,7 +117,7 @@ function PersonalInformation({ customer }: ProfileProps) {
                             />
                         </div>
                         {errors.phone && (
-                            <p className="auth-form__error text-primary">
+                            <p className="field-error text-primary">
                                 {errors.phone}
                             </p>
                         )}

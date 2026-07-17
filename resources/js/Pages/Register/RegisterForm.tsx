@@ -1,4 +1,5 @@
 import "@css/front/pages/auth/auth-form.css";
+import "@css/front/components/field-error.css";
 import { Link, useForm } from "@inertiajs/react";
 import { route } from "@/lib/route";
 import { ArrowRight } from "lucide-react";
@@ -46,7 +47,7 @@ export default function RegisterForm() {
                                 className="auth-form__input border-neutral-200 placeholder:text-neutral-300"
                             />
                             {errors.first_name && (
-                                <p className="auth-form__error text-primary">
+                                <p className="field-error text-primary">
                                     {errors.first_name}
                                 </p>
                             )}
@@ -66,7 +67,7 @@ export default function RegisterForm() {
                                 className="auth-form__input border-neutral-200 placeholder:text-neutral-300"
                             />
                             {errors.last_name && (
-                                <p className="auth-form__error text-primary">
+                                <p className="field-error text-primary">
                                     {errors.last_name}
                                 </p>
                             )}
@@ -84,7 +85,7 @@ export default function RegisterForm() {
                             className="auth-form__input border-neutral-200 placeholder:text-neutral-300"
                         />
                         {errors.email && (
-                            <p className="auth-form__error text-primary">
+                            <p className="field-error text-primary">
                                 {errors.email}
                             </p>
                         )}
@@ -104,7 +105,7 @@ export default function RegisterForm() {
                                 placeholder="••••••••"
                             />
                             {errors.password && (
-                                <p className="auth-form__error text-primary">
+                                <p className="field-error text-primary">
                                     {errors.password}
                                 </p>
                             )}

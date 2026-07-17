@@ -1,6 +1,7 @@
 import "../../../css/front/components/watermark.css";
 import "../../../css/front/pages/profile/profile-header.css";
 import "../../../css/front/pages/profile/profile-form.css";
+import "@css/front/components/field-error.css";
 import { ReactNode } from "react";
 import SiteLayout from "@/Layouts/SiteLayout";
 import { ProfileProps } from "@/types/pages/profile";
@@ -82,7 +83,7 @@ function Settings({ customer }: ProfileProps) {
                                         </div>
                                         {passwordForm.errors
                                             .current_password && (
-                                            <p className="auth-form__error text-primary">
+                                            <p className="field-error text-primary">
                                                 {
                                                     passwordForm.errors
                                                         .current_password
@@ -114,7 +115,7 @@ function Settings({ customer }: ProfileProps) {
                                             />
                                         </div>
                                         {passwordForm.errors.new_password && (
-                                            <p className="auth-form__error text-primary">
+                                            <p className="field-error text-primary">
                                                 {
                                                     passwordForm.errors
                                                         .new_password
@@ -168,7 +169,7 @@ function Settings({ customer }: ProfileProps) {
                                             />
                                         </div>
                                         {addressForm.errors.street && (
-                                            <p className="auth-form__error text-primary">
+                                            <p className="field-error text-primary">
                                                 {addressForm.errors.street}
                                             </p>
                                         )}
@@ -196,7 +197,7 @@ function Settings({ customer }: ProfileProps) {
                                             />
                                         </div>
                                         {addressForm.errors.building && (
-                                            <p className="auth-form__error text-primary">
+                                            <p className="field-error text-primary">
                                                 {addressForm.errors.building}
                                             </p>
                                         )}
@@ -225,7 +226,7 @@ function Settings({ customer }: ProfileProps) {
                                             />
                                         </div>
                                         {addressForm.errors.apartment && (
-                                            <p className="auth-form__error text-primary">
+                                            <p className="field-error text-primary">
                                                 {addressForm.errors.apartment}
                                             </p>
                                         )}
@@ -253,7 +254,7 @@ function Settings({ customer }: ProfileProps) {
                                             />
                                         </div>
                                         {addressForm.errors.city && (
-                                            <p className="auth-form__error text-primary">
+                                            <p className="field-error text-primary">
                                                 {addressForm.errors.city}
                                             </p>
                                         )}
