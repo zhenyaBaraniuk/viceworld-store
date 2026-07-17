@@ -1,4 +1,6 @@
 .navigation {
+    padding-top: 6rem;
+
     .navigation__nav {
         display: flex;
         flex-direction: column;

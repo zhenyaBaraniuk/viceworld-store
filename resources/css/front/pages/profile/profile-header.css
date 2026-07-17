@@ -1,0 +1,18 @@
+.profile-header {
+    max-width: 48rem;
+    position: relative;
+    z-index: 10;
+
+    & .profile-header__title {
+        font-family: var(--font-display), serif;
+        font-size: 3rem;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: -0.04em;
+        line-height: 1;
+
+        @media (min-width: 768px) {
+            font-size: 4.5rem;
+        }
+    }
+}
