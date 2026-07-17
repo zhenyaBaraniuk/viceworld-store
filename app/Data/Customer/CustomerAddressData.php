@@ -8,14 +8,12 @@ use Spatie\LaravelData\Data;
 class CustomerAddressData extends Data
 {
     public function __construct(
-        public string  $city,
-        public string  $street,
-        public string  $building,
+        public string $city,
+        public string $street,
+        public string $building,
         public ?string $apartment,
-        public bool    $is_default,
-    )
-    {
-    }
+        public bool $is_default,
+    ) {}
 
     public static function fromModel(CustomerAddress $customerAddress): self
     {

@@ -8,13 +8,12 @@ use Spatie\LaravelData\Data;
 class CustomerData extends Data
 {
     public function __construct(
-        public string               $first_name,
-        public string               $last_name,
-        public string               $email,
-        public ?string               $phone,
+        public string $first_name,
+        public string $last_name,
+        public string $email,
+        public ?string $phone,
         public ?CustomerAddressData $address,
-    )
-    {}
+    ) {}
 
     public static function fromModel(Customer $customer): self
     {

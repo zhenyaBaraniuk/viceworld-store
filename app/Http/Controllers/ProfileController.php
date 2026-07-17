@@ -5,13 +5,13 @@ namespace App\Http\Controllers;
 use App\Data\Customer\CustomerData;
 use App\Http\Requests\UpdateCustomerAddressRequest;
 use App\Http\Requests\UpdateCustomerPasswordRequest;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\UpdateCustomerRequest;
 use App\Models\Customer;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Inertia\Response;
 use Inertia\Inertia;
+use Inertia\Response;
 
 class ProfileController extends Controller
 {
@@ -41,7 +41,7 @@ class ProfileController extends Controller
     public function updatePassword(UpdateCustomerPasswordRequest $request): RedirectResponse
     {
         $this->customer()->update([
-            'password' => Hash::make($request->validated('new_password'))
+            'password' => Hash::make($request->validated('new_password')),
         ]);
 
         return to_route('account.show')->with('success', 'Password has been updated');

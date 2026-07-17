@@ -50,7 +50,7 @@ class EditProduct extends EditRecord
 
         $data['images'] = $media->get('images', collect())
             ->map(fn ($image) => ['id' => $image->id, 'url' => $image->url, 'mime_type' => $image->mime_type])
-            ->toArray();
+            ->all();
 
         $data['name'] = $translation?->name;
         $data['slug'] = $translation?->slug;
