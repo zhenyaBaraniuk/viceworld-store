@@ -18,6 +18,8 @@
     --color-on-primary: #ffffff;
     --color-error: #ba1a1a;
     --color-surface-dark: #0a0a0a;
+    --color-on-surface: #1a1c1b;
+    --color-inverse-surface: #2f3130,
 }
 
 *,

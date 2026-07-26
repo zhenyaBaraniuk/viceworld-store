@@ -2,10 +2,30 @@ import "../../../css/front/pages/product/product.css";
 import { ProductProps } from "@/types/pages/product";
 import ProductGallery from "@/Pages/Product/ProductGallery";
 import RichText from "@/Components/RichText";
+import { useState } from "react";
+import { useCartStore } from "@/store/useCartStore";
+import clsx from "clsx";
 
 type Props = Pick<ProductProps, "product">;
 
 export default function Product({ product }: Props) {
+    const [selectedSize, setSelectedSize] = useState<string | null>(null);
+    const addItem = useCartStore((state) => state.addItem);
+
+    const selectedVariant = product.product_variants.find((variant) =>
+        variant.attribute_values.some(
+            (attr) => attr.name === "Size" && attr.value === selectedSize,
+        ),
+    );
+
+    const handleAddToCart = () => {
+        if (!selectedVariant) return;
+
+        addItem(selectedVariant.id, 1).catch((error) => {
+            console.error("Failed to add item", error());
+        });
+    };
+
     const productSize = product.product_variants
         .flatMap((variant) => variant.attribute_values)
         .filter((attribute) => attribute.name === "Size")
@@ -60,7 +80,12 @@ export default function Product({ product }: Props) {
                             {productSize.map((size) => (
                                 <button
                                     key={size.value}
-                                    className="product-info__size-btn hover:bg-on-surface hover:text-white"
+                                    onClick={() => setSelectedSize(size.value)}
+                                    className={clsx(
+                                        "product-info__size-btn hover:bg-on-surface hover:text-white",
+                                        selectedSize === size.value &&
+                                            "bg-primary text-white border-primary",
+                                    )}
                                 >
                                     {size.value}
                                 </button>
@@ -81,7 +106,11 @@ export default function Product({ product }: Props) {
                 </div>
 
                 <div className="space-y-4">
-                    <button className="product-info__btn text-white active:scale-[0.98] hover:bg-primary">
+                    <button
+                        className="product-info__btn text-white active:scale-[0.98] hover:bg-primary"
+                        disabled={!selectedVariant}
+                        onClick={handleAddToCart}
+                    >
                         Add to Cart
                     </button>
 
