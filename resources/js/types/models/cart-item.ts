@@ -1,4 +1,5 @@
 import type { Media } from "@/types";
+import type { AttributeValue } from "@/types/models/attribute-value";
 
 export interface CartItem {
     id: string;
@@ -7,4 +8,5 @@ export interface CartItem {
     product_slug: string;
     image: Media | null;
     price: string;
+    attribute_values: AttributeValue[];
 }

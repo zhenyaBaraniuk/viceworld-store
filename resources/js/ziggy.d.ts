@@ -125,6 +125,12 @@ declare module 'ziggy-js' {
             "required": true
         }
     ],
+    "checkout": [
+        {
+            "name": "locale",
+            "required": true
+        }
+    ],
     "cart.index": [
         {
             "name": "locale",

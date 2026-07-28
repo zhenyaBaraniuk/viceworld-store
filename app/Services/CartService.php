@@ -9,6 +9,7 @@ use App\Models\Customer;
 class CartService
 {
     public const EAGER_LOAD = [
+        'cartItems.productVariant.attributeValues',
         'cartItems.productVariant.product.mediaFiles',
     ];
 

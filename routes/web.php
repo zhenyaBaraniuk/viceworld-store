@@ -24,7 +24,7 @@ Route::prefix('{locale}')
         Route::get('/catalog/{slug}', [CatalogController::class, 'show'])->name('catalog.show');
         Route::get('/product/{slug}', [ProductController::class, 'show'])->name('product.show');
         Route::get('/search', SearchController::class)->name('search');
-        Route::get('/checkout', fn () => Inertia::render('Checkout/index'));
+        Route::get('/checkout', fn () => Inertia::render('Checkout/index'))->name('checkout');
         Route::get('/success-order', fn () => Inertia::render('SuccessOrder/index'));
 
         Route::get('/cart', [CartController::class, 'index'])->name('cart.index');

@@ -30,8 +30,6 @@ class CartItemController extends Controller
             $validatedData['quantity']
         );
 
-        $cart = $this->cartService->getCartWithRelations($cart);
-
         return response()->json(CartData::fromModel($cart));
     }
 

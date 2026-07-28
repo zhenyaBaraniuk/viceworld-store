@@ -1,6 +1,8 @@
+import type { AttributeValue } from "@/types/models/attribute-value";
+
 export interface ProductVariant {
     id: string;
     price: string | null;
     is_active: boolean;
-    attribute_values: { value: string; hex: string | null; name: string }[];
+    attribute_values: AttributeValue[];
 }

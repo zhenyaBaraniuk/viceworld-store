@@ -125,14 +125,17 @@ export default function Header() {
                         <User size={20} />
                     </Link>
 
-                    <button className="navbar_action-btn text-neutral-900 dark:text-white">
+                    <Link
+                        href={route("checkout")}
+                        className="navbar__action-btn relative text-neutral-900 dark:text-white"
+                    >
                         <ShoppingBag size={20} />
                         {itemCount > 0 && (
                             <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center bg-primary text-[10px] text-white">
                                 {itemCount}
                             </span>
                         )}
-                    </button>
+                    </Link>
 
                     <LangSwitcher />
 

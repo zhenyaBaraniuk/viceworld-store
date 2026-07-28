@@ -2,6 +2,7 @@
 
 namespace App\Data\Cart;
 
+use App\Data\AttributeValue\AttributeValueData;
 use App\Models\CartItem;
 use App\Models\Media;
 use Spatie\LaravelData\Data;
@@ -15,6 +16,8 @@ class CartItemData extends Data
         public string $product_slug,
         public ?array $image,
         public string $price,
+        /** @var AttributeValueData[] */
+        public array $attribute_values,
     ) {}
 
     public static function fromModel(CartItem $item): self
@@ -28,7 +31,10 @@ class CartItemData extends Data
             $product->name,
             $product->slug,
             $mainImage ? self::mapMedia($mainImage) : null,
-            $product->price
+            $product->price,
+            $item->productVariant->attributeValues
+                ->map(fn ($attributeValue) => AttributeValueData::fromModel($attributeValue))
+                ->all(),
         );
     }
 

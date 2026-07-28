@@ -14,6 +14,8 @@ interface CartState {
     clearCart: () => Promise<void>;
 }
 
+let requestId = 0;
+
 function applyCart(set: (partial: Partial<CartState>) => void, cart: Cart) {
     set({ items: cart.cart_items, totalPrice: cart.total_price });
 }
@@ -24,18 +26,24 @@ export const useCartStore = create<CartState>((set) => ({
     isLoading: false,
 
     fetchCart: async () => {
+        const id = ++requestId;
         set({ isLoading: true });
         const { data } = await axios.get<Cart>(route("cart.index"));
-        applyCart(set, data);
+        if (id === requestId) {
+            applyCart(set, data);
+        }
         set({ isLoading: false });
     },
 
     addItem: async (productVariantId: string, quantity: number) => {
+        const id = ++requestId;
         const { data } = await axios.post<Cart>(route("cart.items.store"), {
             product_variant_id: productVariantId,
             quantity,
         });
-        applyCart(set, data);
+        if (id === requestId) {
+            applyCart(set, data);
+        }
     },
 
     updateQuantity: async (cartItemId: string, quantity: number) => {

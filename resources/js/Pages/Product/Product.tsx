@@ -10,6 +10,7 @@ type Props = Pick<ProductProps, "product">;
 
 export default function Product({ product }: Props) {
     const [selectedSize, setSelectedSize] = useState<string | null>(null);
+    const [showSizeError, setShowSizeError] = useState(false);
     const addItem = useCartStore((state) => state.addItem);
 
     const selectedVariant = product.product_variants.find((variant) =>
@@ -19,7 +20,12 @@ export default function Product({ product }: Props) {
     );
 
     const handleAddToCart = () => {
-        if (!selectedVariant) return;
+        if (!selectedVariant) {
+            setShowSizeError(true);
+            return;
+        }
+
+        setShowSizeError(false);
 
         addItem(selectedVariant.id, 1).catch((error) => {
             console.error("Failed to add item", error());
@@ -80,7 +86,14 @@ export default function Product({ product }: Props) {
                             {productSize.map((size) => (
                                 <button
                                     key={size.value}
-                                    onClick={() => setSelectedSize(size.value)}
+                                    onClick={() => {
+                                        setSelectedSize((prev) =>
+                                            prev === size.value
+                                                ? null
+                                                : size.value,
+                                        );
+                                        setShowSizeError(false);
+                                    }}
                                     className={clsx(
                                         "product-info__size-btn hover:bg-on-surface hover:text-white",
                                         selectedSize === size.value &&
@@ -91,6 +104,11 @@ export default function Product({ product }: Props) {
                                 </button>
                             ))}
                         </div>
+                        {showSizeError && (
+                            <p className="text-xs text-error font-bold uppercase tracking-widest">
+                                Please select a size
+                            </p>
+                        )}
                     </div>
 
                     <button className="product-info__ai-btn text-primary hover:underline group">
@@ -108,7 +126,6 @@ export default function Product({ product }: Props) {
                 <div className="space-y-4">
                     <button
                         className="product-info__btn text-white active:scale-[0.98] hover:bg-primary"
-                        disabled={!selectedVariant}
                         onClick={handleAddToCart}
                     >
                         Add to Cart
