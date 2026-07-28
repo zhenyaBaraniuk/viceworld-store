@@ -1,6 +1,13 @@
 import "../../../css/front/pages/checkout/info.css";
+import FormField from "@/UI/FormField";
+import {useForm} from "@inertiajs/react";
 
 export default function Info() {
+    const {data, setData, errors} = useForm({
+        email: "",
+        phone_number: "",
+    });
+
     return (
         <div className="info space-y-24">
             <section>
@@ -9,29 +16,23 @@ export default function Info() {
                 </h2>
 
                 <div className="info__contacts">
-                    <div className="relative">
-                        <label className="info__contacts-label  text-outline">
-                            Email Address
-                        </label>
+                    <FormField
+                        label="Email Address"
+                        type="email"
+                        placeholder="name.lastname@vice-world.com"
+                        value={data.email}
+                        onChange={(value) => setData("email", value)}
+                        error={errors.email}
+                    />
 
-                        <input
-                            className="info__contacts-input bg-transparent border-t-0 border-l-0 border-r-0 border-b-2 border-surface-container-highest text-lg transition-colors focus:border-primary-container"
-                            placeholder="k.lagerfeld@v-world.com"
-                            type="email"
-                        />
-                    </div>
-
-                    <div className="relative">
-                        <label className="info__contacts-label text-outline">
-                            Phone number
-                        </label>
-
-                        <input
-                            className="info__contacts-input bg-transparent border-t-0 border-l-0 border-r-0 border-b-2 border-surface-container-highest text-lg transition-colors focus:border-primary-container"
-                            placeholder="+380 •• ••• •• ••"
-                            type="tel"
-                        />
-                    </div>
+                    <FormField
+                        label="Phone number"
+                        type="tel"
+                        placeholder="+380 •• ••• •• ••"
+                        value={data.phone_number}
+                        onChange={(value) => setData("phone_number", value)}
+                        error={errors.phone_number}
+                    />
                 </div>
             </section>
 
