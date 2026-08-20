@@ -81,7 +81,9 @@ export default function RegisterForm() {
                             placeholder="••••••••"
                             label="Confirm Password"
                             value={data.password_confirmation}
-                            onChange={(value) => setData("password_confirmation", value)}
+                            onChange={(value) =>
+                                setData("password_confirmation", value)
+                            }
                             error={errors.password_confirmation}
                         />
                     </div>

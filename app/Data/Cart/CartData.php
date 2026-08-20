@@ -18,8 +18,6 @@ class CartData extends Data
 
     public static function fromModel(Cart $cart): self
     {
-        $cartItems = $cart->cartItems()->get();
-
         return new self(
             $cart->customer_id,
             $cart->session_token,

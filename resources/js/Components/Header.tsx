@@ -126,7 +126,7 @@ export default function Header() {
                     </Link>
 
                     <Link
-                        href={route("checkout")}
+                        href={route("checkout.index")}
                         className="navbar__action-btn relative text-neutral-900 dark:text-white"
                     >
                         <ShoppingBag size={20} />

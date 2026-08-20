@@ -39,6 +39,7 @@ export default function Summary() {
                                                     attributeValue.value,
                                             )
                                             .join(" / ")}
+                                        {" - "}Qty: {item.quantity}
                                     </p>
                                 </div>
 

@@ -23,7 +23,9 @@ export default function FormField({
 }: FormFieldProps) {
     return (
         <div className={clsx("group", className)}>
-            <label className="form-field__label text-neutral-400">{label}</label>
+            <label className="form-field__label text-neutral-400">
+                {label}
+            </label>
             <input
                 type={type}
                 placeholder={placeholder}

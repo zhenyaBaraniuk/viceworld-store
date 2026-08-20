@@ -125,7 +125,19 @@ declare module 'ziggy-js' {
             "required": true
         }
     ],
-    "checkout": [
+    "checkout.index": [
+        {
+            "name": "locale",
+            "required": true
+        }
+    ],
+    "checkout.store": [
+        {
+            "name": "locale",
+            "required": true
+        }
+    ],
+    "success-order": [
         {
             "name": "locale",
             "required": true

@@ -20,6 +20,7 @@
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.9",
         "liqpay/liqpay": "^1.4",
+        "propaganistas/laravel-phone": "^6.0",
         "spatie/laravel-data": "^4.20",
         "spatie/laravel-medialibrary": "^11.21",
         "spatie/laravel-permission": "^7.2",

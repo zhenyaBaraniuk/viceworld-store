@@ -1,11 +1,11 @@
 import "@css/front/pages/auth/auth-form.css";
-import {ArrowRight} from "lucide-react";
-import {Link, useForm} from "@inertiajs/react";
-import {route} from "@/lib/route";
+import { ArrowRight } from "lucide-react";
+import { Link, useForm } from "@inertiajs/react";
+import { route } from "@/lib/route";
 import FormField from "@/UI/FormField";
 
 export default function LoginForm() {
-    const {data, processing, setData, post, errors} = useForm({
+    const { data, processing, setData, post, errors } = useForm({
         email: "",
         password: "",
         remember_me: false,
@@ -18,8 +18,7 @@ export default function LoginForm() {
     };
 
     return (
-        <div
-            className="auth-form w-full max-w-md bg-white border border-transparent shadow-none p-8 md:p-12 relative z-10">
+        <div className="auth-form w-full max-w-md bg-white border border-transparent shadow-none p-8 md:p-12 relative z-10">
             <div className="mb-10">
                 <h1 className="text-4xl font-black uppercase tracking-[-0.03em] leading-none mb-2">
                     Login

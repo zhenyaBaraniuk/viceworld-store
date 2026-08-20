@@ -8,6 +8,7 @@ export * from "./pages/product";
 export * from "./pages/catalog";
 export * from "./pages/search";
 export * from "./pages/home";
+export * from "./pages/checkout";
 export * from "./shared/product-filters";
 export * from "./shared/header";
 export * from "./shared/breadcrumbs";
