@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Enums\Currency;
+use App\Enums\Order\OrderStatus;
 use App\Enums\Payment\PaymentProvider;
 use App\Enums\Payment\PaymentStatus;
 use App\Enums\PaymentWebhook\PaymentWebhookStatus;
@@ -10,15 +11,19 @@ use App\Enums\Transaction\TransactionStatus;
 use App\Models\Payment;
 use App\Models\PaymentWebhook;
 use App\Models\Transaction;
+use App\Services\CartService;
+use App\Services\Payment\PaymentManager;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Str;
 use InvalidArgumentException;
-use PaymentManager;
 
-class WebhookController
+readonly class WebhookController
 {
-    public function __construct(private readonly PaymentManager $paymentManager) {}
+    public function __construct(
+        private PaymentManager $paymentManager,
+        private CartService $cartService,
+    ) {}
 
     public function liqpay(Request $request): Response
     {
@@ -65,6 +70,14 @@ class WebhookController
             'external_id' => $data['payment_id'],
             'status' => $this->mapPaymentStatus($data['status']),
         ]);
+
+        $payment->order?->update([
+            'status' => $this->mapOrderStatus($payment->status),
+        ]);
+
+        if ($payment->status === PaymentStatus::PAID && $payment->order?->cart) {
+            $this->cartService->closeCart($payment->order->cart);
+        }
 
         $webhook->update([
             'payment_id' => $payment->id,
@@ -123,6 +136,14 @@ class WebhookController
             'status' => $this->mapPaymentStatus($data['status']),
         ]);
 
+        $payment->order?->update([
+            'status' => $this->mapOrderStatus($payment->status),
+        ]);
+
+        if ($payment->status === PaymentStatus::PAID && $payment->order?->cart) {
+            $this->cartService->closeCart($payment->order->cart);
+        }
+
         $webhook->update([
             'payment_id' => $payment->id,
             'transaction_id' => $transaction->id,
@@ -174,6 +195,17 @@ class WebhookController
             840 => Currency::USD,
             978 => Currency::EUR,
             default => throw new InvalidArgumentException("Unsupported currency code: {$ccy}"),
+        };
+    }
+
+    public function mapOrderStatus(PaymentStatus $status): OrderStatus
+    {
+        return match ($status) {
+            PaymentStatus::PENDING => OrderStatus::PENDING,
+            PaymentStatus::PROCESSING => OrderStatus::PROCESSING,
+            PaymentStatus::PAID => OrderStatus::PAID,
+            PaymentStatus::FAILED, PaymentStatus::CANCELLED => OrderStatus::CANCELLED,
+            PaymentStatus::REFUNDED => OrderStatus::REFUNDED,
         };
     }
 }

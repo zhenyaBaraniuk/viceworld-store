@@ -30,6 +30,7 @@ class OrderService
             $order = Order::query()->create([
                 'customer_id' => $customer?->id,
                 'payment_id' => $payment->id,
+                'cart_id' => $cart->id,
                 'status' => OrderStatus::PENDING,
                 'delivery_method' => $data['delivery_method'],
                 'email' => $data['email'],

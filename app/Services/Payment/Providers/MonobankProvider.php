@@ -15,14 +15,11 @@ class MonobankProvider implements PaymentProviderInterface
 
     private string $key;
 
-    private string $redirectUrl;
-
     private string $webhookUrl;
 
     public function __construct()
     {
         $this->key = config('services.monobank.key');
-        $this->redirectUrl = config('services.monobank.redirect_url');
         $this->webhookUrl = config('services.monobank.webhook_url');
     }
 
@@ -37,7 +34,7 @@ class MonobankProvider implements PaymentProviderInterface
             [
                 'amount' => (int) ($payment->amount * 100),
                 'ccy' => $this->ccyCode($payment->currency),
-                'redirectUrl' => $this->redirectUrl,
+                'redirectUrl' => route('success-order'),
                 'webHookUrl' => $this->webhookUrl,
                 'merchantPaymInfo' => [
                     'reference' => $payment->id,
@@ -52,16 +49,18 @@ class MonobankProvider implements PaymentProviderInterface
     {
         $signature = $request->header('X-Sign');
 
-        $keyBase64 = Http::get(self::API_URL.'/api/merchant/pubkey')->json('key');
+        $keyBase64 = Http::withHeaders([
+            'X-Token' => $this->key,
+        ])->get(self::API_URL.'/api/merchant/pubkey')->json('key');
 
-        $pem = "-----BEGIN PUBLIC KEY-----\n".
-            chunk_split($keyBase64, 64, "\n")
-            ."-----END PUBLIC KEY-----\n";
+        $pem = base64_decode($keyBase64);
 
-        $result = openssl_verify($request->getContent(),
+        $result = openssl_verify(
+            $request->getContent(),
             base64_decode($signature),
             $pem,
-            OPENSSL_ALGO_SHA256);
+            OPENSSL_ALGO_SHA256
+        );
 
         return $result === 1;
     }

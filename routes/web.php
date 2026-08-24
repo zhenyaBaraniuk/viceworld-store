@@ -5,10 +5,10 @@ use App\Http\Controllers\Auth\RegisteredCustomerController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CartItemController;
 use App\Http\Controllers\CatalogController;
-use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\Error\NotFoundController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NewsletterSubscriberController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SearchController;
 use App\Http\Middleware\Front\SetLocale;
@@ -25,8 +25,8 @@ Route::prefix('{locale}')
         Route::get('/catalog/{slug}', [CatalogController::class, 'show'])->name('catalog.show');
         Route::get('/product/{slug}', [ProductController::class, 'show'])->name('product.show');
         Route::get('/search', SearchController::class)->name('search');
-        Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
-        Route::post('/checkout', [CheckoutController::class, 'store'])->name('checkout.store');
+        Route::get('/checkout', [OrderController::class, 'index'])->name('checkout.index');
+        Route::post('/checkout', [OrderController::class, 'store'])->name('checkout.store');
         Route::get('/success-order', fn () => Inertia::render('SuccessOrder/index'))->name('success-order');
 
         Route::get('/cart', [CartController::class, 'index'])->name('cart.index');

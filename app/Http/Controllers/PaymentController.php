@@ -6,8 +6,8 @@ use App\Enums\Payment\PaymentProvider;
 use App\Enums\Payment\PaymentStatus;
 use App\Http\Requests\CreatePaymentRequest;
 use App\Models\Payment;
+use App\Services\Payment\PaymentManager;
 use Illuminate\Http\JsonResponse;
-use PaymentManager;
 
 class PaymentController extends Controller
 {

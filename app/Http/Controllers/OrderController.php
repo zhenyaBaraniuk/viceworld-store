@@ -2,17 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\Payment\PaymentProvider;
 use App\Http\Requests\StoreOrderRequest;
 use App\Services\CartService;
 use App\Services\OrderService;
+use App\Services\Payment\PaymentManager;
 use Inertia\Inertia;
 use Inertia\Response;
 
-class CheckoutController extends Controller
+class OrderController extends Controller
 {
     public function __construct(
         private readonly CartService $cartService,
-        private readonly OrderService $orderService
+        private readonly OrderService $orderService,
+        private readonly PaymentManager $paymentManager,
     ) {}
 
     public function index(): Response
@@ -35,10 +38,11 @@ class CheckoutController extends Controller
 
         $cart->load('cartItems.productVariant.product');
 
-        $this->orderService->createOrder($cart, $data, $customer);
+        $order = $this->orderService->createOrder($cart, $data, $customer);
 
-        $this->cartService->clearCart($cart);
+        $provider = PaymentProvider::from($data['payment_method']);
+        $url = $this->paymentManager->provider($provider)->createPayment($order->payment);
 
-        return to_route('success-order');
+        return Inertia::location($url);
     }
 }

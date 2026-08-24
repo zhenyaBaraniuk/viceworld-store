@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Services\Payment;
+
 use App\Contracts\PaymentProviderInterface;
 use App\Enums\Payment\PaymentProvider;
 use App\Services\Payment\Providers\LiqPayProvider;

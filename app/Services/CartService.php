@@ -18,10 +18,14 @@ class CartService
         if ($customer) {
             return Cart::with(self::EAGER_LOAD)->firstOrCreate([
                 'customer_id' => $customer->id,
+                'is_closed' => false,
             ]);
         }
 
-        return Cart::with(self::EAGER_LOAD)->firstOrCreate(['session_token' => $sessionToken]);
+        return Cart::with(self::EAGER_LOAD)->firstOrCreate([
+            'session_token' => $sessionToken,
+            'is_closed' => false,
+        ]);
     }
 
     public function addItem(Cart $cart, string $productVariantId, int $quantity): CartItem
@@ -57,6 +61,14 @@ class CartService
     public function clearCart(Cart $cart): void
     {
         $cart->cartItems()->delete();
+    }
+
+    public function closeCart(Cart $cart): void
+    {
+        $cart->update([
+            'is_closed' => true,
+            'session_token' => null,
+        ]);
     }
 
     public function getCartWithRelations(string $cartId): Cart

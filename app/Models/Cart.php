@@ -18,6 +18,11 @@ class Cart extends Model
     protected $fillable = [
         'customer_id',
         'session_token',
+        'is_closed',
+    ];
+
+    protected $casts = [
+        'is_closed' => 'boolean',
     ];
 
     /**

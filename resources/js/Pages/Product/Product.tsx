@@ -2,6 +2,7 @@ import "../../../css/front/pages/product/product.css";
 import { ProductProps } from "@/types/pages/product";
 import ProductGallery from "@/Pages/Product/ProductGallery";
 import RichText from "@/Components/RichText";
+import { useCartStore } from "@/store/useCartStore";
 import { useState } from "react";
 import clsx from "clsx";
 
@@ -10,6 +11,7 @@ type Props = Pick<ProductProps, "product">;
 export default function Product({ product }: Props) {
     const [selectedSize, setSelectedSize] = useState<string | null>(null);
     const [showSizeError, setShowSizeError] = useState(false);
+    const addItem = useCartStore((state) => state.addItem);
 
     const selectedVariant = product.product_variants.find((variant) =>
         variant.attribute_values.some(
@@ -24,6 +26,10 @@ export default function Product({ product }: Props) {
         }
 
         setShowSizeError(false);
+
+        addItem(selectedVariant.id, 1).catch((error) => {
+            console.error("Failed to add item", error);
+        });
     };
 
     const productSize = product.product_variants
