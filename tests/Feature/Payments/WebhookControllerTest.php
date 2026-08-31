@@ -9,10 +9,10 @@ use App\Enums\PaymentWebhook\PaymentWebhookStatus;
 use App\Models\Payment;
 use App\Models\PaymentWebhook;
 use App\Models\Transaction;
+use App\Services\Payment\PaymentManager;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Mockery;
 use Mockery\MockInterface;
-use PaymentManager;
 use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
