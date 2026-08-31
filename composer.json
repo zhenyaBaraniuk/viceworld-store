@@ -70,9 +70,7 @@
             "@php artisan config:clear --ansi",
             "@php artisan test"
         ],
-        "pint": [
-            "./vendor/bin/pint"
-        ],
+
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi",
@@ -91,6 +89,24 @@
         ],
         "pre-package-uninstall": [
             "Illuminate\\Foundation\\ComposerScripts::prePackageUninstall"
+        ],
+        "pint": [
+            "./vendor/bin/pint"
+        ],
+        "phpstan": [
+            "./vendor/bin/phpstan analyse --memory-limit=1G"
+        ],
+        "rector": [
+            "./vendor/bin/rector process --dry-run"
+        ],
+        "rector:fix": [
+            "./vendor/bin/rector process"
+        ],
+        "check": [
+            "@pint",
+            "@rector",
+            "@phpstan",
+            "@test"
         ]
     },
     "extra": {
