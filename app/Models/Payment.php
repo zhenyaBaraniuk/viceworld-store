@@ -52,16 +52,25 @@ class Payment extends Model
         ];
     }
 
+    /**
+     * @return HasOne<Order, $this>
+     */
     public function order(): HasOne
     {
         return $this->hasOne(Order::class);
     }
 
+    /**
+     * @return HasMany<Transaction, $this>
+     */
     public function transactions(): HasMany
     {
         return $this->hasMany(Transaction::class);
     }
 
+    /**
+     * @return HasMany<PaymentWebhook, $this>
+     */
     public function paymentWebhooks(): HasMany
     {
         return $this->hasMany(PaymentWebhook::class);
