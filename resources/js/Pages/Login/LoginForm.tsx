@@ -1,8 +1,8 @@
 import "@css/front/pages/auth/auth-form.css";
-import "@css/front/components/field-error.css";
 import { ArrowRight } from "lucide-react";
 import { Link, useForm } from "@inertiajs/react";
 import { route } from "@/lib/route";
+import FormField from "@/UI/FormField";
 
 export default function LoginForm() {
     const { data, processing, setData, post, errors } = useForm({
@@ -29,41 +29,23 @@ export default function LoginForm() {
             </div>
 
             <form onSubmit={login} className="space-y-8">
-                <div className="group">
-                    <label className="auth-form__label text-neutral-400">
-                        Email Address
-                    </label>
-                    <input
-                        type="email"
-                        placeholder="YOUR@EMAIL.COM"
-                        value={data.email}
-                        onChange={(e) => setData("email", e.target.value)}
-                        className="auth-form__input border-neutral-200 placeholder:text-neutral-300"
-                    />
-                    {errors.email && (
-                        <p className="field-error text-primary">
-                            {errors.email}
-                        </p>
-                    )}
-                </div>
+                <FormField
+                    label="Email Address"
+                    type="email"
+                    placeholder="YOUR@EMAIL.COM"
+                    value={data.email}
+                    onChange={(value) => setData("email", value)}
+                    error={errors.email}
+                />
 
-                <div className="group">
-                    <label className="auth-form__label text-neutral-400">
-                        Password
-                    </label>
-                    <input
-                        type="password"
-                        placeholder="••••••••"
-                        value={data.password}
-                        onChange={(e) => setData("password", e.target.value)}
-                        className="auth-form__input border-neutral-200 placeholder:text-neutral-300"
-                    />
-                    {errors.password && (
-                        <p className="field-error text-primary">
-                            {errors.password}
-                        </p>
-                    )}
-                </div>
+                <FormField
+                    label="Password"
+                    type="password"
+                    placeholder="••••••••"
+                    value={data.password}
+                    onChange={(value) => setData("password", value)}
+                    error={errors.password}
+                />
 
                 <div className="flex items-center justify-between text-xs font-bold uppercase tracking-tight">
                     <label className="flex items-center cursor-pointer select-none">

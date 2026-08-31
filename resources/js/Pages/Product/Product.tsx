@@ -2,10 +2,36 @@ import "../../../css/front/pages/product/product.css";
 import { ProductProps } from "@/types/pages/product";
 import ProductGallery from "@/Pages/Product/ProductGallery";
 import RichText from "@/Components/RichText";
+import { useCartStore } from "@/store/useCartStore";
+import { useState } from "react";
+import clsx from "clsx";
 
 type Props = Pick<ProductProps, "product">;
 
 export default function Product({ product }: Props) {
+    const [selectedSize, setSelectedSize] = useState<string | null>(null);
+    const [showSizeError, setShowSizeError] = useState(false);
+    const addItem = useCartStore((state) => state.addItem);
+
+    const selectedVariant = product.product_variants.find((variant) =>
+        variant.attribute_values.some(
+            (attr) => attr.name === "Size" && attr.value === selectedSize,
+        ),
+    );
+
+    const handleAddToCart = () => {
+        if (!selectedVariant) {
+            setShowSizeError(true);
+            return;
+        }
+
+        setShowSizeError(false);
+
+        addItem(selectedVariant.id, 1).catch((error) => {
+            console.error("Failed to add item", error);
+        });
+    };
+
     const productSize = product.product_variants
         .flatMap((variant) => variant.attribute_values)
         .filter((attribute) => attribute.name === "Size")
@@ -60,12 +86,29 @@ export default function Product({ product }: Props) {
                             {productSize.map((size) => (
                                 <button
                                     key={size.value}
-                                    className="product-info__size-btn hover:bg-on-surface hover:text-white"
+                                    onClick={() => {
+                                        setSelectedSize((prev) =>
+                                            prev === size.value
+                                                ? null
+                                                : size.value,
+                                        );
+                                        setShowSizeError(false);
+                                    }}
+                                    className={clsx(
+                                        "product-info__size-btn hover:bg-on-surface hover:text-white",
+                                        selectedSize === size.value &&
+                                            "bg-primary text-white border-primary",
+                                    )}
                                 >
                                     {size.value}
                                 </button>
                             ))}
                         </div>
+                        {showSizeError && (
+                            <p className="text-xs text-error font-bold uppercase tracking-widest">
+                                Please select a size
+                            </p>
+                        )}
                     </div>
 
                     <button className="product-info__ai-btn text-primary hover:underline group">
@@ -81,7 +124,10 @@ export default function Product({ product }: Props) {
                 </div>
 
                 <div className="space-y-4">
-                    <button className="product-info__btn text-white active:scale-[0.98] hover:bg-primary">
+                    <button
+                        className="product-info__btn text-white active:scale-[0.98] hover:bg-primary"
+                        onClick={handleAddToCart}
+                    >
                         Add to Cart
                     </button>
 

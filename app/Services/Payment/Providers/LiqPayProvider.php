@@ -33,9 +33,11 @@ class LiqPayProvider implements PaymentProviderInterface
             'action' => 'pay',
             'amount' => $payment->amount,
             'currency' => Str::upper($payment->currency->value),
-            'description' => $payment->description,
+            'description' => $payment->description ?? 'V!ceWorld order',
             'order_id' => $payment->id,
             'version' => '3',
+            'server_url' => config('services.liqpay.webhook_url'),
+            'result_url' => route('success-order'),
         ]);
 
         return $data['url'].'?'.http_build_query([

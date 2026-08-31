@@ -2,6 +2,7 @@
 
 namespace App\Data\ProductVariant;
 
+use App\Data\AttributeValue\AttributeValueData;
 use App\Models\ProductVariant;
 use Spatie\LaravelData\Data;
 
@@ -11,6 +12,7 @@ class ProductVariantData extends Data
         public string $id,
         public ?string $price,
         public bool $is_active,
+        /** @var AttributeValueData[] */
         public array $attribute_values,
     ) {}
 
@@ -21,11 +23,8 @@ class ProductVariantData extends Data
             price: $variant->price,
             is_active: $variant->is_active,
             attribute_values: $variant->attributeValues
-                ->map(fn ($attributeValue) => [
-                    'name' => $attributeValue->attribute->name,
-                    'value' => $attributeValue->value,
-                    'hex' => $attributeValue->color,
-                ])->toArray(),
+                ->map(fn ($attributeValue) => AttributeValueData::fromModel($attributeValue))
+                ->all(),
         );
     }
 }

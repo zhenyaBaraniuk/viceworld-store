@@ -6,9 +6,9 @@ use App\Contracts\PaymentProviderInterface;
 use App\Enums\Currency;
 use App\Enums\Payment\PaymentProvider;
 use App\Enums\Payment\PaymentStatus;
+use App\Services\Payment\PaymentManager;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Mockery;
-use PaymentManager;
 use Tests\TestCase;
 
 class PaymentControllerTest extends TestCase

@@ -21,6 +21,7 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 
 /**
  * @property string $name
+ * @property string $price
  * @property string $slug
  * @property array|null $description
  *

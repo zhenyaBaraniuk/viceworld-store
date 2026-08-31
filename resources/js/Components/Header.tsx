@@ -1,14 +1,27 @@
 import "../../css/front/components/header.css";
 import { Link, router, usePage } from "@inertiajs/react";
 import { route } from "@/lib/route";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Moon, Search, ShoppingBag, Sun, User, X } from "lucide-react";
 import LangSwitcher from "@/Components/LangSwitcher";
 import * as Dialog from "@radix-ui/react-dialog";
 import { Customer, NavCategory } from "@/types";
 import clsx from "clsx";
+import { useCartStore } from "@/store/useCartStore";
 
 export default function Header() {
+    const itemCount = useCartStore((state) =>
+        state.items.reduce((sum, item) => sum + item.quantity, 0),
+    );
+
+    const fetchCart = useCartStore((state) => state.fetchCart);
+
+    useEffect(() => {
+        fetchCart().catch((error) => {
+            console.error("Failed to fetch cart", error);
+        });
+    }, [fetchCart]);
+
     const { nav_categories } = usePage().props as {
         nav_categories: NavCategory[];
         auth: { customer: Customer | null };
@@ -112,9 +125,17 @@ export default function Header() {
                         <User size={20} />
                     </Link>
 
-                    <button className="navbar_action-btn text-neutral-900 dark:text-white">
+                    <Link
+                        href={route("checkout.index")}
+                        className="navbar__action-btn relative text-neutral-900 dark:text-white"
+                    >
                         <ShoppingBag size={20} />
-                    </button>
+                        {itemCount > 0 && (
+                            <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center bg-primary text-[10px] text-white">
+                                {itemCount}
+                            </span>
+                        )}
+                    </Link>
 
                     <LangSwitcher />
 

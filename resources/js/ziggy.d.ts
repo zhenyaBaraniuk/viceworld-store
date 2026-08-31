@@ -125,6 +125,64 @@ declare module 'ziggy-js' {
             "required": true
         }
     ],
+    "checkout.index": [
+        {
+            "name": "locale",
+            "required": true
+        }
+    ],
+    "checkout.store": [
+        {
+            "name": "locale",
+            "required": true
+        }
+    ],
+    "success-order": [
+        {
+            "name": "locale",
+            "required": true
+        }
+    ],
+    "cart.index": [
+        {
+            "name": "locale",
+            "required": true
+        }
+    ],
+    "cart.destroy": [
+        {
+            "name": "locale",
+            "required": true
+        }
+    ],
+    "cart.items.store": [
+        {
+            "name": "locale",
+            "required": true
+        }
+    ],
+    "cart.items.update": [
+        {
+            "name": "locale",
+            "required": true
+        },
+        {
+            "name": "cartItem",
+            "required": true,
+            "binding": "id"
+        }
+    ],
+    "cart.items.destroy": [
+        {
+            "name": "locale",
+            "required": true
+        },
+        {
+            "name": "cartItem",
+            "required": true,
+            "binding": "id"
+        }
+    ],
     "login": [
         {
             "name": "locale",

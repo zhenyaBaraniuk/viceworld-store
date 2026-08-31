@@ -16,22 +16,6 @@
         @media (min-width: 768px) {
             grid-template-columns: repeat(2, 1fr);
         }
-
-        .info__contacts-label {
-            display: block;
-            font-size: 10px;
-            text-transform: uppercase;
-            font-weight: 700;
-            letter-spacing: 0.2em;
-            margin-bottom: 0.5rem;
-        }
-
-        .info__contacts-input {
-            width: 100%;
-            font-weight: 500;
-            border-radius: 0;
-            padding: 0.75rem 0;
-        }
     }
 
     .info__shipping {

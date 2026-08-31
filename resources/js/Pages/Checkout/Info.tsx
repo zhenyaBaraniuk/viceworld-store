@@ -1,6 +1,29 @@
 import "../../../css/front/pages/checkout/info.css";
+import FormField from "@/UI/FormField";
+import { useForm } from "@inertiajs/react";
+import { route } from "@/lib/route";
+import clsx from "clsx";
+import type { CheckoutProps } from "@/types";
 
-export default function Info() {
+const PAYMENT_ICONS: Record<string, string> = {
+    liqpay: "/images/payment/liqpay.png",
+    mono: "/images/payment/mono.png",
+};
+
+export default function Info({ payment_methods }: CheckoutProps) {
+    const { data, post, setData, errors, processing } = useForm({
+        email: "",
+        phone: "",
+        delivery_method: "courier",
+        city: "",
+        street: "",
+        payment_method: "monobank",
+    });
+
+    const handleSubmit = () => {
+        post(route("checkout.store"));
+    };
+
     return (
         <div className="info space-y-24">
             <section>
@@ -9,171 +32,196 @@ export default function Info() {
                 </h2>
 
                 <div className="info__contacts">
-                    <div className="relative">
-                        <label className="info__contacts-label  text-outline">
-                            Email Address
-                        </label>
+                    <FormField
+                        label="Email Address"
+                        type="email"
+                        placeholder="name.lastname@vice-world.com"
+                        value={data.email}
+                        onChange={(value) => setData("email", value)}
+                        error={errors.email}
+                    />
 
-                        <input
-                            className="info__contacts-input bg-transparent border-t-0 border-l-0 border-r-0 border-b-2 border-surface-container-highest text-lg transition-colors focus:border-primary-container"
-                            placeholder="k.lagerfeld@v-world.com"
-                            type="email"
-                        />
-                    </div>
-
-                    <div className="relative">
-                        <label className="info__contacts-label text-outline">
-                            Phone number
-                        </label>
-
-                        <input
-                            className="info__contacts-input bg-transparent border-t-0 border-l-0 border-r-0 border-b-2 border-surface-container-highest text-lg transition-colors focus:border-primary-container"
-                            placeholder="+380 •• ••• •• ••"
-                            type="tel"
-                        />
-                    </div>
+                    <FormField
+                        label="Phone number"
+                        type="tel"
+                        placeholder="+380 •• ••• •• ••"
+                        value={data.phone}
+                        onChange={(value) => setData("phone", value)}
+                        error={errors.phone}
+                    />
                 </div>
             </section>
 
             <section>
                 <h2 className="info__title font-headline">
-                    Shipping Destination
-                </h2>
-
-                <div className="info__shipping">
-                    <div className="info__country md:col-span-2">
-                        <label className="info__shipping-label text-outline">
-                            Country / Region
-                        </label>
-
-                        <select className="info__country-name bg-transparent border-t-0 border-l-0 border-r-0 border-b-2 border-surface-container-highest text-lg transition-colors focus:border-primary-container">
-                            <option>Ukraine</option>
-                            <option>Poland</option>
-                            <option>Germany</option>
-                            <option>United Kingdom</option>
-                        </select>
-                    </div>
-
-                    <div className="info__city">
-                        <label className="info__shipping-label text-outline">
-                            City
-                        </label>
-
-                        <input
-                            className="info__city-input bg-transparent border-t-0 border-l-0 border-r-0 border-b-2 border-surface-container-highest text-lg font-medium transition-colors focus:border-primary-container"
-                            placeholder="Kyiv"
-                            type="text"
-                        />
-                    </div>
-
-                    <div className="info__zip">
-                        <label className="info__shipping-label text-outline">
-                            Zip / Postal Code
-                        </label>
-
-                        <input
-                            className="info__zip-input bg-transparent border-t-0 border-l-0 border-r-0 border-b-2 border-surface-container-highest text-lg font-medium transition-colors focus:border-primary-container"
-                            placeholder="01001"
-                            type="text"
-                        />
-                    </div>
-
-                    <div className="info__address md:col-span-2">
-                        <label className="info__shipping-label text-outline">
-                            Street Address
-                        </label>
-
-                        <input
-                            className="info__address-input bg-transparent border-t-0 border-l-0 border-r-0 border-b-2 border-surface-container-highest  text-lg font-medium transition-colors focus:border-primary-container"
-                            placeholder="Khreshchatyk St, 22, Apt 4"
-                            type="text"
-                        />
-                    </div>
-                </div>
-            </section>
-
-            <section className="opacity-30 pointer-events-none">
-                <h2 className="info__title font-headline">
                     2. Delivery Method
                 </h2>
 
                 <div className="info__delivery">
-                    <div className="info__delivery-form border-2 border-primary-container bg-white">
+                    <div
+                        onClick={() => setData("delivery_method", "courier")}
+                        className={clsx(
+                            "info__delivery-form bg-white cursor-pointer transition-colors",
+                            data.delivery_method === "courier"
+                                ? "border-2 border-primary-container"
+                                : "border-2 border-transparent hover:border-surface-container-highest",
+                        )}
+                    >
                         <div>
                             <div className="flex justify-between items-start mb-2">
                                 <span className="font-headline font-bold uppercase tracking-tight text-lg">
-                                    Nova Poshta
+                                    Courier Delivery
                                 </span>
 
                                 <span
-                                    className="material-symbols-outlined text-primary-container"
-                                    style={{
-                                        fontVariationSettings: "'FILL' 1",
-                                    }}
+                                    className={clsx(
+                                        "material-symbols-outlined",
+                                        data.delivery_method === "courier"
+                                            ? "text-primary-container"
+                                            : "text-outline",
+                                    )}
+                                    style={
+                                        data.delivery_method === "courier"
+                                            ? {
+                                                  fontVariationSettings:
+                                                      "'FILL' 1",
+                                              }
+                                            : undefined
+                                    }
                                 >
-                                    check_circle
+                                    {data.delivery_method === "courier"
+                                        ? "check_circle"
+                                        : "radio_button_unchecked"}
                                 </span>
                             </div>
 
-                            <p className="info__delivery-title text-xs text-outline">
-                                Branch Delivery
-                            </p>
-                        </div>
-
-                        <div className="text-right">
-                            <p className="info__delivery-price font-headline">
-                                ₴85.00
-                            </p>
+                            <div className="text-right">
+                                <p className="info__delivery-price font-headline">
+                                    ₴85.00
+                                </p>
+                            </div>
                         </div>
                     </div>
 
-                    <div className="border-2 border-transparent bg-white hover:border-surface-container-highest transition-colors">
+                    <div
+                        onClick={() => setData("delivery_method", "pickup")}
+                        className={clsx(
+                            "info__delivery-form bg-white cursor-pointer transition-colors",
+                            data.delivery_method === "pickup"
+                                ? "border-2 border-primary-container"
+                                : "border-2 border-transparent hover:border-surface-container-highest",
+                        )}
+                    >
                         <div>
                             <div className="flex justify-between items-start mb-2">
                                 <span className="font-headline font-bold uppercase tracking-tight text-lg">
                                     Pickup in Store
                                 </span>
 
-                                <p className="text-xs uppercase text-outline font-bold tracking-wider">
-                                    Kyiv Flagship, Baseina 12
-                                </p>
+                                <span
+                                    className={clsx(
+                                        "material-symbols-outlined",
+                                        data.delivery_method === "pickup"
+                                            ? "text-primary-container"
+                                            : "text-outline",
+                                    )}
+                                    style={
+                                        data.delivery_method === "pickup"
+                                            ? {
+                                                  fontVariationSettings:
+                                                      "'FILL' 1",
+                                              }
+                                            : undefined
+                                    }
+                                >
+                                    {data.delivery_method === "pickup"
+                                        ? "check_circle"
+                                        : "radio_button_unchecked"}
+                                </span>
                             </div>
+
+                            <p className="text-xs uppercase text-outline font-bold tracking-wider">
+                                Kyiv Flagship, Baseina 12
+                            </p>
                         </div>
                     </div>
                 </div>
+
+                {data.delivery_method === "courier" && (
+                    <div className="info__shipping mt-6">
+                        <FormField
+                            label="City"
+                            placeholder="Kyiv"
+                            value={data.city}
+                            onChange={(value) => setData("city", value)}
+                            error={errors.city}
+                        />
+
+                        <FormField
+                            label="Street address"
+                            placeholder="Khreshchatyk St, 22, Apt 4"
+                            value={data.street}
+                            onChange={(value) => setData("street", value)}
+                            error={errors.street}
+                        />
+                    </div>
+                )}
             </section>
 
-            <section className="opacity-30 pointer-events-none">
+            <section>
                 <h2 className="info__title font-headline">3. Payment</h2>
 
                 <div className="info__payment">
-                    <div className="info__payment-form bg-white border-transparent group">
-                        <div className="flex items-center gap-6">
-                            <span className="info__payment-title material-symbols-outlined">
-                                payments
-                            </span>
-
-                            <div>
-                                <p className="info__payment-name font-headline">
-                                    LiqPay
-                                </p>
-
-                                <p className="info__payment-subnames text-outline">
-                                    Visa / Mastercard / Apple Pay
-                                </p>
+                    {payment_methods.map((method) => (
+                        <div
+                            key={method.value}
+                            onClick={() =>
+                                setData("payment_method", method.value)
+                            }
+                            className={clsx(
+                                "info__payment-form bg-white group cursor-pointer transition-colors",
+                                data.payment_method === method.value
+                                    ? "border-2 border-primary-container"
+                                    : "border-2 border-transparent hover:border-surface-container-highest",
+                            )}
+                        >
+                            <div className="flex items-center gap-6">
+                                <img
+                                    src={PAYMENT_ICONS[method.value]}
+                                    alt={method.name}
+                                    className="info__payment-title"
+                                />
                             </div>
-                        </div>
 
-                        <span className="material-symbols-outlined text-outline group-hover:text-primary-container transition-colors">
-                            radio_button_unchecked
-                        </span>
-                    </div>
+                            <span
+                                className={clsx(
+                                    "material-symbols-outlined transition-colors",
+                                    data.payment_method === method.value
+                                        ? "text-primary-container"
+                                        : "text-outline group-hover:text-primary-container",
+                                )}
+                                style={
+                                    data.payment_method === method.value
+                                        ? { fontVariationSettings: "'FILL' 1" }
+                                        : undefined
+                                }
+                            >
+                                {data.payment_method === method.value
+                                    ? "check_circle"
+                                    : "radio_button_unchecked"}
+                            </span>
+                        </div>
+                    ))}
                 </div>
             </section>
 
             <div className="info__btn">
-                <button className="info__btn-title bg-on-surface text-white font-headline hover:bg-primary-container transition-colors duration-300">
-                    Continue to Delivery
+                <button
+                    onClick={handleSubmit}
+                    disabled={processing}
+                    className="info__btn-title bg-on-surface text-white font-headline hover:bg-primary-container transition-colors duration-300"
+                >
+                    Place order
                 </button>
             </div>
         </div>
