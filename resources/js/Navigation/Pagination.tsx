@@ -1,6 +1,7 @@
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import type { Pagination } from "@/types";
 import { router } from "@inertiajs/react";
+import { useTranslation } from "@/hooks/useTranslation";
 
 type PaginationProps = Pick<
     Pagination<unknown>,
@@ -16,6 +17,8 @@ export default function Pagination({
     queryParams = {},
     url,
 }: PaginationProps) {
+    const { t } = useTranslation();
+
     function goTo(page: number) {
         if (page < 1 || page > last_page) {
             return;
@@ -43,7 +46,7 @@ export default function Pagination({
                             size={20}
                             className="group-hover:-translate-x-1 transition-transform"
                         />
-                        PREVIOUS
+                        {t("pagination.previous")}
                     </button>
                 )}
             </div>
@@ -76,7 +79,7 @@ export default function Pagination({
                             size={20}
                             className="group-hover:translate-x-1 transition-transform"
                         />
-                        NEXT
+                        {t("pagination.next")}
                     </button>
                 )}
             </div>

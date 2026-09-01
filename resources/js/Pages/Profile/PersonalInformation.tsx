@@ -8,8 +8,10 @@ import { ProfileProps } from "@/types/pages/profile";
 import { useForm } from "@inertiajs/react";
 import { route } from "@/lib/route";
 import ProfileLayout from "@/Layouts/ProfileLayout";
+import { useTranslation } from "@/hooks/useTranslation";
 
 function PersonalInformation({ customer }: ProfileProps) {
+    const { t } = useTranslation();
     const { data, processing, setData, post, errors } = useForm({
         first_name: customer.first_name,
         last_name: customer.last_name,
@@ -25,24 +27,28 @@ function PersonalInformation({ customer }: ProfileProps) {
     return (
         <form onSubmit={updateCustomerData}>
             <div className="watermark">
-                <span className="watermark__text">PROFILE</span>
+                <span className="watermark__text">
+                    {t("profile.watermark")}
+                </span>
             </div>
 
             <div className="profile-header">
                 <h1 className="profile-header__title text-neutral-900 dark:text-white">
-                    PERSONAL <br />
-                    INFORMATION
+                    {t("profile.personal_info_title_line1")} <br />
+                    {t("profile.personal_info_title_line2")}
                 </h1>
 
                 <div className="profile-form">
                     <div className="group">
                         <label className="profile-form__label text-neutral-400 group-hover:text-primary">
-                            First Name
+                            {t("profile.first_name_label")}
                         </label>
                         <div className="profile-form__input-wrap border-neutral-200 dark:border-neutral-800">
                             <input
                                 type="text"
-                                placeholder="name"
+                                placeholder={t(
+                                    "profile.first_name_placeholder",
+                                )}
                                 value={data.first_name}
                                 onChange={(e) =>
                                     setData("first_name", e.target.value)
@@ -58,12 +64,12 @@ function PersonalInformation({ customer }: ProfileProps) {
                     </div>
                     <div className="group">
                         <label className="profile-form__label text-neutral-400 group-hover:text-primary">
-                            Last Name
+                            {t("profile.last_name_label")}
                         </label>
                         <div className="profile-form__input-wrap border-neutral-200 dark:border-neutral-800">
                             <input
                                 type="text"
-                                placeholder="last name"
+                                placeholder={t("profile.last_name_placeholder")}
                                 value={data.last_name}
                                 onChange={(e) =>
                                     setData("last_name", e.target.value)
@@ -79,12 +85,12 @@ function PersonalInformation({ customer }: ProfileProps) {
                     </div>
                     <div className="group md:col-span-2">
                         <label className="profile-form__label text-neutral-400 group-hover:text-primary">
-                            Email Address
+                            {t("profile.email_label")}
                         </label>
                         <div className="profile-form__input-wrap border-neutral-200 dark:border-neutral-800 flex justify-between items-center">
                             <input
                                 type="email"
-                                placeholder="email"
+                                placeholder={t("profile.email_placeholder")}
                                 value={data.email}
                                 onChange={(e) =>
                                     setData("email", e.target.value)
@@ -103,12 +109,12 @@ function PersonalInformation({ customer }: ProfileProps) {
                     </div>
                     <div className="group md:col-span-2">
                         <label className="profile-form__label text-neutral-400 group-hover:text-primary">
-                            Phone
+                            {t("profile.phone_label")}
                         </label>
                         <div className="profile-form__input-wrap border-neutral-200 dark:border-neutral-800">
                             <input
                                 type="tel"
-                                placeholder="phone"
+                                placeholder={t("profile.phone_placeholder")}
                                 value={data.phone}
                                 onChange={(e) =>
                                     setData("phone", e.target.value)
@@ -131,7 +137,7 @@ function PersonalInformation({ customer }: ProfileProps) {
                         className="profile-form__button bg-primary text-white font-display"
                     >
                         <span className="relative z-10 text-xl">
-                            EDIT PROFILE
+                            {t("profile.edit_profile_button")}
                         </span>
                         <div className="profile-form__button-bg bg-neutral-900 " />
                     </button>

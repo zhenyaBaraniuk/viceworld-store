@@ -3,12 +3,15 @@ import { Link } from "@inertiajs/react";
 import { route } from "@/lib/route";
 import { RouteList } from "ziggy-js";
 import { ArrowRight } from "lucide-react";
+import { useTranslation } from "@/hooks/useTranslation";
 
 export default function Navigation() {
+    const { t } = useTranslation();
+
     const NAV_ITEMS: { label: string; routeName: keyof RouteList }[] = [
-        { label: "Profile", routeName: "account.show" },
-        { label: "Settings", routeName: "account.settings" },
-    ] as const;
+        { label: t("profile.nav_profile"), routeName: "account.show" },
+        { label: t("profile.nav_settings"), routeName: "account.settings" },
+    ];
 
     return (
         <aside className="navigation md:col-span-3">
@@ -37,7 +40,7 @@ export default function Navigation() {
                     className="navigation__nav-link text-error font-display mt-12 hover:bg-error-container transition-all"
                     href={route("logout")}
                 >
-                    <span>Log Out</span>
+                    <span>{t("profile.nav_logout")}</span>
                 </Link>
             </nav>
         </aside>

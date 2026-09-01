@@ -1,6 +1,9 @@
 import "../../../css/front/pages/success-order/body.css";
+import { useTranslation } from "@/hooks/useTranslation";
 
 export default function Body() {
+    const { t } = useTranslation();
+
     return (
         <>
             <div className="success max-w-4xl">
@@ -14,47 +17,46 @@ export default function Body() {
 
                 <div className="success__text">
                     <span className="success__text-status font-headline text-primary-container">
-                        Order Status: Paid
+                        {t("success.status_label")}
                     </span>
 
                     <h1 className="success__text-confirm font-headline text-on-surface">
-                        CONFIRMED
+                        {t("success.confirmed")}
                         <br />
-                        &amp; SHIPPED
+                        {t("success.shipped")}
                     </h1>
                 </div>
 
                 <div className="success__number border-y-2 border-on-surface">
                     <p className="success__number-id font-headline text-on-surface">
-                        ID: VW-2024-81
+                        {t("success.order_id_prefix")} VW-2024-81
                     </p>
                 </div>
 
                 <div className="success__delivery bg-on-surface border-on-surface">
                     <div className="bg-surface p-10 text-left">
                         <h3 className="success__delivery-title font-headline text-outline">
-                            Delivery Window
+                            {t("success.delivery_window_label")}
                         </h3>
 
                         <p className="success__delivery-data font-headline text-on-surface ">
-                            Oct 24 — Oct 26
+                            {t("success.delivery_window_value")}
                         </p>
 
                         <p className="success__delivery-text font-body text-on-surface-variant">
-                            Tracking documentation dispatched to registered
-                            electronic mail address.
+                            {t("success.tracking_text")}
                         </p>
                     </div>
 
                     <div className="bg-surface p-10 text-left">
                         <h3 className="success__delivery-title font-headline text-outline ">
-                            Shipping Destination
+                            {t("success.shipping_destination_label")}
                         </h3>
 
                         <p className="success__delivery-data font-headline text-on-surface leading-tight">
-                            122 Architecture St.
+                            {t("success.shipping_address_line1")}
                             <br />
-                            Berlin, DE 10115
+                            {t("success.shipping_address_line2")}
                         </p>
                     </div>
                 </div>
@@ -64,7 +66,7 @@ export default function Body() {
                         className="success__buttons-shop bg-on-surface text-white font-headline hover:bg-primary-container transition-colors duration-150"
                         href="#"
                     >
-                        Shop Again
+                        {t("success.shop_again")}
                         <span className="material-symbols-outlined text-sm">
                             north_east
                         </span>
@@ -74,21 +76,21 @@ export default function Body() {
                         className="success__buttons-track border-2 bg-transparent border-on-surface text-on-surface font-headline hover:bg-on-surface hover:text-white transition-colors duration-150"
                         href="#"
                     >
-                        Track Parcel
+                        {t("success.track_parcel")}
                     </a>
                 </div>
             </div>
 
             <div className="success__visual border-t-2 border-on-surface">
                 <img
-                    alt="Streetwear aesthetic"
+                    alt={t("success.visual_alt")}
                     className="success__visual-img grayscale brightness-90 contrast-125"
                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuDHr2_bjS7O_u3iAnXV_K_DO1IrB2wiCOYhyBUG5Bjdry8v3uxd_lDJR7xRdkXzn07te5iS5X0N5AkeNfIF-K4mY1Uj0zswhZB2xMiQ7Hmb-5_gOCrECGkM0rcrQLEoXp6tHCPeQNMcc8DD6F-LRxklt0vJsGA92_DongFCaVbkvGf4oLEKkynfMPpGDjVYBsayx2KgxBzykR8UJtMAeZe3rt9rUIGd0Y4VICk4XEO_scgvIT0ZAMR0J9ODGbz3dFw4Dklp5Fw_P7AI"
                 />
 
                 <div className="success__visual-overlay">
                     <h2 className="success__visual-text font-headline text-white/90 mix-blend-overlay">
-                        ESTABLISHED
+                        {t("success.established")}
                     </h2>
                 </div>
             </div>

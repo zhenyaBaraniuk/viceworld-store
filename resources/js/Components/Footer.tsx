@@ -2,8 +2,10 @@ import "../../css/front/components/footer.css";
 import { ArrowRight } from "lucide-react";
 import { useForm } from "@inertiajs/react";
 import { route } from "@/lib/route";
+import { useTranslation } from "@/hooks/useTranslation";
 
 export default function Footer() {
+    const { t } = useTranslation();
     const year = new Date().getFullYear();
 
     const { data, setData, post, errors, wasSuccessful } = useForm({
@@ -35,18 +37,18 @@ export default function Footer() {
 
                     <div className="site-footer__coords">
                         <p className="site-footer__col-title text-neutral-500">
-                            Coordinates / Store Network
+                            {t("footer.coordinates_title")}
                         </p>
 
                         <div className="flex flex-col gap-2">
                             <p className="site-footer__col-title text-white">
-                                KYIV — 50.4501° N, 30.5234° E
+                                {t("footer.store_kyiv")}
                             </p>
                             <p className="site-footer__col-title text-neutral-500">
-                                BERLIN SOON — 52.5200° N, 13.4050° E
+                                {t("footer.store_berlin")}
                             </p>
                             <p className="site-footer__col-title text-neutral-500">
-                                TOKYO SOON — 35.6762° N, 139.6503° E
+                                {t("footer.store_tokyo")}
                             </p>
                         </div>
                     </div>
@@ -54,43 +56,43 @@ export default function Footer() {
 
                 <div className="flex flex-col gap-8">
                     <h4 className="site-footer__col-title text-primary">
-                        Navigation
+                        {t("footer.nav_title")}
                     </h4>
                     <div className="flex flex-col gap-4">
                         <a
                             className="site-footer__nav-link text-neutral-500 hover:text-white"
                             href="#"
                         >
-                            Newsletter
+                            {t("footer.nav_newsletter")}
                         </a>
                         <a
                             className="site-footer__nav-link text-neutral-500 hover:text-white"
                             href="#"
                         >
-                            Terms
+                            {t("footer.nav_terms")}
                         </a>
                         <a
                             className="site-footer__nav-link text-neutral-500 hover:text-white"
                             href="#"
                         >
-                            Privacy
+                            {t("footer.nav_privacy")}
                         </a>
                         <a
                             className="site-footer__nav-link text-neutral-500 hover:text-white"
                             href="#"
                         >
-                            Cookie Policy
+                            {t("footer.nav_cookie")}
                         </a>
                     </div>
                 </div>
 
                 <div className="flex flex-col gap-8">
                     <h4 className="site-footer__col-title text-primary">
-                        Union Hub
+                        {t("footer.union_hub_title")}
                     </h4>
 
                     <p className="site-footer__nav-link text-neutral-400">
-                        Access limited drops via archival subscription.
+                        {t("footer.union_hub_description")}
                     </p>
 
                     <form
@@ -99,7 +101,7 @@ export default function Footer() {
                     >
                         <input
                             className="site-footer__newsletter-input text-white placeholder:text-neutral-800"
-                            placeholder="ENTER@COMMUNICATIONS.COM"
+                            placeholder={t("footer.newsletter_placeholder")}
                             type="email"
                             value={data.email}
                             onChange={(e) => setData("email", e.target.value)}
@@ -114,7 +116,7 @@ export default function Footer() {
                     )}
                     {wasSuccessful && (
                         <p className="text-primary text-sm font-bold uppercase tracking-widest">
-                            Subscribed.
+                            {t("footer.subscribed")}
                         </p>
                     )}
 
@@ -123,13 +125,13 @@ export default function Footer() {
                             className="site-footer__social-link text-white underline hover:text-primary"
                             href="#"
                         >
-                            INSTAGRAM
+                            {t("footer.social_instagram")}
                         </a>
                         <a
                             className="site-footer__social-link text-neutral-500 hover:text-primary"
                             href="#"
                         >
-                            TWITTER
+                            {t("footer.social_twitter")}
                         </a>
                     </div>
                 </div>
@@ -137,7 +139,7 @@ export default function Footer() {
 
             <div className="site-footer__bottom border-neutral-900">
                 <p className="site-footer__copyright text-neutral-700">
-                    © {year} V!ceWorld. Architectural Brutalism.
+                    © {year} {t("footer.copyright_suffix")}
                 </p>
             </div>
         </footer>

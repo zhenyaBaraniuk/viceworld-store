@@ -11,7 +11,8 @@
         "lint:fix": "eslint resources/js --fix",
         "format": "prettier --write resources/js",
         "typecheck": "tsc --noEmit",
-        "fix": "npm run typecheck && npm run lint:fix && npm run format"
+        "fix": "npm run typecheck && npm run lint:fix && npm run format",
+        "test:js": "vitest run"
     },
     "devDependencies": {
         "@eslint/js": "^10.0.1",
@@ -29,7 +30,8 @@
         "prettier": "3.8.3",
         "tailwindcss": "^4.2.2",
         "typescript": "^6.0.3",
-        "typescript-eslint": "^8.59.0"
+        "typescript-eslint": "^8.59.0",
+        "vitest": "^4.1.11"
     },
     "dependencies": {
         "@inertiajs/react": "^3.0.3",

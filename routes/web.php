@@ -51,3 +51,19 @@ Route::prefix('{locale}')
     });
 
 Route::post('/newsletter/subscribe', [NewsletterSubscriberController::class, 'store'])->name('newsletter.subscribe');
+
+Route::fallback(function () {
+    $path = trim(request()->getPathInfo(), '/');
+    $segments = $path === '' ? [] : explode('/', $path);
+    $first = $segments[0] ?? null;
+
+    abort_if(in_array($first, ['en', 'uk'], true), 404);
+
+    if ($first !== null && preg_match('/^[a-z]{2}$/', $first)) {
+        array_shift($segments);
+    }
+
+    $rest = implode('/', $segments);
+
+    return redirect('/'.config('app.locale').($rest !== '' ? '/'.$rest : ''));
+});

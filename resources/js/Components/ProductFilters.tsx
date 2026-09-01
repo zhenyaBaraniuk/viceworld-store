@@ -3,6 +3,7 @@ import { useState } from "react";
 import clsx from "clsx";
 import type { ProductFiltersProps as Props } from "@/types";
 import * as Slider from "@radix-ui/react-slider";
+import { useTranslation } from "@/hooks/useTranslation";
 
 const SIZES = ["XS", "S", "M", "L", "XL", "XXL"];
 
@@ -14,6 +15,8 @@ export default function ProductFilters({
     categoryKey,
     onNavigate,
 }: Props) {
+    const { t } = useTranslation();
+
     const [priceValue, setPriceValue] = useState<number>(
         filters.price ?? max_price,
     );
@@ -39,7 +42,7 @@ export default function ProductFilters({
         <aside className="filters hidden md:block">
             <div>
                 <h3 className="filters__heading font-headline border-on-surface">
-                    Category
+                    {t("filters.category_heading")}
                 </h3>
 
                 <ul className="filters__list">
@@ -70,7 +73,7 @@ export default function ProductFilters({
 
             <div>
                 <h3 className="filters__heading font-headline border-on-surface">
-                    Size
+                    {t("filters.size_heading")}
                 </h3>
 
                 <div className="filters__size-grid">
@@ -96,7 +99,7 @@ export default function ProductFilters({
 
             <div>
                 <h3 className="filters__heading font-headline border-on-surface">
-                    Color
+                    {t("filters.color_heading")}
                 </h3>
 
                 <div className="filters__colors">
@@ -118,7 +121,7 @@ export default function ProductFilters({
 
             <div>
                 <h3 className="filters__heading font-headline border-on-surface">
-                    Price Range
+                    {t("filters.price_heading")}
                 </h3>
 
                 <Slider.Root

@@ -2,16 +2,21 @@ import "../../../css/front/pages/home/new-arrivals.css";
 import { HomeProps } from "@/types";
 import { route } from "@/lib/route";
 import { Link } from "@inertiajs/react";
+import { useTranslation } from "@/hooks/useTranslation";
 
 type Props = Pick<HomeProps, "new_arrivals">;
 
 export default function NewArrivals({ new_arrivals }: Props) {
+    const { t } = useTranslation();
+
     return (
         <section className="new-arrivals">
             <div className="new-arrivals__header">
-                <h2 className="new-arrivals__title">New Arrivals</h2>
+                <h2 className="new-arrivals__title">
+                    {t("home.new_arrivals_title")}
+                </h2>
                 <Link href={route("search")} className="new-arrivals__link">
-                    View All
+                    {t("home.new_arrivals_view_all")}
                 </Link>
             </div>
 
@@ -28,7 +33,9 @@ export default function NewArrivals({ new_arrivals }: Props) {
                                 className="new-arrivals__card-img"
                                 src={new_arrival.main_image_url ?? undefined}
                             />
-                            <div className="new-arrivals__badge">New</div>
+                            <div className="new-arrivals__badge">
+                                {t("home.new_arrivals_badge")}
+                            </div>
                         </div>
 
                         <div className="new-arrivals__card-info">

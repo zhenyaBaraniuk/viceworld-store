@@ -3,10 +3,13 @@ import "../../../css/front/pages/home/category-tiles.css";
 import { HomeProps } from "@/types";
 import { route } from "@/lib/route";
 import { Link } from "@inertiajs/react";
+import { useTranslation } from "@/hooks/useTranslation";
 
 type Props = Pick<HomeProps, "category_tiles">;
 
 export default function CategoryTiles({ category_tiles }: Props) {
+    const { t } = useTranslation();
+
     return (
         <section className="category-tiles bg-neutral-900">
             <div className="category-tiles__grid">
@@ -32,7 +35,7 @@ export default function CategoryTiles({ category_tiles }: Props) {
 
                         <div className="category-tiles__label">
                             <span className="category-tiles__label-text text-white  font-bold">
-                                Volume 0{index + 1}
+                                {t("category_tiles.volume_prefix")} 0{index + 1}
                             </span>
                         </div>
                     </Link>

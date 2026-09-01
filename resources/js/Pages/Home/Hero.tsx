@@ -2,10 +2,13 @@ import "../../../css/front/pages/home/hero.css";
 import { HomeProps } from "@/types";
 import { route } from "@/lib/route";
 import { Link } from "@inertiajs/react";
+import { useTranslation } from "@/hooks/useTranslation";
 
 type Props = Pick<HomeProps, "hero_product">;
 
 export default function Hero({ hero_product }: Props) {
+    const { t } = useTranslation();
+
     return (
         <section className="hero bg-neutral-200">
             <img
@@ -22,13 +25,14 @@ export default function Hero({ hero_product }: Props) {
                     href={route("search")}
                     className="hero__cta bg-primary text-white  hover:bg-black"
                 >
-                    Shop now
+                    {t("hero.cta")}
                 </Link>
             </div>
 
             <div className="hero__label hidden lg:block">
                 <span className="hero__label-text text-white">
-                    Collection {new Date().getFullYear()} / Brutalism
+                    {t("hero.collection_prefix")} {new Date().getFullYear()} /{" "}
+                    {t("hero.collection_suffix")}
                 </span>
             </div>
         </section>
