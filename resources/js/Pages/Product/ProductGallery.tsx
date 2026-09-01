@@ -5,6 +5,7 @@ import Zoom from "yet-another-react-lightbox/plugins/zoom";
 import "yet-another-react-lightbox/styles.css";
 import { useRef, useState } from "react";
 import type { Media } from "@/types/models/media";
+import { useTranslation } from "@/hooks/useTranslation";
 
 type Props = {
     name: string;
@@ -19,6 +20,7 @@ export default function ProductGallery({
     main_image,
     images,
 }: Props) {
+    const { t } = useTranslation();
     const videoRef = useRef<HTMLVideoElement>(null);
     const [isPlaying, setIsPlaying] = useState(true);
     const [lightboxOpen, setLightboxOpen] = useState(false);
@@ -73,7 +75,7 @@ export default function ProductGallery({
                         </video>
 
                         <div className="product-gallery__badge bg-primary text-white  font-['Space_Grotesk']">
-                            ▶ VIDEO
+                            {t("product.video_badge")}
                         </div>
 
                         {!isPlaying && (

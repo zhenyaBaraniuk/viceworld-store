@@ -2,13 +2,18 @@ import "../../../css/front/pages/product/additional-products.css";
 import { ProductProps } from "@/types/pages/product";
 import { route } from "@/lib/route";
 import { Link } from "@inertiajs/react";
+import { useTranslation } from "@/hooks/useTranslation";
 
 type Props = Pick<ProductProps, "related_products">;
 
 export default function AdditionalProducts({ related_products }: Props) {
+    const { t } = useTranslation();
+
     return (
         <section className="additional-products">
-            <h2 className="additional-products__title">Complete the Look</h2>
+            <h2 className="additional-products__title">
+                {t("product.complete_the_look")}
+            </h2>
 
             <div className="additional-products__grid">
                 {related_products.map((related_product) => (

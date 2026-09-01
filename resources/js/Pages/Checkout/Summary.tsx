@@ -1,7 +1,9 @@
 import "../../../css/front/pages/checkout/summary.css";
 import { useCartStore } from "@/store/useCartStore";
+import { useTranslation } from "@/hooks/useTranslation";
 
 export default function Summary() {
+    const { t } = useTranslation();
     const items = useCartStore((state) => state.items);
     const totalPrice = useCartStore((state) => state.totalPrice);
 
@@ -9,7 +11,7 @@ export default function Summary() {
         <div className="lg:col-span-4">
             <div className="summary bg-white">
                 <h3 className="summary__title font-headline border-b-[6px] border-on-surface">
-                    Order Summary
+                    {t("checkout.order_summary")}
                 </h3>
 
                 <div className="summary__order space-y-10">
@@ -39,7 +41,9 @@ export default function Summary() {
                                                     attributeValue.value,
                                             )
                                             .join(" / ")}
-                                        {" - "}Qty: {item.quantity}
+                                        {" - "}
+                                        {t("checkout.qty_label")}{" "}
+                                        {item.quantity}
                                     </p>
                                 </div>
 
@@ -53,13 +57,17 @@ export default function Summary() {
 
                 <div className="summary__bill space-y-5 border-t border-surface-container-highest">
                     <div className="summary__bill-chapters font-headline">
-                        <span className="text-outline">Subtotal</span>
+                        <span className="text-outline">
+                            {t("checkout.subtotal")}
+                        </span>
                         <span>₴{totalPrice}</span>
                     </div>
                     <div className="summary__bill-chapters font-headline">
-                        <span className="text-outline">Shipping</span>
+                        <span className="text-outline">
+                            {t("checkout.shipping_label")}
+                        </span>
                         <span className="text-primary-container">
-                            Next Step
+                            {t("checkout.shipping_next_step")}
                         </span>
                     </div>
                 </div>
