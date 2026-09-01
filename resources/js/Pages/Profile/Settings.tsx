@@ -8,11 +8,8 @@ import { ProfileProps } from "@/types/pages/profile";
 import { useForm } from "@inertiajs/react";
 import { route } from "@/lib/route";
 import ProfileLayout from "@/Layouts/ProfileLayout";
-import { useTranslation } from "@/hooks/useTranslation";
 
 function Settings({ customer }: ProfileProps) {
-    const { t } = useTranslation();
-
     const passwordForm = useForm({
         current_password: "",
         new_password: "",
@@ -44,14 +41,12 @@ function Settings({ customer }: ProfileProps) {
     return (
         <>
             <div className="watermark">
-                <span className="watermark__text">
-                    {t("profile.settings_watermark")}
-                </span>
+                <span className="watermark__text">SETTINGS</span>
             </div>
 
             <div className="profile-header">
                 <h1 className="profile-header__title text-neutral-900 dark:text-white">
-                    {t("profile.settings_title")}
+                    Settings
                 </h1>
 
                 <div className="space-y-24">
@@ -60,16 +55,14 @@ function Settings({ customer }: ProfileProps) {
                             <div className="flex items-center gap-4 mb-8">
                                 <span className="h-px flex-1 bg-on-surface" />
                                 <h2 className="text-2xl font-black">
-                                    {t("profile.security_heading")}
+                                    Security
                                 </h2>
                             </div>
                             <div className="profile-form">
                                 <div className="flex flex-col gap-2">
                                     <div className="group">
                                         <label className="profile-form__label text-neutral-400 group-hover:text-primary">
-                                            {t(
-                                                "profile.current_password_label",
-                                            )}
+                                            Current Password
                                         </label>
                                         <div className="profile-form__input-wrap border-neutral-200 dark:border-neutral-800">
                                             <input
@@ -85,9 +78,7 @@ function Settings({ customer }: ProfileProps) {
                                                     )
                                                 }
                                                 className="profile-form__input text-neutral-900 dark:text-white"
-                                                placeholder={t(
-                                                    "profile.password_placeholder",
-                                                )}
+                                                placeholder="••••••••"
                                             />
                                         </div>
                                         {passwordForm.errors
@@ -104,7 +95,7 @@ function Settings({ customer }: ProfileProps) {
                                 <div className="flex flex-col gap-2">
                                     <div className="group">
                                         <label className="profile-form__label text-neutral-400 group-hover:text-primary">
-                                            {t("profile.new_password_label")}
+                                            New Password
                                         </label>
                                         <div className="profile-form__input-wrap border-neutral-200 dark:border-neutral-800">
                                             <input
@@ -120,9 +111,7 @@ function Settings({ customer }: ProfileProps) {
                                                     )
                                                 }
                                                 className="profile-form__input text-neutral-900 dark:text-white"
-                                                placeholder={t(
-                                                    "profile.new_password_placeholder",
-                                                )}
+                                                placeholder="MIN 8 CHARS"
                                             />
                                         </div>
                                         {passwordForm.errors.new_password && (
@@ -143,7 +132,7 @@ function Settings({ customer }: ProfileProps) {
                                     className="profile-form__button bg-primary text-white"
                                 >
                                     <span className="relative z-10 text-xl">
-                                        {t("profile.save_password_button")}
+                                        Save Password
                                     </span>
                                     <div className="profile-form__button-bg bg-neutral-900" />
                                 </button>
@@ -156,21 +145,19 @@ function Settings({ customer }: ProfileProps) {
                             <div className="flex items-center gap-4 mb-8">
                                 <span className="h-px flex-1 bg-on-surface" />
                                 <h2 className="text-2xl font-black">
-                                    {t("profile.shipping_address_heading")}
+                                    Shipping Address
                                 </h2>
                             </div>
                             <div className="profile-form">
                                 <div className="flex flex-col gap-2 md:col-span-2">
                                     <div className="group">
                                         <label className="profile-form__label text-neutral-400 group-hover:text-primary">
-                                            {t("profile.street_label")}
+                                            Street Address
                                         </label>
                                         <div className="profile-form__input-wrap border-neutral-200 dark:border-neutral-800">
                                             <input
                                                 type="text"
-                                                placeholder={t(
-                                                    "profile.street_placeholder",
-                                                )}
+                                                placeholder="BERLINER STRASSE 102"
                                                 value={addressForm.data.street}
                                                 onChange={(e) =>
                                                     addressForm.setData(
@@ -191,14 +178,12 @@ function Settings({ customer }: ProfileProps) {
                                 <div className="flex flex-col gap-2">
                                     <div className="group">
                                         <label className="profile-form__label text-neutral-400 group-hover:text-primary">
-                                            {t("profile.building_label")}
+                                            Building / Name
                                         </label>
                                         <div className="profile-form__input-wrap border-neutral-200 dark:border-neutral-800">
                                             <input
                                                 type="text"
-                                                placeholder={t(
-                                                    "profile.building_placeholder",
-                                                )}
+                                                placeholder="METROPOL TOWER"
                                                 value={
                                                     addressForm.data.building
                                                 }
@@ -221,14 +206,12 @@ function Settings({ customer }: ProfileProps) {
                                 <div className="flex flex-col gap-2">
                                     <div className="group">
                                         <label className="profile-form__label text-neutral-400 group-hover:text-primary">
-                                            {t("profile.apartment_label")}
+                                            Apartment / Suite
                                         </label>
                                         <div className="profile-form__input-wrap border-neutral-200 dark:border-neutral-800">
                                             <input
                                                 type="text"
-                                                placeholder={t(
-                                                    "profile.apartment_placeholder",
-                                                )}
+                                                placeholder="APT 4B"
                                                 value={
                                                     addressForm.data
                                                         .apartment ?? ""
@@ -252,14 +235,12 @@ function Settings({ customer }: ProfileProps) {
                                 <div className="flex flex-col gap-2">
                                     <div className="group">
                                         <label className="profile-form__label text-neutral-400 group-hover:text-primary">
-                                            {t("profile.city_label")}
+                                            City
                                         </label>
                                         <div className="profile-form__input-wrap border-neutral-200 dark:border-neutral-800">
                                             <input
                                                 type="text"
-                                                placeholder={t(
-                                                    "profile.city_placeholder",
-                                                )}
+                                                placeholder="BERLIN"
                                                 value={
                                                     addressForm.data.city ?? ""
                                                 }
@@ -288,7 +269,7 @@ function Settings({ customer }: ProfileProps) {
                                     className="profile-form__button bg-primary text-white"
                                 >
                                     <span className="relative z-10 text-xl">
-                                        {t("profile.save_changes_button")}
+                                        Save Changes
                                     </span>
                                     <div className="profile-form__button-bg bg-neutral-900" />
                                 </button>

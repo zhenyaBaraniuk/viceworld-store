@@ -8,11 +8,8 @@ import * as Dialog from "@radix-ui/react-dialog";
 import { Customer, NavCategory } from "@/types";
 import clsx from "clsx";
 import { useCartStore } from "@/store/useCartStore";
-import { useTranslation } from "@/hooks/useTranslation";
 
 export default function Header() {
-    const { t } = useTranslation();
-
     const itemCount = useCartStore((state) =>
         state.items.reduce((sum, item) => sum + item.quantity, 0),
     );
@@ -98,7 +95,7 @@ export default function Header() {
 
                             <Dialog.Content className="dialog-content bg-surface dark:bg-neutral-900">
                                 <Dialog.Title className="dialog-title">
-                                    {t("header.search_dialog_title")}
+                                    Search
                                 </Dialog.Title>
 
                                 <form onSubmit={handleSubmit}>

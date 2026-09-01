@@ -5,12 +5,10 @@ import RichText from "@/Components/RichText";
 import { useCartStore } from "@/store/useCartStore";
 import { useState } from "react";
 import clsx from "clsx";
-import { useTranslation } from "@/hooks/useTranslation";
 
 type Props = Pick<ProductProps, "product">;
 
 export default function Product({ product }: Props) {
-    const { t } = useTranslation();
     const [selectedSize, setSelectedSize] = useState<string | null>(null);
     const [showSizeError, setShowSizeError] = useState(false);
     const addItem = useCartStore((state) => state.addItem);
@@ -68,7 +66,7 @@ export default function Product({ product }: Props) {
                     </div>
 
                     <p className="product-info__meta text-primary">
-                        {t("product.meta_tag")}
+                        Core Collection • Limited Edition
                     </p>
                 </header>
 
@@ -76,11 +74,11 @@ export default function Product({ product }: Props) {
                     <div className="space-y-4">
                         <div className="flex justify-between items-end">
                             <span className="text-xs font-bold uppercase tracking-widest text-neutral-500">
-                                {t("product.select_size")}
+                                Select size
                             </span>
 
                             <span className="text-xs font-bold uppercase tracking-widest text-neutral-400">
-                                {t("product.size_guide")}
+                                Size guide
                             </span>
                         </div>
 
@@ -108,13 +106,13 @@ export default function Product({ product }: Props) {
                         </div>
                         {showSizeError && (
                             <p className="text-xs text-error font-bold uppercase tracking-widest">
-                                {t("product.size_error")}
+                                Please select a size
                             </p>
                         )}
                     </div>
 
                     <button className="product-info__ai-btn text-primary hover:underline group">
-                        <span>{t("product.ai_size_advisor")}</span>
+                        <span>Not sure about your size? Ask AI</span>
 
                         <span
                             className="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform"
@@ -130,19 +128,17 @@ export default function Product({ product }: Props) {
                         className="product-info__btn text-white active:scale-[0.98] hover:bg-primary"
                         onClick={handleAddToCart}
                     >
-                        {t("product.add_to_cart")}
+                        Add to Cart
                     </button>
 
                     <button className="product-info__btn-card border-on-surface hover:bg-on-surface hover:text-white">
-                        {t("product.buy_apple_pay")}
+                        Buy with Apple pay
                     </button>
                 </div>
 
                 <div className="product-info__details border-neutral-200">
                     <div className="space-y-4">
-                        <h3 className="text-sm font-black">
-                            {t("product.description_heading")}
-                        </h3>
+                        <h3 className="text-sm font-black">Description</h3>
                         <div className="text-neutral-600 leading-relaxed font-body">
                             <RichText content={product.description} />
                         </div>
@@ -158,9 +154,9 @@ export default function Product({ product }: Props) {
                             </span>
 
                             <p className="text-[10px] font-black uppercase">
-                                {t("product.feature_rapid_deployment")}
+                                Rapid deployment
                             </p>
-                            <p>{t("product.feature_rapid_deployment_desc")}</p>
+                            <p>4-way stretch tech</p>
                         </div>
 
                         <div className="space-y-2">
@@ -172,10 +168,10 @@ export default function Product({ product }: Props) {
                             </span>
 
                             <p className="text-[10px] font-black uppercase">
-                                {t("product.feature_urban_armor")}
+                                Urban Armor
                             </p>
                             <p className="text-[10px] text-neutral-500">
-                                {t("product.feature_urban_armor_desc")}
+                                Abrasion resistant
                             </p>
                         </div>
                     </div>
@@ -183,7 +179,7 @@ export default function Product({ product }: Props) {
                     <div className="space-y-4">
                         <details className="group border-b border-neutral-200 pb-4">
                             <summary className="product-info__accordion-summary">
-                                {t("product.shipping_returns_heading")}
+                                Shipping &amp; Returns
                                 <span
                                     className="material-symbols-outlined group-open:rotate-180 transition-transform"
                                     data-icon="expand_more"
@@ -193,13 +189,15 @@ export default function Product({ product }: Props) {
                             </summary>
 
                             <div className="pt-4 text-xs text-neutral-500 font-body">
-                                {t("product.shipping_returns_text")}
+                                Worldwide express shipping available. 14-day
+                                return policy for unused items in original
+                                packaging.
                             </div>
                         </details>
 
                         <details className="group border-b border-neutral-200 pb-4">
                             <summary className="product-info__accordion-summary">
-                                {t("product.fabric_details_heading")}
+                                Fabric Details
                                 <span
                                     className="material-symbols-outlined group-open:rotate-180 transition-transform"
                                     data-icon="expand_more"
@@ -209,7 +207,8 @@ export default function Product({ product }: Props) {
                             </summary>
 
                             <div className="pt-4 text-xs text-neutral-500 font-body">
-                                {t("product.fabric_details_text")}
+                                Shell: 100% Recycled Nylon. Lining: 100% Cupro.
+                                Trim: 100% Vegetable Tanned Leather.
                             </div>
                         </details>
                     </div>

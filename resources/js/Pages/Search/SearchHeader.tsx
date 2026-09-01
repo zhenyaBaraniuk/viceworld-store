@@ -4,12 +4,10 @@ import { useState } from "react";
 import { route } from "@/lib/route";
 import { router } from "@inertiajs/react";
 import { ArrowRight } from "lucide-react";
-import { useTranslation } from "@/hooks/useTranslation";
 
 type Props = Pick<SearchProps, "query" | "total">;
 
 export default function SearchHeader({ query, total }: Props) {
-    const { t } = useTranslation();
     const [input, setInput] = useState(query);
 
     function handleSearch(e: React.SubmitEvent) {
@@ -28,7 +26,7 @@ export default function SearchHeader({ query, total }: Props) {
                         type="text"
                         value={input}
                         onChange={(e) => setInput(e.target.value)}
-                        placeholder={t("search.placeholder")}
+                        placeholder="Search..."
                         className="bg-transparent w-full uppercase placeholder:text-outline"
                         autoFocus
                     />
@@ -45,8 +43,8 @@ export default function SearchHeader({ query, total }: Props) {
             <div className="search-header__result border-outline-variant">
                 <h2 className="search-header__result-title text-on-surface">
                     {query
-                        ? `${total} ${t("search.results_for")} '${query}'`
-                        : `${total} ${t("search.products_label")}`}
+                        ? `${total} results for '${query}'`
+                        : `${total} products`}
                 </h2>
             </div>
         </section>

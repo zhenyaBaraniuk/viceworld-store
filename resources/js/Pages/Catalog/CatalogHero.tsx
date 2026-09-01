@@ -1,21 +1,18 @@
 import "@css/front/pages/catalog/catalog-hero.css";
-import { useTranslation } from "@/hooks/useTranslation";
 
 export default function CatalogHero() {
-    const { t } = useTranslation();
-
     return (
         <div className="catalog-hero">
             <div className="catalog-hero__watermark">
                 <h1 className="catalog-hero__watermark-title font-headline">
-                    {t("catalog.hero_watermark")}
+                    CATALOG
                 </h1>
             </div>
 
             <div className="catalog-hero__content">
                 <div>
                     <h2 className="catalog-hero__meta font-headline">
-                        {t("catalog.hero_meta")}
+                        All Products
                     </h2>
                 </div>
 
@@ -23,7 +20,7 @@ export default function CatalogHero() {
                     <span className="material-symbols-outlined text-sm">
                         tune
                     </span>
-                    {t("catalog.filter_sort")}
+                    Filter & Sort
                 </button>
             </div>
         </div>

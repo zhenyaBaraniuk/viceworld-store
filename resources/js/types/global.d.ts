@@ -9,7 +9,6 @@ declare module "@inertiajs/core" {
             nav_categories: NavCategory[];
             auth: { customer: Customer | null };
             flash: Record<string, string | undefined>;
-            translations: Record<string, string>;
         };
     }
 }

@@ -4,7 +4,6 @@ import { useForm } from "@inertiajs/react";
 import { route } from "@/lib/route";
 import clsx from "clsx";
 import type { CheckoutProps } from "@/types";
-import { useTranslation } from "@/hooks/useTranslation";
 
 const PAYMENT_ICONS: Record<string, string> = {
     liqpay: "/images/payment/liqpay.png",
@@ -12,7 +11,6 @@ const PAYMENT_ICONS: Record<string, string> = {
 };
 
 export default function Info({ payment_methods }: CheckoutProps) {
-    const { t } = useTranslation();
     const { data, post, setData, errors, processing } = useForm({
         email: "",
         phone: "",
@@ -30,23 +28,23 @@ export default function Info({ payment_methods }: CheckoutProps) {
         <div className="info space-y-24">
             <section>
                 <h2 className="info__title font-headline">
-                    {t("checkout.contact_info_title")}
+                    1. Contact Information
                 </h2>
 
                 <div className="info__contacts">
                     <FormField
-                        label={t("checkout.email_label")}
+                        label="Email Address"
                         type="email"
-                        placeholder={t("checkout.email_placeholder")}
+                        placeholder="name.lastname@vice-world.com"
                         value={data.email}
                         onChange={(value) => setData("email", value)}
                         error={errors.email}
                     />
 
                     <FormField
-                        label={t("checkout.phone_label")}
+                        label="Phone number"
                         type="tel"
-                        placeholder={t("checkout.phone_placeholder")}
+                        placeholder="+380 •• ••• •• ••"
                         value={data.phone}
                         onChange={(value) => setData("phone", value)}
                         error={errors.phone}
@@ -56,7 +54,7 @@ export default function Info({ payment_methods }: CheckoutProps) {
 
             <section>
                 <h2 className="info__title font-headline">
-                    {t("checkout.delivery_title")}
+                    2. Delivery Method
                 </h2>
 
                 <div className="info__delivery">
@@ -72,7 +70,7 @@ export default function Info({ payment_methods }: CheckoutProps) {
                         <div>
                             <div className="flex justify-between items-start mb-2">
                                 <span className="font-headline font-bold uppercase tracking-tight text-lg">
-                                    {t("checkout.delivery_courier")}
+                                    Courier Delivery
                                 </span>
 
                                 <span
@@ -117,7 +115,7 @@ export default function Info({ payment_methods }: CheckoutProps) {
                         <div>
                             <div className="flex justify-between items-start mb-2">
                                 <span className="font-headline font-bold uppercase tracking-tight text-lg">
-                                    {t("checkout.delivery_pickup")}
+                                    Pickup in Store
                                 </span>
 
                                 <span
@@ -143,7 +141,7 @@ export default function Info({ payment_methods }: CheckoutProps) {
                             </div>
 
                             <p className="text-xs uppercase text-outline font-bold tracking-wider">
-                                {t("checkout.pickup_address")}
+                                Kyiv Flagship, Baseina 12
                             </p>
                         </div>
                     </div>
@@ -152,16 +150,16 @@ export default function Info({ payment_methods }: CheckoutProps) {
                 {data.delivery_method === "courier" && (
                     <div className="info__shipping mt-6">
                         <FormField
-                            label={t("checkout.city_label")}
-                            placeholder={t("checkout.city_placeholder")}
+                            label="City"
+                            placeholder="Kyiv"
                             value={data.city}
                             onChange={(value) => setData("city", value)}
                             error={errors.city}
                         />
 
                         <FormField
-                            label={t("checkout.street_label")}
-                            placeholder={t("checkout.street_placeholder")}
+                            label="Street address"
+                            placeholder="Khreshchatyk St, 22, Apt 4"
                             value={data.street}
                             onChange={(value) => setData("street", value)}
                             error={errors.street}
@@ -171,9 +169,7 @@ export default function Info({ payment_methods }: CheckoutProps) {
             </section>
 
             <section>
-                <h2 className="info__title font-headline">
-                    {t("checkout.payment_title")}
-                </h2>
+                <h2 className="info__title font-headline">3. Payment</h2>
 
                 <div className="info__payment">
                     {payment_methods.map((method) => (
@@ -225,7 +221,7 @@ export default function Info({ payment_methods }: CheckoutProps) {
                     disabled={processing}
                     className="info__btn-title bg-on-surface text-white font-headline hover:bg-primary-container transition-colors duration-300"
                 >
-                    {t("checkout.place_order")}
+                    Place order
                 </button>
             </div>
         </div>

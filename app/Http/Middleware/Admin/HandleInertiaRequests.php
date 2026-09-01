@@ -3,7 +3,6 @@
 namespace App\Http\Middleware\Admin;
 
 use App\Http\Middleware\SharedData\MenuSharedData;
-use App\Http\Middleware\SharedData\TranslationSharedData;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 
@@ -13,7 +12,6 @@ class HandleInertiaRequests extends Middleware
 
     public function __construct(
         private readonly MenuSharedData $menuSharedData,
-        private readonly TranslationSharedData $translationSharedData,
     ) {}
 
     public function version(Request $request): ?string
@@ -24,14 +22,13 @@ class HandleInertiaRequests extends Middleware
     public function share(Request $request): array
     {
         return [
-            'locale' => fn () => app()->getLocale(),
+            'locale' => app()->getLocale(),
             'auth' => [
                 'customer' => $request->user('customer'),
             ],
             'flash' => fn () => $request->session()->only(['success', 'error']),
             ...parent::share($request),
             ...$this->menuSharedData->resolve($request),
-            ...$this->translationSharedData->resolve($request),
         ];
     }
 }
