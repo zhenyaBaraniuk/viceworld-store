@@ -2,7 +2,7 @@ import "../../css/front/components/header.css";
 import { Link, router, usePage } from "@inertiajs/react";
 import { route } from "@/lib/route";
 import { useEffect, useState } from "react";
-import { Moon, Search, ShoppingBag, Sun, User, X } from "lucide-react";
+import { Search, ShoppingBag, User, X } from "lucide-react";
 import LangSwitcher from "@/Components/LangSwitcher";
 import * as Dialog from "@radix-ui/react-dialog";
 import { Customer, NavCategory } from "@/types";
@@ -31,7 +31,6 @@ export default function Header() {
     };
 
     const [value, setValue] = useState("");
-    const [theme, setTheme] = useState<"light" | "dark">("light");
 
     function handleSubmit(e: React.SubmitEvent<HTMLFormElement>) {
         e.preventDefault();
@@ -41,18 +40,6 @@ export default function Header() {
 
     const isCategoryActive = (slug: string) =>
         route().current("catalog.show", { slug });
-
-    const toggleTheme = () => {
-        const next = theme === "light" ? "dark" : "light";
-
-        setTheme(next);
-
-        if (next === "dark") {
-            document.documentElement.classList.add("dark");
-        } else {
-            document.documentElement.classList.remove("dark");
-        }
-    };
 
     return (
         <header className="navbar bg-surface dark:bg-neutral-900 border-neutral-100 dark:border-neutral-800">
@@ -141,17 +128,6 @@ export default function Header() {
                     </Link>
 
                     <LangSwitcher />
-
-                    <button
-                        onClick={toggleTheme}
-                        className="navbar__theme text-neutral-900 dark:text-white"
-                    >
-                        {theme === "dark" ? (
-                            <Sun size={20} />
-                        ) : (
-                            <Moon size={20} />
-                        )}
-                    </button>
                 </div>
             </div>
         </header>
