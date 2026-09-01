@@ -25,7 +25,7 @@ export default function Header() {
         });
     }, [fetchCart]);
 
-    const { nav_categories } = usePage().props as {
+    const { nav_categories, auth } = usePage().props as {
         nav_categories: NavCategory[];
         auth: { customer: Customer | null };
     };
@@ -109,7 +109,7 @@ export default function Header() {
                     </Dialog.Root>
 
                     <Link
-                        href={route("login")}
+                        href={auth.customer ? route("account.show") : route("login")}
                         className="navbar_action-btn text-neutral-900 dark:text-white"
                     >
                         <User size={20} />
