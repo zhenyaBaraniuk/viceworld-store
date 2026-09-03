@@ -26,7 +26,10 @@ function ProductPage({ product, category, related_products }: ProductProps) {
             />
 
             <Product product={product} />
-            <AdditionalProducts related_products={related_products} />
+
+            {related_products.length > 0 && (
+                <AdditionalProducts related_products={related_products} />
+            )}
         </div>
     );
 }
