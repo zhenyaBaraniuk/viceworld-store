@@ -11,16 +11,16 @@ class ProductShortData extends Data
         public string $name,
         public string $slug,
         public string $price,
-        public ?string $main_image,
+        public ?string $main_image_url,
     ) {}
 
     public static function fromModel(Product $product): self
     {
         return new self(
-            name: $product->name,
-            slug: $product->slug,
-            price: $product->price,
-            main_image: $product->getFirstMediaUrl('main_image'),
+            $product->name,
+            $product->slug,
+            $product->price,
+            $product->mediaFiles()->wherePivot('collection', 'main_image')->first()?->url,
         );
     }
 }
