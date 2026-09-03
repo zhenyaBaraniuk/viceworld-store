@@ -132,10 +132,6 @@ export default function Product({ product }: Props) {
                     >
                         {t("product.add_to_cart")}
                     </button>
-
-                    <button className="product-info__btn-card border-on-surface hover:bg-on-surface hover:text-white">
-                        {t("product.buy_apple_pay")}
-                    </button>
                 </div>
 
                 <div className="product-info__details border-neutral-200">

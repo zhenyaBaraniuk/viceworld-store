@@ -17,12 +17,15 @@ export default function ProductFilters({
 }: Props) {
     const { t } = useTranslation();
 
-    const [priceValue, setPriceValue] = useState<number>(
-        filters.price ?? max_price,
+    const [priceRange, setPriceRange] = useState<[number, number]>(
+        filters.price ?? [0, max_price],
     );
 
-    function handlePrice(value: number) {
-        onNavigate({ ...filters, price: value || undefined });
+    function handlePrice([min, max]: [number, number]) {
+        onNavigate({
+            ...filters,
+            price: min === 0 && max === max_price ? undefined : [min, max],
+        });
     }
 
     function handleFilter(key: string, value: string) {
@@ -128,21 +131,24 @@ export default function ProductFilters({
                     className="relative flex items-center w-full h-5"
                     min={0}
                     max={max_price}
-                    value={[priceValue]}
+                    value={priceRange}
                     onValueChange={(values: number[]) =>
-                        setPriceValue(values[0])
+                        setPriceRange(values as [number, number])
                     }
-                    onValueCommit={(values: number[]) => handlePrice(values[0])}
+                    onValueCommit={(values: number[]) =>
+                        handlePrice(values as [number, number])
+                    }
                 >
                     <Slider.Track className="filters__price-track bg-surface-container-high">
                         <Slider.Range className="filters__price-fill bg-primary" />
                     </Slider.Track>
                     <Slider.Thumb className="filters__price-handle bg-on-surface outline-none cursor-pointer" />
+                    <Slider.Thumb className="filters__price-handle bg-on-surface outline-none cursor-pointer" />
                 </Slider.Root>
 
                 <div className="filters__price-labels font-headline">
-                    <span>$0</span>
-                    <span>${priceValue}</span>
+                    <span>${priceRange[0]}</span>
+                    <span>${priceRange[1]}</span>
                 </div>
             </div>
         </aside>
