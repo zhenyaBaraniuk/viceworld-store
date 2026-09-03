@@ -109,7 +109,11 @@ export default function Header() {
                     </Dialog.Root>
 
                     <Link
-                        href={auth.customer ? route("account.show") : route("login")}
+                        href={
+                            auth.customer
+                                ? route("account.show")
+                                : route("login")
+                        }
                         className="navbar_action-btn text-neutral-900 dark:text-white"
                     >
                         <User size={20} />

@@ -8,7 +8,7 @@ export interface SearchProps {
         category_slug?: string[];
         size?: string[];
         color?: string[];
-        price?: number;
+        price?: [number, number];
     };
     max_price: number;
     colors: { value: string; hex: string }[];

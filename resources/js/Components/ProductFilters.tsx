@@ -24,8 +24,8 @@ export default function ProductFilters({
     function handlePrice([min, max]: [number, number]) {
         onNavigate({
             ...filters,
-            price: min === 0 && max === max_price ? undefined : [min, max]
-        })
+            price: min === 0 && max === max_price ? undefined : [min, max],
+        });
     }
 
     function handleFilter(key: string, value: string) {
@@ -132,8 +132,12 @@ export default function ProductFilters({
                     min={0}
                     max={max_price}
                     value={priceRange}
-                    onValueChange={(values: number[]) => setPriceRange(values as [number, number])}
-                    onValueCommit={(values: number[]) => handlePrice(values as [number, number])}
+                    onValueChange={(values: number[]) =>
+                        setPriceRange(values as [number, number])
+                    }
+                    onValueCommit={(values: number[]) =>
+                        handlePrice(values as [number, number])
+                    }
                 >
                     <Slider.Track className="filters__price-track bg-surface-container-high">
                         <Slider.Range className="filters__price-fill bg-primary" />
