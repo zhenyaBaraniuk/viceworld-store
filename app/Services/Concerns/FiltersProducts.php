@@ -49,7 +49,7 @@ trait FiltersProducts
                 'color' => $query->whereHas('productVariants.attributeValues',
                     fn ($q) => $q->whereIn('value', (array) $value)->whereNotNull('color')),
 
-                'price' => $query->where('price', '<=', $value),
+                'price' => $query->whereBetween('price', array_map('floatval', (array) $value)),
 
                 default => null,
             };
