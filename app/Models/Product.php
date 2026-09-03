@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
@@ -87,6 +88,16 @@ class Product extends Model implements HasMedia, MediaFileInterface, Translatabl
         return $this->morphToMany(Media::class, 'mediable')
             ->using(Mediable::class)
             ->withPivot('collection', 'order');
+    }
+
+    public function related(): BelongsToMany
+    {
+        return $this->belongsToMany(
+            Product::class,
+            'product_related',
+            'product_id',
+            'related_product_id',
+        );
     }
 
     #[Scope]
