@@ -21,13 +21,8 @@ class ProductService
 
     public function getRelatedProducts(Product $product): Collection
     {
-        return Product::query()
-            ->where('category_id', '=', $product->category_id)
-            ->where('id', '!=', $product->id)
-            ->with([
-                'media',
-                'translations',
-            ])
+        return $product->related()
+            ->with(['mediaFiles', 'translations'])
             ->limit(4)
             ->get();
     }
