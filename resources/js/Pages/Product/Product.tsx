@@ -67,9 +67,13 @@ export default function Product({ product }: Props) {
                         </span>
                     </div>
 
-                    <p className="product-info__meta text-primary">
-                        {t("product.meta_tag")}
-                    </p>
+                    {product.labels.length > 0 && (
+                        <p className="product-info__meta text-primary">
+                            {product.labels
+                                .map((label) => label.name)
+                                .join(" • ")}
+                        </p>
+                    )}
                 </header>
 
                 <div className="space-y-6">

@@ -6,6 +6,7 @@ use App\Enums\GenderLine;
 use App\Enums\Product\ProductStatus;
 use App\Filament\Forms\Components\MediaPicker;
 use App\Models\Category;
+use App\Models\Label;
 use App\Models\Product;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
@@ -132,6 +133,27 @@ class ProductForm
                             collect($state ?? [])
                                 ->mapWithKeys(fn ($id, $index) => [$id => ['position' => $index]]
                                 ));
+                    })
+                    ->preload()
+                    ->searchable(),
+
+                Select::make('labels')
+                    ->label(__('labels.navigation_label'))
+                    ->relationship('labels', 'id')
+                    ->getSearchResultsUsing(fn (string $search) => Label::query()
+                        ->whereHas('translations', fn ($q) => $q->where('name', 'like', "%{$search}%"))
+                        ->limit(50)
+                        ->get()
+                        ->mapWithKeys(fn (Label $label) => [$label->id => $label->translated('name')])
+                        ->all())
+                    ->getOptionLabelFromRecordUsing(fn (Label $label) => $label->translated('name'))
+                    ->multiple()
+                    ->reorderable()
+                    ->saveRelationshipsUsing(function (Select $component, Product $record, ?array $state) {
+                        return $record->labels()->sync(
+                            collect($state ?? [])
+                                ->mapWithKeys(fn ($id, $index) => [$id => ['position' => $index]])
+                        );
                     })
                     ->preload()
                     ->searchable(),

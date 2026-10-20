@@ -100,6 +100,19 @@ class Product extends Model implements HasMedia, MediaFileInterface, Translatabl
         )->withPivot('position')->orderByPivot('position');
     }
 
+    /**
+     * @return BelongsToMany<Label, $this>
+     */
+    public function labels(): BelongsToMany
+    {
+        return $this->belongsToMany(
+            Label::class,
+            'label_product',
+            'product_id',
+            'label_id',
+        )->withPivot('position')->orderByPivot('position');
+    }
+
     #[Scope]
     protected function active(Builder $query): Builder
     {

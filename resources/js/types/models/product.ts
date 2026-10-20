@@ -12,4 +12,5 @@ export interface Product {
     video: Media | null;
     images: Media[] | null;
     product_variants: ProductVariant[];
+    labels: { id: string; name: string }[];
 }
