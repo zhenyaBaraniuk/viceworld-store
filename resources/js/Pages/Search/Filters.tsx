@@ -1,7 +1,7 @@
 import { SearchProps } from "@/types";
 import ProductFilters from "@/Components/ProductFilters";
 import { router } from "@inertiajs/react";
-import { route } from "@/lib/route";
+import { useRoute } from "@/lib/route";
 
 type Props = Pick<
     SearchProps,
@@ -15,6 +15,7 @@ export default function Filters({
     max_price,
     query,
 }: Props) {
+    const route = useRoute();
     function onNavigate(next: typeof filters) {
         router.get(
             route("search"),

@@ -1,11 +1,12 @@
 import "../../../css/front/pages/profile/navigation.css";
 import { Link } from "@inertiajs/react";
-import { route } from "@/lib/route";
+import { useRoute } from "@/lib/route";
 import { RouteList } from "ziggy-js";
 import { ArrowRight } from "lucide-react";
 import { useTranslation } from "@/hooks/useTranslation";
 
 export default function Navigation() {
+    const route = useRoute();
     const { t } = useTranslation();
 
     const NAV_ITEMS: { label: string; routeName: keyof RouteList }[] = [

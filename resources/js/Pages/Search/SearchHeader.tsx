@@ -1,7 +1,7 @@
 import "../../../css/front/pages/search/search-header.css";
 import type { SearchProps } from "@/types";
 import { useState } from "react";
-import { route } from "@/lib/route";
+import { useRoute } from "@/lib/route";
 import { router } from "@inertiajs/react";
 import { ArrowRight } from "lucide-react";
 import { useTranslation } from "@/hooks/useTranslation";
@@ -9,6 +9,7 @@ import { useTranslation } from "@/hooks/useTranslation";
 type Props = Pick<SearchProps, "query" | "total">;
 
 export default function SearchHeader({ query, total }: Props) {
+    const route = useRoute();
     const { t } = useTranslation();
     const [input, setInput] = useState(query);
 

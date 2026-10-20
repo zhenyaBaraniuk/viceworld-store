@@ -1,13 +1,14 @@
 import "../../../css/front/pages/home/category-tiles.css";
 
 import { HomeProps } from "@/types";
-import { route } from "@/lib/route";
+import { useRoute } from "@/lib/route";
 import { Link } from "@inertiajs/react";
 import { useTranslation } from "@/hooks/useTranslation";
 
 type Props = Pick<HomeProps, "category_tiles">;
 
 export default function CategoryTiles({ category_tiles }: Props) {
+    const route = useRoute();
     const { t } = useTranslation();
 
     return (

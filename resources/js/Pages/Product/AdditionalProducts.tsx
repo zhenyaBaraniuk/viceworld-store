@@ -1,12 +1,13 @@
 import "../../../css/front/pages/product/additional-products.css";
 import { ProductProps } from "@/types/pages/product";
-import { route } from "@/lib/route";
+import { useRoute } from "@/lib/route";
 import { Link } from "@inertiajs/react";
 import { useTranslation } from "@/hooks/useTranslation";
 
 type Props = Pick<ProductProps, "related_products">;
 
 export default function AdditionalProducts({ related_products }: Props) {
+    const route = useRoute();
     const { t } = useTranslation();
 
     return (

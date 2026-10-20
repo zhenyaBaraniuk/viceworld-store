@@ -1,13 +1,14 @@
 import AdditionalProducts from "./AdditionalProducts";
 import Breadcrumbs from "../../Navigation/Breadcrumbs";
 import Product from "./Product";
-import { route } from "@/lib/route";
+import { useRoute } from "@/lib/route";
 import type { ProductProps } from "@/types";
 import SiteLayout from "@/Layouts/SiteLayout";
 import { ReactNode } from "react";
 import { useTranslation } from "@/hooks/useTranslation";
 
 function ProductPage({ product, category, related_products }: ProductProps) {
+    const route = useRoute();
     const { t } = useTranslation();
 
     return (
