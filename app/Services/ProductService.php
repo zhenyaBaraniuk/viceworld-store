@@ -15,6 +15,7 @@ class ProductService
                 'translations',
                 'category.translations',
                 'productVariants.attributeValues.attribute',
+                'labels.translations',
             ])
             ->firstOrFail();
     }

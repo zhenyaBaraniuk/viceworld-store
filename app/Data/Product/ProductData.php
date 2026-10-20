@@ -2,6 +2,7 @@
 
 namespace App\Data\Product;
 
+use App\Data\Label\LabelData;
 use App\Data\ProductVariant\ProductVariantData;
 use App\Models\Media;
 use App\Models\Product;
@@ -20,6 +21,8 @@ class ProductData extends Data
         public array $images,
         /** @var array<ProductVariantData> */
         public array $product_variants,
+        /** @var array<LabelData> */
+        public array $labels,
     ) {}
 
     public static function fromModel(Product $product): self
@@ -39,7 +42,11 @@ class ProductData extends Data
             product_variants: $product->productVariants
                 ->map(fn ($productVariant) => ProductVariantData::fromModel($productVariant))
                 ->values()
-                ->all()
+                ->all(),
+            labels: $product->labels
+                ->map(fn ($label) => LabelData::fromModel($label))
+                ->values()
+                ->all(),
         );
     }
 

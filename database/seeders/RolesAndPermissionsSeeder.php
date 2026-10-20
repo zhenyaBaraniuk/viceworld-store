@@ -17,6 +17,7 @@ class RolesAndPermissionsSeeder extends Seeder
             'products.list', 'products.edit', 'products.delete', 'products.create',
             'categories.list', 'categories.edit', 'categories.delete', 'categories.create',
             'attributes.list', 'attributes.edit', 'attributes.delete', 'attributes.create',
+            'labels.list', 'labels.edit', 'labels.delete', 'labels.create',
             'orders.list', 'orders.view', 'orders.edit',
             'customers.list', 'customers.view',
             'payments.list', 'payments.view',
@@ -38,6 +39,7 @@ class RolesAndPermissionsSeeder extends Seeder
                 'products.list', 'products.edit', 'products.delete', 'products.create',
                 'categories.list', 'categories.edit', 'categories.delete', 'categories.create',
                 'attributes.list', 'attributes.edit', 'attributes.delete', 'attributes.create',
+                'labels.list', 'labels.edit', 'labels.delete', 'labels.create',
                 'media.list', 'media.view', 'media.delete', 'media.edit',
             ]
         );
