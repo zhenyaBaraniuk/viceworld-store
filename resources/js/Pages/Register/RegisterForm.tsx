@@ -1,10 +1,11 @@
 import "@css/front/pages/auth/auth-form.css";
 import { Link, useForm } from "@inertiajs/react";
-import { route } from "@/lib/route";
+import { useRoute } from "@/lib/route";
 import { ArrowRight } from "lucide-react";
 import FormField from "@/UI/FormField";
 
 export default function RegisterForm() {
+    const route = useRoute();
     const { data, processing, setData, post, errors } = useForm({
         first_name: "",
         last_name: "",

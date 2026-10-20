@@ -6,11 +6,12 @@ import { ReactNode } from "react";
 import SiteLayout from "@/Layouts/SiteLayout";
 import { ProfileProps } from "@/types/pages/profile";
 import { useForm } from "@inertiajs/react";
-import { route } from "@/lib/route";
+import { useRoute } from "@/lib/route";
 import ProfileLayout from "@/Layouts/ProfileLayout";
 import { useTranslation } from "@/hooks/useTranslation";
 
 function PersonalInformation({ customer }: ProfileProps) {
+    const route = useRoute();
     const { t } = useTranslation();
     const { data, processing, setData, post, errors } = useForm({
         first_name: customer.first_name,

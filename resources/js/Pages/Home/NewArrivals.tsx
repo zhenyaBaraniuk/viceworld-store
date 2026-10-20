@@ -1,12 +1,13 @@
 import "../../../css/front/pages/home/new-arrivals.css";
 import { HomeProps } from "@/types";
-import { route } from "@/lib/route";
+import { useRoute } from "@/lib/route";
 import { Link } from "@inertiajs/react";
 import { useTranslation } from "@/hooks/useTranslation";
 
 type Props = Pick<HomeProps, "new_arrivals">;
 
 export default function NewArrivals({ new_arrivals }: Props) {
+    const route = useRoute();
     const { t } = useTranslation();
 
     return (

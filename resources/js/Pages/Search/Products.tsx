@@ -2,12 +2,13 @@ import "../../../css/front/pages/search/products.css";
 import type { SearchProps } from "@/types";
 import { useEffect, useState } from "react";
 import { Link, router } from "@inertiajs/react";
-import { route } from "@/lib/route";
+import { useRoute } from "@/lib/route";
 import Pagination from "@/Navigation/Pagination";
 
 type Props = Pick<SearchProps, "products" | "filters" | "query">;
 
 export default function Products({ products, filters, query }: Props) {
+    const route = useRoute();
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {

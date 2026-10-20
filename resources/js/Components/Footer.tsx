@@ -1,10 +1,11 @@
 import "../../css/front/components/footer.css";
 import { ArrowRight } from "lucide-react";
 import { useForm } from "@inertiajs/react";
-import { route } from "@/lib/route";
+import { useRoute } from "@/lib/route";
 import { useTranslation } from "@/hooks/useTranslation";
 
 export default function Footer() {
+    const route = useRoute();
     const { t } = useTranslation();
     const year = new Date().getFullYear();
 

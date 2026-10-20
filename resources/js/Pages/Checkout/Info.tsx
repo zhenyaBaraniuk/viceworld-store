@@ -1,7 +1,7 @@
 import "../../../css/front/pages/checkout/info.css";
 import FormField from "@/UI/FormField";
 import { useForm } from "@inertiajs/react";
-import { route } from "@/lib/route";
+import { useRoute } from "@/lib/route";
 import clsx from "clsx";
 import type { CheckoutProps } from "@/types";
 import { useTranslation } from "@/hooks/useTranslation";
@@ -12,6 +12,7 @@ const PAYMENT_ICONS: Record<string, string> = {
 };
 
 export default function Info({ payment_methods }: CheckoutProps) {
+    const route = useRoute();
     const { t } = useTranslation();
     const { data, post, setData, errors, processing } = useForm({
         email: "",

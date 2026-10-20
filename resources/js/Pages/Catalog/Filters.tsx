@@ -1,7 +1,7 @@
 import type { CatalogProps } from "@/types";
 import ProductFilters from "@/Components/ProductFilters";
 import { router } from "@inertiajs/react";
-import { route } from "@/lib/route";
+import { useRoute } from "@/lib/route";
 
 type Props = Pick<
     CatalogProps,
@@ -14,6 +14,7 @@ export default function Filters({
     colors,
     max_price,
 }: Props) {
+    const route = useRoute();
     const { parent_category_slug, ...activeFilters } = filters;
 
     function onNavigate(next: typeof activeFilters) {

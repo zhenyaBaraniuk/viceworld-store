@@ -1,12 +1,13 @@
 import "../../../css/front/pages/home/hero.css";
 import { HomeProps } from "@/types";
-import { route } from "@/lib/route";
+import { useRoute } from "@/lib/route";
 import { Link } from "@inertiajs/react";
 import { useTranslation } from "@/hooks/useTranslation";
 
 type Props = Pick<HomeProps, "hero_product">;
 
 export default function Hero({ hero_product }: Props) {
+    const route = useRoute();
     const { t } = useTranslation();
 
     return (

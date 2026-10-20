@@ -1,6 +1,6 @@
 import "../../css/front/components/header.css";
 import { Link, router, usePage } from "@inertiajs/react";
-import { route } from "@/lib/route";
+import { useRoute } from "@/lib/route";
 import { useEffect, useState } from "react";
 import { Search, ShoppingBag, User, X } from "lucide-react";
 import LangSwitcher from "@/Components/LangSwitcher";
@@ -11,6 +11,7 @@ import { useCartStore } from "@/store/useCartStore";
 import { useTranslation } from "@/hooks/useTranslation";
 
 export default function Header() {
+    const route = useRoute();
     const { t } = useTranslation();
 
     const itemCount = useCartStore((state) =>
