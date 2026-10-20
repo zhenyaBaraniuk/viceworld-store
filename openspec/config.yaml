@@ -1,0 +1,76 @@
+schema: spec-driven
+
+context: |
+  Портфоліо-магазин V!ceWorld: Laravel 12 + Filament 5 (/admin), Inertia 3 +
+  React + TypeScript, Tailwind CSS 4, Zustand (кошик). БД: MySQL у проді,
+  SQLite :memory: у тестах. Пакети: liqpay, spatie/laravel-medialibrary,
+  spatie/laravel-permission, spatie/laravel-data (DTO),
+  astrotomic/laravel-translatable. Карта сторінок і дизайн-файлів:
+  .claude/rules/architecture.md, план робіт: .claude/rules/TODO.md.
+
+  Код пише розробник сам. AI радить, планує, виконує команди в терміналі і
+  не комітить ніколи. Правки в коді робить лише після явного дозволу на
+  конкретну дію.
+
+  Дизайн (Architectural Brutalism, DESIGN.md): border-radius 0px скрізь; без
+  тіней і градієнтів, глибина лише через tonal layering; без 1px borders,
+  роздільники лише через зміну фону; transitions тільки linear або expo-out;
+  інпути лише з нижньою межею; акцент #0066FF лише для CTA, "!" у лого і
+  active states.
+
+  Середовище: усі php artisan / composer / pint / test запускаються лише в
+  Laradock, не на хості (версія PHP на хості інша).
+
+  i18n з першого дня: увесь текст нового UI йде через ключі перекладу
+  (lang/uk.json, lang/en.json на фронті; __() + lang/{uk,en}/*.php у
+  Filament), а не хардкодом.
+
+  Test-first: у tasks.md задачі на тести стоять перед задачами реалізації,
+  які вони покривають. Тест спершу червоний, після реалізації зелений.
+  Особливо для кошика, checkout, створення замовлення і вебхуків оплати.
+  Для вебхуків обов'язковий тест повторної доставки (ідемпотентність).
+
+  Портабельність БД: без MySQL-специфічного SQL, який зламається на SQLite у
+  тестах. Якщо без нього ніяк, виняток і причина пишуться в коментарі в
+  міграції чи запиті.
+
+  Перед «готово»: `composer check` (pint → rector dry-run → phpstan → test, у
+  Laradock) для PHP-змін і `npm run fix` (typecheck → lint:fix → format) для
+  JS/TS. Зміна в обох шарах проходить обидва.
+
+  Нові Filament-ресурси: `php artisan make:filament-resource ModelName
+  --generate`, потім довести до дизайн-системи та i18n.
+
+  Історія до OpenSpec (Spec Kit) лежить у changes/archive/ у старому форматі
+  (spec/plan/tasks/research), а не proposal/design.
+
+# Project context (optional)
+# This is shown to AI when creating artifacts.
+# Add your tech stack, conventions, style guides, domain knowledge, etc.
+# Example:
+#   context: |
+#     Tech stack: TypeScript, React, Node.js
+#     We use conventional commits
+#     Domain: e-commerce platform
+
+# Per-artifact rules (optional)
+# Add custom rules for specific artifacts.
+# Example:
+#   rules:
+#     proposal:
+#       - Keep proposals under 500 words
+#       - Always include a "Non-goals" section
+#     tasks:
+#       - Break tasks into chunks of max 2 hours
+
+# Per-operation guidance (optional)
+# Add advisory guidance for how apply and archive work should be conducted.
+# This is separate from artifact rules above.
+# Example:
+#   operations:
+#     apply:
+#       guidance:
+#         - Keep test summaries concise
+#     archive:
+#       guidance:
+#         - Summarize the archive outcome before finishing
