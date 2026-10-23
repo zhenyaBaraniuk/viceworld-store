@@ -3,6 +3,7 @@ import { Link, useForm } from "@inertiajs/react";
 import { useRoute } from "@/lib/route";
 import { ArrowRight } from "lucide-react";
 import FormField from "@/UI/FormField";
+import PasswordInput from "@/UI/PasswordInput";
 
 export default function RegisterForm() {
     const route = useRoute();
@@ -66,27 +67,46 @@ export default function RegisterForm() {
                     />
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        <FormField
-                            className="relative"
-                            type="password"
-                            placeholder="••••••••"
-                            label="Password"
-                            value={data.password}
-                            onChange={(value) => setData("password", value)}
-                            error={errors.password}
-                        />
+                        <div className="group relative">
+                            <label className="form-field__label text-neutral-400">
+                                Password
+                            </label>
+                            <PasswordInput
+                                placeholder="••••••••"
+                                value={data.password}
+                                onChange={(e) =>
+                                    setData("password", e.target.value)
+                                }
+                                className="form-field__input border-neutral-200 placeholder:text-neutral-300"
+                            />
+                            {errors.password && (
+                                <p className="field-error text-primary">
+                                    {errors.password}
+                                </p>
+                            )}
+                        </div>
 
-                        <FormField
-                            className="relative"
-                            type="password"
-                            placeholder="••••••••"
-                            label="Confirm Password"
-                            value={data.password_confirmation}
-                            onChange={(value) =>
-                                setData("password_confirmation", value)
-                            }
-                            error={errors.password_confirmation}
-                        />
+                        <div className="group relative">
+                            <label className="form-field__label text-neutral-400">
+                                Confirm Password
+                            </label>
+                            <PasswordInput
+                                placeholder="••••••••"
+                                value={data.password_confirmation}
+                                onChange={(e) =>
+                                    setData(
+                                        "password_confirmation",
+                                        e.target.value,
+                                    )
+                                }
+                                className="form-field__input border-neutral-200 placeholder:text-neutral-300"
+                            />
+                            {errors.password_confirmation && (
+                                <p className="field-error text-primary">
+                                    {errors.password_confirmation}
+                                </p>
+                            )}
+                        </div>
                     </div>
 
                     <div className="pt-6 space-y-4">

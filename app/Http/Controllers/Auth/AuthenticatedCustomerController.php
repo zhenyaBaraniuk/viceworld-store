@@ -28,7 +28,9 @@ class AuthenticatedCustomerController extends Controller
             return to_route('account.show')->with('success', 'You have successfully signed in');
         }
 
-        return to_route('login')->withErrors('Oppes! You have entered invalid credentials');
+        return to_route('login')->withErrors([
+            'credentials' => 'Oppes! You have entered invalid credentials'
+        ]);
     }
 
     public function logout(Request $request): RedirectResponse

@@ -24,6 +24,8 @@
   "checkout.street_placeholder": "Khreshchatyk St, 22, Apt 4",
   "checkout.subtotal": "Subtotal",
   "common.breadcrumb_home": "Home",
+  "common.show_password": "Show password",
+  "common.hide_password": "Hide password",
   "filters.category_heading": "Category",
   "filters.color_heading": "Color",
   "filters.price_heading": "Price Range",
