@@ -9,6 +9,7 @@ import { useForm } from "@inertiajs/react";
 import { useRoute } from "@/lib/route";
 import ProfileLayout from "@/Layouts/ProfileLayout";
 import { useTranslation } from "@/hooks/useTranslation";
+import PasswordInput from "@/UI/PasswordInput";
 
 function Settings({ customer }: ProfileProps) {
     const route = useRoute();
@@ -73,8 +74,7 @@ function Settings({ customer }: ProfileProps) {
                                             )}
                                         </label>
                                         <div className="profile-form__input-wrap border-neutral-200 dark:border-neutral-800">
-                                            <input
-                                                type="password"
+                                            <PasswordInput
                                                 value={
                                                     passwordForm.data
                                                         .current_password
@@ -108,8 +108,7 @@ function Settings({ customer }: ProfileProps) {
                                             {t("profile.new_password_label")}
                                         </label>
                                         <div className="profile-form__input-wrap border-neutral-200 dark:border-neutral-800">
-                                            <input
-                                                type="password"
+                                            <PasswordInput
                                                 value={
                                                     passwordForm.data
                                                         .new_password

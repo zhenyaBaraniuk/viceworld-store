@@ -3,6 +3,7 @@ import { ArrowRight } from "lucide-react";
 import { Link, useForm, usePage } from "@inertiajs/react";
 import { useRoute } from "@/lib/route";
 import FormField from "@/UI/FormField";
+import PasswordInput from "@/UI/PasswordInput";
 
 export default function LoginForm() {
     const route = useRoute();
@@ -40,14 +41,22 @@ export default function LoginForm() {
                     error={errors.email}
                 />
 
-                <FormField
-                    label="Password"
-                    type="password"
-                    placeholder="••••••••"
-                    value={data.password}
-                    onChange={(value) => setData("password", value)}
-                    error={errors.password}
-                />
+                <div className="group">
+                    <label className="form-field__label text-neutral-400">
+                        Password
+                    </label>
+                    <PasswordInput
+                        placeholder="••••••••"
+                        value={data.password}
+                        onChange={(e) => setData("password", e.target.value)}
+                        className="form-field__input border-neutral-200 placeholder:text-neutral-300"
+                    />
+                    {errors.password && (
+                        <p className="field-error text-primary">
+                            {errors.password}
+                        </p>
+                    )}
+                </div>
 
                 <div className="flex items-center justify-between text-xs font-bold uppercase tracking-tight">
                     <label className="flex items-center cursor-pointer select-none">

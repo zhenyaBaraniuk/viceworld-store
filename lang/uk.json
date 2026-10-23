@@ -24,6 +24,8 @@
   "checkout.street_placeholder": "вул. Хрещатик, 22, кв. 4",
   "checkout.subtotal": "Проміжна сума",
   "common.breadcrumb_home": "Головна",
+  "common.show_password": "Показати пароль",
+  "common.hide_password": "Сховати пароль",
   "filters.category_heading": "Категорія",
   "filters.color_heading": "Колір",
   "filters.price_heading": "Діапазон цін",
