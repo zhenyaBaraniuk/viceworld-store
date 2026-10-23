@@ -1,1 +1,0 @@
-import{r as e}from"./app-B6B0f1B-.js";function t(e,t){return e[t]??t}function n(){let{props:n}=e();return{t:e=>t(n.translations,e)}}export{n as t};

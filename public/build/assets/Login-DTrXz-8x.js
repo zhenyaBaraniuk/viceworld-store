@@ -1,1 +1,0 @@
-import{t as e}from"./jsx-runtime-By8HlURe.js";import{t}from"./SiteLayout-QL_bszyt.js";import n from"./LoginForm-R9ujiqfy.js";var r=e();function i(){return(0,r.jsx)(`main`,{className:`min-h-screen pt-24 pb-12 flex items-center justify-center`,children:(0,r.jsx)(n,{})})}i.layout=e=>(0,r.jsx)(t,{children:e});export{i as default};

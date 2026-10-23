@@ -8,7 +8,7 @@ import { useTranslation } from "@/hooks/useTranslation";
 
 const PAYMENT_ICONS: Record<string, string> = {
     liqpay: "/images/payment/liqpay.png",
-    mono: "/images/payment/mono.png",
+    monobank: "/images/payment/mono.png",
 };
 
 export default function Info({ payment_methods }: CheckoutProps) {
