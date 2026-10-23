@@ -1,6 +1,6 @@
 import "@css/front/pages/auth/auth-form.css";
 import { ArrowRight } from "lucide-react";
-import { Link, useForm } from "@inertiajs/react";
+import { Link, useForm, usePage } from "@inertiajs/react";
 import { useRoute } from "@/lib/route";
 import FormField from "@/UI/FormField";
 
@@ -11,6 +11,7 @@ export default function LoginForm() {
         password: "",
         remember_me: false,
     });
+    const { errors: pageErrors } = usePage().props;
 
     const login = (e: React.SubmitEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -62,6 +63,12 @@ export default function LoginForm() {
                         <span>Remember Me</span>
                     </label>
                 </div>
+
+                {pageErrors.credentials && (
+                    <p className="field-error text-primary">
+                        {pageErrors.credentials}
+                    </p>
+                )}
 
                 <button
                     type="submit"
