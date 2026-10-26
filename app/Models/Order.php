@@ -37,7 +37,7 @@ class Order extends Model
     protected static function booted(): void
     {
         static::creating(function (Order $order): void {
-            $order->order_number = (string) (static::query()->max('order_number') + 1);
+            $order->order_number = (static::query()->max('order_number') ?? 0) + 1;
         });
     }
 

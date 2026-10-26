@@ -28,7 +28,7 @@ public string $name; // already resolved to the request's current locale server-
   product serializes `labels: []`, not an omitted key. This is what lets `Product.tsx` use a
   simple `.length > 0` guard (FR-006) without an extra null-check.
 - Array order **is** display order (FR-010) — the frontend MUST NOT re-sort `labels` (no
-  alphabetical sort, no client-side reordering). Order is fully determined server-side by
+  alphabetical sort, no client-side reordering). Orders is fully determined server-side by
   `label_product.position`.
 - `name` is already localized to the current request locale server-side (same pattern as
   `AttributeValueData::$name`, which resolves via `$attributeValue->attribute->name` →

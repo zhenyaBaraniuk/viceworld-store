@@ -217,7 +217,7 @@ the project's quality gates together (not just per-story).
 
 ---
 
-## Dependencies & Execution Order
+## Dependencies & Execution Orders
 
 - **Phase 1 (Setup)** → **Phase 2 (Foundational)**: strictly sequential, blocks everything below.
 - **Phase 3 (US1)** depends only on Phase 2.

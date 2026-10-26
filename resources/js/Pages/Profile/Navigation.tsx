@@ -11,6 +11,7 @@ export default function Navigation() {
 
     const NAV_ITEMS: { label: string; routeName: keyof RouteList }[] = [
         { label: t("profile.nav_profile"), routeName: "account.show" },
+        { label: t("profile.nav_orders"), routeName: "account.orders" },
         { label: t("profile.nav_settings"), routeName: "account.settings" },
     ];
 

@@ -29,7 +29,7 @@ class AuthenticatedCustomerController extends Controller
         }
 
         return to_route('login')->withErrors([
-            'credentials' => 'Oppes! You have entered invalid credentials'
+            'credentials' => 'Oppes! You have entered invalid credentials',
         ]);
     }
 
