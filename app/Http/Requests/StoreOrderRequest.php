@@ -21,8 +21,8 @@ class StoreOrderRequest extends FormRequest
             'phone' => ['required', 'phone:UA'],
             'delivery_method' => ['required', Rule::enum(DeliveryMethod::class)],
             'payment_method' => ['required', Rule::enum(PaymentProvider::class)],
-            'city' => [Rule::requiredIf(fn () => $this->input('delivery_method') === DeliveryMethod::COURIER->value), 'string', 'max:255'],
-            'street' => [Rule::requiredIf(fn () => $this->input('delivery_method') === DeliveryMethod::COURIER->value), 'string', 'max:255'],
+            'city' => [Rule::excludeIf(fn () => $this->input('delivery_method') === DeliveryMethod::PICKUP->value), 'required', 'string', 'max:255'],
+            'street' => [Rule::excludeIf(fn () => $this->input('delivery_method') === DeliveryMethod::PICKUP->value), 'required', 'string', 'max:255'],
         ];
     }
 }
