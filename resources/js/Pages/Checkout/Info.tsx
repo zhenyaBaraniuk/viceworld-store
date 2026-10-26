@@ -11,15 +11,15 @@ const PAYMENT_ICONS: Record<string, string> = {
     monobank: "/images/payment/mono.png",
 };
 
-export default function Info({ payment_methods }: CheckoutProps) {
+export default function Info({ payment_methods, customer }: CheckoutProps) {
     const route = useRoute();
     const { t } = useTranslation();
     const { data, post, setData, errors, processing } = useForm({
-        email: "",
-        phone: "",
+        email: customer?.email ?? "",
+        phone: customer?.phone ?? "",
         delivery_method: "courier",
-        city: "",
-        street: "",
+        city: customer?.address?.city ?? "",
+        street: customer?.address?.street ?? "",
         payment_method: "monobank",
     });
 

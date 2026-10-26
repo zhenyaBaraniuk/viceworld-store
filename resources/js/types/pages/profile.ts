@@ -1,16 +1,8 @@
-import type { CustomerAddress } from "@/types/models/customer-address";
+import type { Customer } from "@/types/pages/customer";
 import type { Order } from "@/types/models/order";
 
-export interface CustomerData {
-    first_name: string;
-    last_name: string;
-    email: string;
-    phone: string | null;
-    address: CustomerAddress | null;
-}
-
 export type ProfileProps = {
-    customer: CustomerData;
+    customer: Customer;
 };
 
 export type OrderProps = {
