@@ -23,6 +23,8 @@ class StoreOrderRequest extends FormRequest
             'payment_method' => ['required', Rule::enum(PaymentProvider::class)],
             'city' => [Rule::excludeIf(fn () => $this->input('delivery_method') === DeliveryMethod::PICKUP->value), 'required', 'string', 'max:255'],
             'street' => [Rule::excludeIf(fn () => $this->input('delivery_method') === DeliveryMethod::PICKUP->value), 'required', 'string', 'max:255'],
+            'building' => [Rule::excludeIf(fn () => $this->input('delivery_method') === DeliveryMethod::PICKUP->value), 'required', 'string', 'max:20'],
+            'apartment' => [Rule::excludeIf(fn () => $this->input('delivery_method') === DeliveryMethod::PICKUP->value), 'nullable', 'string', 'max:20'],
         ];
     }
 }

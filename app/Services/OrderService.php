@@ -36,9 +36,7 @@ class OrderService
                 'email' => $data['email'],
                 'phone' => $data['phone'],
                 'total_amount' => $totalAmount,
-                'shipping_address' => $data['delivery_method'] === DeliveryMethod::COURIER->value
-                    ? ['city' => $data['city'], 'street' => $data['street']]
-                    : ['address' => 'Kyiv, Baseina 12'],
+                'shipping_address' => $this->buildShippingAddress($data),
             ]);
 
             foreach ($cart->cartItems as $cartItem) {
@@ -54,5 +52,19 @@ class OrderService
 
             return $order;
         });
+    }
+
+    protected function buildShippingAddress(array $data): array
+    {
+        if ($data['delivery_method'] === DeliveryMethod::COURIER->value) {
+            return [
+              'city' => $data['city'],
+              'street' => $data['street'],
+              'building' => $data['building'],
+              'apartment' => $data['apartment'] ?? null,
+            ];
+        }
+
+        return ['address' => 'Kyiv, Baseina 12'];
     }
 }
