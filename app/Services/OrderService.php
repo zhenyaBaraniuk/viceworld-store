@@ -58,10 +58,10 @@ class OrderService
     {
         if ($data['delivery_method'] === DeliveryMethod::COURIER->value) {
             return [
-              'city' => $data['city'],
-              'street' => $data['street'],
-              'building' => $data['building'],
-              'apartment' => $data['apartment'] ?? null,
+                'city' => $data['city'],
+                'street' => $data['street'],
+                'building' => $data['building'],
+                'apartment' => $data['apartment'] ?? null,
             ];
         }
 
