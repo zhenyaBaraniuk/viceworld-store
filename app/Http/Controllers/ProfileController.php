@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Data\Customer\CustomerData;
+use App\Data\Order\OrderData;
 use App\Http\Requests\UpdateCustomerAddressRequest;
 use App\Http\Requests\UpdateCustomerPasswordRequest;
 use App\Http\Requests\UpdateCustomerRequest;
 use App\Models\Customer;
+use App\Models\Order;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -55,6 +57,20 @@ class ProfileController extends Controller
         );
 
         return to_route('account.show')->with('success', 'Address has been updated');
+    }
+
+    public function orders(): Response
+    {
+        $orders = $this->customer()
+            ->orders()
+            ->with('orderItems.productVariant.product.mediaFiles')
+            ->withCount('orderItems')
+            ->latest()
+            ->get();
+
+        return Inertia::render('Profile/Orders', [
+            'orders' => $orders->map(fn (Order $order) => OrderData::fromModel($order)),
+        ]);
     }
 
     private function customer(): Customer

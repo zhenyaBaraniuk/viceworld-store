@@ -51,7 +51,7 @@ resolved in Clarifications (FR-010).
 |---|---|---|
 | `label_id` | `ulid` | Part of composite primary key. |
 | `product_id` | `ulid` | Part of composite primary key. |
-| `position` | integer | Order in which the administrator assigned this label to this product; drives display order per FR-010. Written by `LabelResource`/`ProductForm`'s `saveRelationshipsUsing()` from selection order — not user-editable directly. |
+| `position` | integer | Orders in which the administrator assigned this label to this product; drives display order per FR-010. Written by `LabelResource`/`ProductForm`'s `saveRelationshipsUsing()` from selection order — not user-editable directly. |
 
 - No surrogate `id`, no timestamps (matches `attribute_value_product_variant` and
   `product_related`).

@@ -8,18 +8,20 @@ import { useTranslation } from "@/hooks/useTranslation";
 
 const PAYMENT_ICONS: Record<string, string> = {
     liqpay: "/images/payment/liqpay.png",
-    mono: "/images/payment/mono.png",
+    monobank: "/images/payment/mono.png",
 };
 
-export default function Info({ payment_methods }: CheckoutProps) {
+export default function Info({ payment_methods, customer }: CheckoutProps) {
     const route = useRoute();
     const { t } = useTranslation();
     const { data, post, setData, errors, processing } = useForm({
-        email: "",
-        phone: "",
+        email: customer?.email ?? "",
+        phone: customer?.phone ?? "",
         delivery_method: "courier",
-        city: "",
-        street: "",
+        city: customer?.address?.city ?? "",
+        street: customer?.address?.street ?? "",
+        building: customer?.address?.building ?? "",
+        apartment: customer?.address?.apartment ?? "",
         payment_method: "monobank",
     });
 
@@ -166,6 +168,22 @@ export default function Info({ payment_methods }: CheckoutProps) {
                             value={data.street}
                             onChange={(value) => setData("street", value)}
                             error={errors.street}
+                        />
+
+                        <FormField
+                            label={t("checkout.building_label")}
+                            placeholder={t("checkout.building_placeholder")}
+                            value={data.building}
+                            onChange={(value) => setData("building", value)}
+                            error={errors.building}
+                        />
+
+                        <FormField
+                            label={t("checkout.apartment_label")}
+                            placeholder={t("checkout.apartment_placeholder")}
+                            value={data.apartment}
+                            onChange={(value) => setData("apartment", value)}
+                            error={errors.apartment}
                         />
                     </div>
                 )}

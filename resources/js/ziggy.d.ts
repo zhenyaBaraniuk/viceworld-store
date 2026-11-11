@@ -41,6 +41,14 @@ declare module 'ziggy-js' {
             "required": true
         }
     ],
+    "filament.admin.resources.labels.index": [],
+    "filament.admin.resources.labels.create": [],
+    "filament.admin.resources.labels.edit": [
+        {
+            "name": "record",
+            "required": true
+        }
+    ],
     "filament.admin.resources.media.index": [],
     "filament.admin.resources.orders.index": [],
     "filament.admin.resources.orders.view": [
@@ -238,6 +246,12 @@ declare module 'ziggy-js' {
         }
     ],
     "account.settings.address": [
+        {
+            "name": "locale",
+            "required": true
+        }
+    ],
+    "account.orders": [
         {
             "name": "locale",
             "required": true

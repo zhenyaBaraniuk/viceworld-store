@@ -12,4 +12,6 @@ use App\Http\Controllers\ProfileController;
     \Illuminate\Support\Facades\Route::get('/settings', [ProfileController::class, 'settings'])->name('settings');
     \Illuminate\Support\Facades\Route::post('/settings/password', [ProfileController::class, 'updatePassword'])->name('settings.password');
     \Illuminate\Support\Facades\Route::post('/settings/address', [ProfileController::class, 'updateAddress'])->name('settings.address');
+
+    \Illuminate\Support\Facades\Route::get('/orders', [ProfileController::class, 'orders'])->name('orders');
 });

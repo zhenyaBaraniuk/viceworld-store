@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Data\Customer\CustomerData;
 use App\Enums\Payment\PaymentProvider;
 use App\Http\Requests\StoreOrderRequest;
 use App\Services\CartService;
 use App\Services\OrderService;
 use App\Services\Payment\PaymentManager;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -20,7 +22,10 @@ class OrderController extends Controller
 
     public function index(): Response
     {
+        $customer = Auth::guard('customer')->user();
+
         return Inertia::render('Checkout/index', [
+            'customer' => $customer ? CustomerData::fromModel($customer) : null,
             'payment_methods' => config('payment.methods'),
         ]);
     }

@@ -127,7 +127,7 @@
 
 ---
 
-## Dependencies & Execution Order
+## Dependencies & Execution Orders
 
 ### Phase Dependencies
 
