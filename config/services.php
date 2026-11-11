@@ -49,4 +49,8 @@ return [
     'pexels' => [
         'key' => env('PEXELS_API_KEY'),
     ],
+
+    'nova_post' => [
+        'key' => env('NOVA_POST_API_KEY'),
+    ],
 ];
