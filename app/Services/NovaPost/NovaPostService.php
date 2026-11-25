@@ -17,4 +17,13 @@ readonly class NovaPostService
     {
         return $this->client->getCities($page, $limit);
     }
+
+    /**
+     * @throws Throwable
+     * @throws ConnectionException
+     */
+    public function fetchWarehousePage(int $page, int $limit): array
+    {
+        return $this->client->getWarehouses($page, $limit);
+    }
 }

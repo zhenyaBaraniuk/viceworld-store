@@ -18,30 +18,50 @@ class NovaPostClient
 
     /**
      * @throws Throwable
-     *
      * @throws ConnectionException
      */
     public function getCities(int $page, int $limit): array
     {
-        return retry(3, function () use ($page, $limit) {
+        return $this->call('Address', 'getCities', [
+            'Page' => (string) $page,
+            'Limit' => (string) $limit,
+        ]);
+    }
+
+    /**
+     * @throws Throwable
+     * @throws ConnectionException
+     */
+    public function getWarehouses(int $page, int $limit): array
+    {
+        return $this->call('Address', 'getWarehouses', [
+            'Page' => (string) $page,
+            'Limit' => (string) $limit,
+        ]);
+    }
+
+    /**
+     * @throws Throwable
+     * @throws ConnectionException
+     */
+    private function call(string $model, string $method, array $props = []): array
+    {
+        return retry([2000, 4000, 8000, 10000], function () use ($model, $method, $props) {
             $response = $this->client()->post($this->endpoint, [
                 'apiKey' => $this->apiToken,
-                'modelName' => 'Address',
-                'calledMethod' => 'getCities',
-                'methodProperties' => [
-                    'Page' => (string) $page,
-                    'Limit' => (string) $limit,
-                ],
+                'modelName' => $model,
+                'calledMethod' => $method,
+                'methodProperties' => $props,
             ]);
 
-            $json = json_decode((string)$response->getBody(), true);
+            $json = $response->json();
 
             if (! ($json['success'] ?? false)) {
                 throw new RuntimeException(implode('; ', $json['errors'] ?? ['Nova Post request failed']));
             }
 
             return $json['data'];
-        }, 500);
+        });
     }
 
     private function client(): PendingRequest

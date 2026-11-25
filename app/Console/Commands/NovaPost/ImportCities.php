@@ -17,17 +17,12 @@ class ImportCities extends Command
 
     private const int PAGE_LIMIT = 500;
 
-    public function __construct(private readonly NovaPostService $service)
-    {
-        parent::__construct();
-    }
-
-    public function handle(): int
+    public function handle(NovaPostService $service): int
     {
         $page = 1;
 
         do {
-            $data = $this->service->fetchCityPage($page, self::PAGE_LIMIT);
+            $data = $service->fetchCityPage($page, self::PAGE_LIMIT);
 
             $this->syncCities($data);
 
